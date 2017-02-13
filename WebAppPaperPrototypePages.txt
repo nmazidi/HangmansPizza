@@ -1,0 +1,45 @@
+1	Enter Postcode
+1.1	Erorr stating we do not deliver to that postcode
+1.2	Error stating that poscode in unrecognisable
+
+2	List of nearest stores displaying whether open or not
+
+3	Home Page (Menu - Pizzas)
+3.1	Scrolled Home Page (Sides/Drinks)
+
+4	Deals
+4.1	Scrolled Deals
+
+5	Margarita Pizza (Size, Crust)
+
+6	Pepperoni Pizza (Size, Crust)
+
+7	Hawaiian Pizza (Size, Crust)
+
+8	Meat Feast Pizza (Size, Crust)
+
+9	Create Own Pizza (Size, Crust, Toppings)
+
+10	Basket (Contents, Checkout Button, Order Cost)
+10.1	Nothing in basket (Pop up)
+
+11	Enter Details (First Name, Surname, Contact No, Email Address, Postcode[Autofill], Address 1, Address 2, City) 
+11.1	Null Error
+11.2	Incorrect Data Type
+11.3	Invalid Address
+
+12	Payment Type Card (Name, Card Number, Expiry Date, Security Code, Radio Buttons)
+12.1	Payment Type Paypal (Email Address, Password)
+12.2	Cash on Delivery
+12.3	Must pay by paypal
+12.4	Incorrect Details
+
+13	Order Confirmation (Pizza Details, Email Confirmation, 
+
+14	Create Account
+14.1	Null Fields
+14.2	Incorrect Details
+
+15	Log In	
+15.1	Null Fields
+15.2	Incorrect Details
