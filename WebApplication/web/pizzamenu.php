@@ -128,13 +128,31 @@ else {
 			
 			while ($row=mysql_fetch_array($query)) {
 			?>
-			<table style="width:160px">
+			<table style="width:160px; text-align: center;">
   				<tr>
-    					<th colspan="2" style="height: 150px;"><?php echo $row['ProductName'] ?></th>
+    					<th style="height: 150px; text-align: center;"><?php echo $row['ProductName'] ?></th>
+  				</tr>
+				<tr>
+    					<td>
+						<select name="size" style="width: 100%">
+ 						<option value="0">Large (£<?php echo $row['Price'] ?>)</option>
+						<option value="1">Medium (£<?php echo $row['Price'] - 1?>)</option>
+						<option value="2">Small (£<?php echo $row['Price']  - 2?>)</option>
+						</select>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<select name="crust" style="width: 100%">
+ 						<option value="1">Classic (£0.00)</option>
+						<option value="2">Cheese (£2.00)</option>
+						<option value="3">BBQ (£2.00)</option>
+						</select>
+					</td>
+  				</tr>
   				</tr>
   				<tr>
     					<td><a href="pizzamenu.php?action=add&id=<?php echo $row['ProductID'] ?>">Add to Basket</td>
-    					<td style="background-color: white; text-align: left;">£<?php echo $row['Price'] ?></td>
   				</tr>
 			<?php
 			}
@@ -147,4 +165,23 @@ else {
 
 	
 </body>
+
+<script src="jquery.min.js" type="text/javascript"></script>
+ 
+<script type="text/javascript">
+ 
+$(function() {
+ 
+    getStatus();
+ 
+});
+ 
+function getStatus() {
+ 
+    $('span#current').load('displayUntzStreamer.php');
+    setTimeout("getStatus()",5000);
+
+}
+ 
+</script>
 </html>
