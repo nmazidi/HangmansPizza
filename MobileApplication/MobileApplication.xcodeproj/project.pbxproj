@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		752EC2281E71A23A00C57C39 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 752EC2271E71A23A00C57C39 /* CardView.swift */; };
+		754DC7261E8847D6009A929B /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = 754DC7251E8847D6009A929B /* Data.swift */; };
 		75C340141E428D2600A82FDF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75C340131E428D2600A82FDF /* AppDelegate.swift */; };
 		75C340161E428D2600A82FDF /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75C340151E428D2600A82FDF /* ViewController.swift */; };
 		75C340191E428D2600A82FDF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 75C340171E428D2600A82FDF /* Main.storyboard */; };
@@ -26,6 +28,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		752EC2271E71A23A00C57C39 /* CardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
+		754DC7251E8847D6009A929B /* Data.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Data.swift; sourceTree = "<group>"; };
 		75C340101E428D2600A82FDF /* MobileApplication.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MobileApplication.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		75C340131E428D2600A82FDF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		75C340151E428D2600A82FDF /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -56,6 +60,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		752EC2261E71A20600C57C39 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				75C340151E428D2600A82FDF /* ViewController.swift */,
+			);
+			name = Controllers;
+			sourceTree = "<group>";
+		};
 		75C340071E428D2500A82FDF = {
 			isa = PBXGroup;
 			children = (
@@ -77,12 +89,14 @@
 		75C340121E428D2600A82FDF /* MobileApplication */ = {
 			isa = PBXGroup;
 			children = (
+				752EC2261E71A20600C57C39 /* Controllers */,
+				752EC2271E71A23A00C57C39 /* CardView.swift */,
 				75C340131E428D2600A82FDF /* AppDelegate.swift */,
-				75C340151E428D2600A82FDF /* ViewController.swift */,
 				75C340171E428D2600A82FDF /* Main.storyboard */,
 				75C3401A1E428D2600A82FDF /* Assets.xcassets */,
 				75C3401C1E428D2600A82FDF /* LaunchScreen.storyboard */,
 				75C3401F1E428D2600A82FDF /* Info.plist */,
+				754DC7251E8847D6009A929B /* Data.swift */,
 			);
 			path = MobileApplication;
 			sourceTree = "<group>";
@@ -201,7 +215,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				75C340161E428D2600A82FDF /* ViewController.swift in Sources */,
+				752EC2281E71A23A00C57C39 /* CardView.swift in Sources */,
 				75C340141E428D2600A82FDF /* AppDelegate.swift in Sources */,
+				754DC7261E8847D6009A929B /* Data.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -409,6 +425,7 @@
 				75C3402F1E428D2600A82FDF /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		75C340301E428D2600A82FDF /* Build configuration list for PBXNativeTarget "MobileApplicationTests" */ = {
 			isa = XCConfigurationList;
@@ -417,6 +434,7 @@
 				75C340321E428D2600A82FDF /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
