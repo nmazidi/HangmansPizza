@@ -1,0 +1,246 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="ModelStoreContainer" CdmEntityContainer="Entities5">
+    <EntitySetMapping Name="ADDRESSes">
+      <EntityTypeMapping TypeName="Model.ADDRESS">
+        <MappingFragment StoreEntitySet="ADDRESS">
+          <ScalarProperty Name="ADDRESS_ID" ColumnName="ADDRESS_ID" />
+          <ScalarProperty Name="CUSTOMER_ID" ColumnName="CUSTOMER_ID" />
+          <ScalarProperty Name="ADDRESS_LINE_1" ColumnName="ADDRESS_LINE_1" />
+          <ScalarProperty Name="ADDRESS_LINE_2" ColumnName="ADDRESS_LINE_2" />
+          <ScalarProperty Name="TOWN" ColumnName="TOWN" />
+          <ScalarProperty Name="POSTCODE" ColumnName="POSTCODE" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ADMINs">
+      <EntityTypeMapping TypeName="Model.ADMIN">
+        <MappingFragment StoreEntitySet="ADMIN">
+          <ScalarProperty Name="ADMIN_ID" ColumnName="ADMIN_ID" />
+          <ScalarProperty Name="BRANCH_ID" ColumnName="BRANCH_ID" />
+          <ScalarProperty Name="FORENAME" ColumnName="FORENAME" />
+          <ScalarProperty Name="SURNAME" ColumnName="SURNAME" />
+          <ScalarProperty Name="USERNAME" ColumnName="USERNAME" />
+          <ScalarProperty Name="PASSWORD" ColumnName="PASSWORD" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="BRANCHes">
+      <EntityTypeMapping TypeName="Model.BRANCH">
+        <MappingFragment StoreEntitySet="BRANCH">
+          <ScalarProperty Name="BRANCH_ID" ColumnName="BRANCH_ID" />
+          <ScalarProperty Name="BRANCH_NAME" ColumnName="BRANCH_NAME" />
+          <ScalarProperty Name="ADDRESS" ColumnName="ADDRESS" />
+          <ScalarProperty Name="POSTCODE" ColumnName="POSTCODE" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CUSTOMERs">
+      <EntityTypeMapping TypeName="Model.CUSTOMER">
+        <MappingFragment StoreEntitySet="CUSTOMER">
+          <ScalarProperty Name="CUSTOMER_ID" ColumnName="CUSTOMER_ID" />
+          <ScalarProperty Name="CUSTOMER_TITLE" ColumnName="CUSTOMER_TITLE" />
+          <ScalarProperty Name="CUSTOMER_FORENAME" ColumnName="CUSTOMER_FORENAME" />
+          <ScalarProperty Name="CUSTOMER_SURNAME" ColumnName="CUSTOMER_SURNAME" />
+          <ScalarProperty Name="CUSTOMER_EMAIL" ColumnName="CUSTOMER_EMAIL" />
+          <ScalarProperty Name="CUSTOMER_PHONE" ColumnName="CUSTOMER_PHONE" />
+          <ScalarProperty Name="CUSTOMER_PASSWORD" ColumnName="CUSTOMER_PASSWORD" />
+          <ScalarProperty Name="CUSTOMER_DOB" ColumnName="CUSTOMER_DOB" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DEALs">
+      <EntityTypeMapping TypeName="Model.DEAL">
+        <MappingFragment StoreEntitySet="DEAL">
+          <ScalarProperty Name="DEAL_ID" ColumnName="DEAL_ID" />
+          <ScalarProperty Name="DEAL_NAME" ColumnName="DEAL_NAME" />
+          <ScalarProperty Name="DEAL_PRICE" ColumnName="DEAL_PRICE" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DEAL_BRANCH">
+      <EntityTypeMapping TypeName="Model.DEAL_BRANCH">
+        <MappingFragment StoreEntitySet="DEAL_BRANCH">
+          <ScalarProperty Name="DEAL_ID" ColumnName="DEAL_ID" />
+          <ScalarProperty Name="BRANCH_ID" ColumnName="BRANCH_ID" />
+          <ScalarProperty Name="DEAL_START" ColumnName="DEAL_START" />
+          <ScalarProperty Name="DEAL_END" ColumnName="DEAL_END" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DEAL_ITEM">
+      <EntityTypeMapping TypeName="Model.DEAL_ITEM">
+        <MappingFragment StoreEntitySet="DEAL_ITEM">
+          <ScalarProperty Name="DEAL_ID" ColumnName="DEAL_ID" />
+          <ScalarProperty Name="ITEM_ID" ColumnName="ITEM_ID" />
+          <ScalarProperty Name="ITEM_QUANTITY" ColumnName="ITEM_QUANTITY" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DELIVERies">
+      <EntityTypeMapping TypeName="Model.DELIVERY">
+        <MappingFragment StoreEntitySet="DELIVERY">
+          <ScalarProperty Name="DELIVERY_ID" ColumnName="DELIVERY_ID" />
+          <ScalarProperty Name="ORDER_ID" ColumnName="ORDER_ID" />
+          <ScalarProperty Name="DATE_DELIVERED" ColumnName="DATE_DELIVERED" />
+          <ScalarProperty Name="DELIVERY_NOTES" ColumnName="DELIVERY_NOTES" />
+          <ScalarProperty Name="RIDER_ID" ColumnName="RIDER_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DELIVERY_RIDER">
+      <EntityTypeMapping TypeName="Model.DELIVERY_RIDER">
+        <MappingFragment StoreEntitySet="DELIVERY_RIDER">
+          <ScalarProperty Name="RIDER_ID" ColumnName="RIDER_ID" />
+          <ScalarProperty Name="RIDER_FORENAME" ColumnName="RIDER_FORENAME" />
+          <ScalarProperty Name="RIDER_SURNAME" ColumnName="RIDER_SURNAME" />
+          <ScalarProperty Name="RIDER_EMAIL" ColumnName="RIDER_EMAIL" />
+          <ScalarProperty Name="RIDER_PHONE" ColumnName="RIDER_PHONE" />
+          <ScalarProperty Name="RIDER_PASSWORD" ColumnName="RIDER_PASSWORD" />
+          <ScalarProperty Name="VEHICLE_TYPE" ColumnName="VEHICLE_TYPE" />
+          <ScalarProperty Name="RIDER_DOB" ColumnName="RIDER_DOB" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DRINKs">
+      <EntityTypeMapping TypeName="Model.DRINK">
+        <MappingFragment StoreEntitySet="DRINK">
+          <ScalarProperty Name="DRINK_ID" ColumnName="DRINK_ID" />
+          <ScalarProperty Name="ITEM_ID" ColumnName="ITEM_ID" />
+          <ScalarProperty Name="STOCK" ColumnName="STOCK" />
+          <ScalarProperty Name="UNIT_PRICE" ColumnName="UNIT_PRICE" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="INGREDIENTs">
+      <EntityTypeMapping TypeName="Model.INGREDIENT">
+        <MappingFragment StoreEntitySet="INGREDIENT">
+          <ScalarProperty Name="INGREDIENT_ID" ColumnName="INGREDIENT_ID" />
+          <ScalarProperty Name="INGREDIENT_TYPE_ID" ColumnName="INGREDIENT_TYPE_ID" />
+          <ScalarProperty Name="STOCK" ColumnName="STOCK" />
+          <ScalarProperty Name="UNIT_PRICE" ColumnName="UNIT_PRICE" />
+          <ScalarProperty Name="VEGETARIAN" ColumnName="VEGETARIAN" />
+          <ScalarProperty Name="VEGAN" ColumnName="VEGAN" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="INGREDIENT_TYPE">
+      <EntityTypeMapping TypeName="Model.INGREDIENT_TYPE">
+        <MappingFragment StoreEntitySet="INGREDIENT_TYPE">
+          <ScalarProperty Name="INGREDIENT_TYPE_ID" ColumnName="INGREDIENT_TYPE_ID" />
+          <ScalarProperty Name="INGREDIENT_TYPE1" ColumnName="INGREDIENT_TYPE" />
+          <ScalarProperty Name="DESCRIPTION" ColumnName="DESCRIPTION" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ITEMs">
+      <EntityTypeMapping TypeName="Model.ITEM">
+        <MappingFragment StoreEntitySet="ITEM">
+          <ScalarProperty Name="ITEM_ID" ColumnName="ITEM_ID" />
+          <ScalarProperty Name="ITEM_NAME" ColumnName="ITEM_NAME" />
+          <ScalarProperty Name="ITEM_TYPE" ColumnName="ITEM_TYPE" />
+          <ScalarProperty Name="SELLING_PRICE" ColumnName="SELLING_PRICE" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MENUs">
+      <EntityTypeMapping TypeName="Model.MENU">
+        <MappingFragment StoreEntitySet="MENU">
+          <ScalarProperty Name="MENU_ID" ColumnName="MENU_ID" />
+          <ScalarProperty Name="BRANCH_ID" ColumnName="BRANCH_ID" />
+          <ScalarProperty Name="PRICE_MULTIPLIER" ColumnName="PRICE_MULTIPLIER" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MENU_ITEM">
+      <EntityTypeMapping TypeName="Model.MENU_ITEM">
+        <MappingFragment StoreEntitySet="MENU_ITEM">
+          <ScalarProperty Name="MENU_ID" ColumnName="MENU_ID" />
+          <ScalarProperty Name="ITEM_ID" ColumnName="ITEM_ID" />
+          <ScalarProperty Name="QUANTITY" ColumnName="QUANTITY" />
+          <ScalarProperty Name="UNIT_PRICE" ColumnName="UNIT_PRICE" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ORDER_ITEM">
+      <EntityTypeMapping TypeName="Model.ORDER_ITEM">
+        <MappingFragment StoreEntitySet="ORDER_ITEM">
+          <ScalarProperty Name="ITEM_ID" ColumnName="ITEM_ID" />
+          <ScalarProperty Name="ORDER_ID" ColumnName="ORDER_ID" />
+          <ScalarProperty Name="QUANTITY" ColumnName="QUANTITY" />
+          <ScalarProperty Name="UNIT_PRICE" ColumnName="UNIT_PRICE" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ORDERS">
+      <EntityTypeMapping TypeName="Model.ORDER">
+        <MappingFragment StoreEntitySet="ORDERS">
+          <ScalarProperty Name="ORDER_ID" ColumnName="ORDER_ID" />
+          <ScalarProperty Name="CUSTOMER_ID" ColumnName="CUSTOMER_ID" />
+          <ScalarProperty Name="DATE_PLACED" ColumnName="DATE_PLACED" />
+          <ScalarProperty Name="DATE_REQUESTED" ColumnName="DATE_REQUESTED" />
+          <ScalarProperty Name="TOTAL_COST" ColumnName="TOTAL_COST" />
+          <ScalarProperty Name="ORDER_TYPE" ColumnName="ORDER_TYPE" />
+          <ScalarProperty Name="NOTES" ColumnName="NOTES" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PIZZAs">
+      <EntityTypeMapping TypeName="Model.PIZZA">
+        <MappingFragment StoreEntitySet="PIZZA">
+          <ScalarProperty Name="PIZZA_ID" ColumnName="PIZZA_ID" />
+          <ScalarProperty Name="ITEM_ID" ColumnName="ITEM_ID" />
+          <ScalarProperty Name="UNIT_PRICE" ColumnName="UNIT_PRICE" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PIZZA_INGREDIENT">
+      <EntityTypeMapping TypeName="Model.PIZZA_INGREDIENT">
+        <MappingFragment StoreEntitySet="PIZZA_INGREDIENT">
+          <ScalarProperty Name="PIZZA_ID" ColumnName="PIZZA_ID" />
+          <ScalarProperty Name="INGREDIENT_ID" ColumnName="INGREDIENT_ID" />
+          <ScalarProperty Name="QUANTITY_USED" ColumnName="QUANTITY_USED" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="RIDER_ACTIVITY">
+      <EntityTypeMapping TypeName="Model.RIDER_ACTIVITY">
+        <MappingFragment StoreEntitySet="RIDER_ACTIVITY">
+          <ScalarProperty Name="SHIFT_ID" ColumnName="SHIFT_ID" />
+          <ScalarProperty Name="RIDER_ID" ColumnName="RIDER_ID" />
+          <ScalarProperty Name="SHIFT_START" ColumnName="SHIFT_START" />
+          <ScalarProperty Name="SHIFT_END" ColumnName="SHIFT_END" />
+          <ScalarProperty Name="SHIFT_LENGTH" ColumnName="SHIFT_LENGTH" />
+          <ScalarProperty Name="WAGE_MULTIPLIER" ColumnName="WAGE_MULTIPLIER" />
+          <ScalarProperty Name="LOCATION" ColumnName="LOCATION" />
+          <ScalarProperty Name="DELIVERIES_MADE" ColumnName="DELIVERIES_MADE" />
+          <ScalarProperty Name="STATUS" ColumnName="STATUS" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SIDEs">
+      <EntityTypeMapping TypeName="Model.SIDE">
+        <MappingFragment StoreEntitySet="SIDE">
+          <ScalarProperty Name="SIDE_ID" ColumnName="SIDE_ID" />
+          <ScalarProperty Name="ITEM_ID" ColumnName="ITEM_ID" />
+          <ScalarProperty Name="STOCK" ColumnName="STOCK" />
+          <ScalarProperty Name="UNIT_PRICE" ColumnName="UNIT_PRICE" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TRANSACTIONs">
+      <EntityTypeMapping TypeName="Model.TRANSACTION">
+        <MappingFragment StoreEntitySet="TRANSACTION">
+          <ScalarProperty Name="TRANSACTION_ID" ColumnName="TRANSACTION_ID" />
+          <ScalarProperty Name="ORDER_ID" ColumnName="ORDER_ID" />
+          <ScalarProperty Name="PAYMENT_METHOD" ColumnName="PAYMENT_METHOD" />
+          <ScalarProperty Name="DETAIL_1" ColumnName="DETAIL_1" />
+          <ScalarProperty Name="DETAIL_2" ColumnName="DETAIL_2" />
+          <ScalarProperty Name="DETAIL_3" ColumnName="DETAIL_3" />
+          <ScalarProperty Name="DETAIL_4" ColumnName="DETAIL_4" />
+          <ScalarProperty Name="TRANSACTION_VALUE" ColumnName="TRANSACTION_VALUE" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

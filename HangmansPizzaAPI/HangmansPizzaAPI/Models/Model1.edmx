@@ -1,0 +1,1357 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Model.Store" Provider="Oracle.ManagedDataAccess.Client" ProviderManifestToken="12.1" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="ADDRESS">
+          <Key>
+            <PropertyRef Name="ADDRESS_ID" />
+          </Key>
+          <Property Name="ADDRESS_ID" Type="number" Precision="5" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CUSTOMER_ID" Type="number" Precision="10" Scale="0" Nullable="false" />
+          <Property Name="ADDRESS_LINE_1" Type="varchar2" MaxLength="30" Nullable="false" />
+          <Property Name="ADDRESS_LINE_2" Type="varchar2" MaxLength="30" />
+          <Property Name="TOWN" Type="varchar2" MaxLength="20" Nullable="false" />
+          <Property Name="POSTCODE" Type="varchar2" MaxLength="7" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ADMIN">
+          <Key>
+            <PropertyRef Name="ADMIN_ID" />
+          </Key>
+          <Property Name="ADMIN_ID" Type="number" Precision="10" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="BRANCH_ID" Type="number" Precision="10" Scale="0" Nullable="false" />
+          <Property Name="FORENAME" Type="varchar2" MaxLength="50" Nullable="false" />
+          <Property Name="SURNAME" Type="varchar2" MaxLength="50" Nullable="false" />
+          <Property Name="USERNAME" Type="varchar2" MaxLength="50" Nullable="false" />
+          <Property Name="PASSWORD" Type="varchar2" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="BRANCH">
+          <Key>
+            <PropertyRef Name="BRANCH_ID" />
+          </Key>
+          <Property Name="BRANCH_ID" Type="number" Precision="10" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="BRANCH_NAME" Type="varchar2" MaxLength="30" Nullable="false" />
+          <Property Name="ADDRESS" Type="varchar2" MaxLength="50" Nullable="false" />
+          <Property Name="POSTCODE" Type="varchar2" MaxLength="7" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CUSTOMER">
+          <Key>
+            <PropertyRef Name="CUSTOMER_ID" />
+          </Key>
+          <Property Name="CUSTOMER_ID" Type="number" Precision="10" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CUSTOMER_TITLE" Type="varchar2" MaxLength="5" Nullable="false" />
+          <Property Name="CUSTOMER_FORENAME" Type="varchar2" MaxLength="20" Nullable="false" />
+          <Property Name="CUSTOMER_SURNAME" Type="varchar2" MaxLength="30" Nullable="false" />
+          <Property Name="CUSTOMER_EMAIL" Type="varchar2" MaxLength="50" Nullable="false" />
+          <Property Name="CUSTOMER_PHONE" Type="varchar2" MaxLength="11" Nullable="false" />
+          <Property Name="CUSTOMER_PASSWORD" Type="varchar2" MaxLength="20" Nullable="false" />
+          <Property Name="CUSTOMER_DOB" Type="date" Nullable="false" />
+        </EntityType>
+        <EntityType Name="DEAL">
+          <Key>
+            <PropertyRef Name="DEAL_ID" />
+          </Key>
+          <Property Name="DEAL_ID" Type="number" Precision="10" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DEAL_NAME" Type="varchar2" MaxLength="50" Nullable="false" />
+          <Property Name="DEAL_PRICE" Type="number" Precision="4" Scale="2" Nullable="false" />
+        </EntityType>
+        <EntityType Name="DEAL_BRANCH">
+          <Key>
+            <PropertyRef Name="DEAL_ID" />
+            <PropertyRef Name="BRANCH_ID" />
+          </Key>
+          <Property Name="DEAL_ID" Type="number" Precision="10" Scale="0" Nullable="false" />
+          <Property Name="BRANCH_ID" Type="number" Precision="10" Scale="0" Nullable="false" />
+          <Property Name="DEAL_START" Type="date" Nullable="false" />
+          <Property Name="DEAL_END" Type="date" Nullable="false" />
+        </EntityType>
+        <EntityType Name="DEAL_ITEM">
+          <Key>
+            <PropertyRef Name="DEAL_ID" />
+            <PropertyRef Name="ITEM_ID" />
+          </Key>
+          <Property Name="DEAL_ID" Type="number" Precision="10" Scale="0" Nullable="false" />
+          <Property Name="ITEM_ID" Type="number" Precision="10" Scale="0" Nullable="false" />
+          <Property Name="ITEM_QUANTITY" Type="number" Precision="5" Scale="0" Nullable="false" />
+        </EntityType>
+        <EntityType Name="DELIVERY">
+          <Key>
+            <PropertyRef Name="DELIVERY_ID" />
+          </Key>
+          <Property Name="DELIVERY_ID" Type="number" Precision="10" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ORDER_ID" Type="number" Precision="10" Scale="0" Nullable="false" />
+          <Property Name="DATE_DELIVERED" Type="date" Nullable="false" />
+          <Property Name="DELIVERY_NOTES" Type="varchar2" MaxLength="100" Nullable="false" />
+          <Property Name="RIDER_ID" Type="number" Precision="10" Scale="0" Nullable="false" />
+        </EntityType>
+        <EntityType Name="DELIVERY_RIDER">
+          <Key>
+            <PropertyRef Name="RIDER_ID" />
+          </Key>
+          <Property Name="RIDER_ID" Type="number" Precision="10" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RIDER_FORENAME" Type="varchar2" MaxLength="20" Nullable="false" />
+          <Property Name="RIDER_SURNAME" Type="varchar2" MaxLength="20" Nullable="false" />
+          <Property Name="RIDER_EMAIL" Type="varchar2" MaxLength="50" Nullable="false" />
+          <Property Name="RIDER_PHONE" Type="varchar2" MaxLength="11" Nullable="false" />
+          <Property Name="RIDER_PASSWORD" Type="varchar2" MaxLength="20" Nullable="false" />
+          <Property Name="VEHICLE_TYPE" Type="varchar2" MaxLength="20" Nullable="false" />
+          <Property Name="RIDER_DOB" Type="date" Nullable="false" />
+        </EntityType>
+        <EntityType Name="DRINK">
+          <Key>
+            <PropertyRef Name="DRINK_ID" />
+          </Key>
+          <Property Name="DRINK_ID" Type="number" Precision="10" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ITEM_ID" Type="number" Precision="10" Scale="0" Nullable="false" />
+          <Property Name="STOCK" Type="number" Precision="10" Scale="0" Nullable="false" />
+          <Property Name="UNIT_PRICE" Type="number" Precision="5" Scale="5" Nullable="false" />
+        </EntityType>
+        <EntityType Name="INGREDIENT">
+          <Key>
+            <PropertyRef Name="INGREDIENT_ID" />
+          </Key>
+          <Property Name="INGREDIENT_ID" Type="number" Precision="10" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="INGREDIENT_TYPE_ID" Type="number" Precision="10" Scale="0" Nullable="false" />
+          <Property Name="STOCK" Type="number" Precision="10" Scale="0" Nullable="false" />
+          <Property Name="UNIT_PRICE" Type="varchar2" MaxLength="10" Nullable="false" />
+          <Property Name="VEGETARIAN" Type="number" Precision="1" Scale="0" Nullable="false" />
+          <Property Name="VEGAN" Type="number" Precision="1" Scale="0" Nullable="false" />
+        </EntityType>
+        <EntityType Name="INGREDIENT_TYPE">
+          <Key>
+            <PropertyRef Name="INGREDIENT_TYPE_ID" />
+          </Key>
+          <Property Name="INGREDIENT_TYPE_ID" Type="number" Precision="10" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="INGREDIENT_TYPE" Type="varchar2" MaxLength="50" Nullable="false" />
+          <Property Name="DESCRIPTION" Type="varchar2" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ITEM">
+          <Key>
+            <PropertyRef Name="ITEM_ID" />
+          </Key>
+          <Property Name="ITEM_ID" Type="number" Precision="10" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ITEM_NAME" Type="varchar2" MaxLength="50" Nullable="false" />
+          <Property Name="ITEM_TYPE" Type="varchar2" MaxLength="30" Nullable="false" />
+          <Property Name="SELLING_PRICE" Type="varchar2" MaxLength="30" Nullable="false" />
+        </EntityType>
+        <EntityType Name="MENU">
+          <Key>
+            <PropertyRef Name="MENU_ID" />
+          </Key>
+          <Property Name="MENU_ID" Type="number" Precision="10" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="BRANCH_ID" Type="number" Precision="10" Scale="0" Nullable="false" />
+          <Property Name="PRICE_MULTIPLIER" Type="number" Precision="5" Scale="5" Nullable="false" />
+        </EntityType>
+        <EntityType Name="MENU_ITEM">
+          <Key>
+            <PropertyRef Name="MENU_ID" />
+            <PropertyRef Name="ITEM_ID" />
+          </Key>
+          <Property Name="MENU_ID" Type="number" Precision="10" Scale="0" Nullable="false" />
+          <Property Name="ITEM_ID" Type="number" Precision="10" Scale="0" Nullable="false" />
+          <Property Name="QUANTITY" Type="number" Precision="5" Scale="0" Nullable="false" />
+          <Property Name="UNIT_PRICE" Type="number" Precision="5" Scale="5" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ORDER_ITEM">
+          <Key>
+            <PropertyRef Name="ITEM_ID" />
+            <PropertyRef Name="ORDER_ID" />
+          </Key>
+          <Property Name="ITEM_ID" Type="number" Precision="10" Scale="0" Nullable="false" />
+          <Property Name="ORDER_ID" Type="number" Precision="10" Scale="0" Nullable="false" />
+          <Property Name="QUANTITY" Type="number" Precision="10" Scale="0" Nullable="false" />
+          <Property Name="UNIT_PRICE" Type="varchar2" MaxLength="20" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ORDERS">
+          <Key>
+            <PropertyRef Name="ORDER_ID" />
+          </Key>
+          <Property Name="ORDER_ID" Type="number" Precision="10" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CUSTOMER_ID" Type="number" Precision="10" Scale="0" Nullable="false" />
+          <Property Name="DATE_PLACED" Type="date" Nullable="false" />
+          <Property Name="DATE_REQUESTED" Type="date" Nullable="false" />
+          <Property Name="TOTAL_COST" Type="number" Precision="10" Scale="3" Nullable="false" />
+          <Property Name="ORDER_TYPE" Type="varchar2" MaxLength="20" Nullable="false" />
+          <Property Name="NOTES" Type="varchar2" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="PIZZA">
+          <Key>
+            <PropertyRef Name="PIZZA_ID" />
+          </Key>
+          <Property Name="PIZZA_ID" Type="number" Precision="10" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ITEM_ID" Type="number" Precision="10" Scale="0" Nullable="false" />
+          <Property Name="UNIT_PRICE" Type="varchar2" MaxLength="10" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PIZZA_INGREDIENT">
+          <Key>
+            <PropertyRef Name="PIZZA_ID" />
+            <PropertyRef Name="INGREDIENT_ID" />
+          </Key>
+          <Property Name="PIZZA_ID" Type="number" Precision="10" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="INGREDIENT_ID" Type="number" Precision="10" Scale="0" Nullable="false" />
+          <Property Name="QUANTITY_USED" Type="number" Precision="5" Scale="0" Nullable="false" />
+        </EntityType>
+        <EntityType Name="RIDER_ACTIVITY">
+          <Key>
+            <PropertyRef Name="SHIFT_ID" />
+          </Key>
+          <Property Name="SHIFT_ID" Type="number" Precision="10" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RIDER_ID" Type="number" Precision="10" Scale="0" Nullable="false" />
+          <Property Name="SHIFT_START" Type="date" />
+          <Property Name="SHIFT_END" Type="date" />
+          <Property Name="SHIFT_LENGTH" Type="varchar2" MaxLength="20" />
+          <Property Name="WAGE_MULTIPLIER" Type="number" Precision="2" Scale="1" />
+          <Property Name="LOCATION" Type="varchar2" MaxLength="100" />
+          <Property Name="DELIVERIES_MADE" Type="number" Precision="4" Scale="0" />
+          <Property Name="STATUS" Type="varchar2" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="SIDE">
+          <Key>
+            <PropertyRef Name="SIDE_ID" />
+          </Key>
+          <Property Name="SIDE_ID" Type="number" Precision="10" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ITEM_ID" Type="number" Precision="10" Scale="0" Nullable="false" />
+          <Property Name="STOCK" Type="number" Precision="10" Scale="0" Nullable="false" />
+          <Property Name="UNIT_PRICE" Type="number" Precision="5" Scale="5" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TRANSACTION">
+          <Key>
+            <PropertyRef Name="TRANSACTION_ID" />
+          </Key>
+          <Property Name="TRANSACTION_ID" Type="number" Precision="10" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ORDER_ID" Type="number" Precision="10" Scale="0" Nullable="false" />
+          <Property Name="PAYMENT_METHOD" Type="varchar2" MaxLength="20" Nullable="false" />
+          <Property Name="DETAIL_1" Type="varchar2" MaxLength="20" />
+          <Property Name="DETAIL_2" Type="varchar2" MaxLength="20" />
+          <Property Name="DETAIL_3" Type="varchar2" MaxLength="20" />
+          <Property Name="DETAIL_4" Type="varchar2" MaxLength="20" />
+          <Property Name="TRANSACTION_VALUE" Type="number" Precision="10" Scale="3" Nullable="false" />
+        </EntityType>
+        <Association Name="ADDRESS_FK">
+          <End Role="CUSTOMER" Type="Self.CUSTOMER" Multiplicity="1" />
+          <End Role="ADDRESS" Type="Self.ADDRESS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CUSTOMER">
+              <PropertyRef Name="CUSTOMER_ID" />
+            </Principal>
+            <Dependent Role="ADDRESS">
+              <PropertyRef Name="CUSTOMER_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="DEAL_ITEM_FK">
+          <End Role="DEAL" Type="Self.DEAL" Multiplicity="1" />
+          <End Role="DEAL_ITEM" Type="Self.DEAL_ITEM" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DEAL">
+              <PropertyRef Name="DEAL_ID" />
+            </Principal>
+            <Dependent Role="DEAL_ITEM">
+              <PropertyRef Name="DEAL_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="DEAL_ITEM_FK2">
+          <End Role="ITEM" Type="Self.ITEM" Multiplicity="1" />
+          <End Role="DEAL_ITEM" Type="Self.DEAL_ITEM" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ITEM">
+              <PropertyRef Name="ITEM_ID" />
+            </Principal>
+            <Dependent Role="DEAL_ITEM">
+              <PropertyRef Name="ITEM_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="DELIVERY_FK">
+          <End Role="ORDERS" Type="Self.ORDERS" Multiplicity="1" />
+          <End Role="DELIVERY" Type="Self.DELIVERY" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ORDERS">
+              <PropertyRef Name="ORDER_ID" />
+            </Principal>
+            <Dependent Role="DELIVERY">
+              <PropertyRef Name="ORDER_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="DELIVERY_RIDER_FK">
+          <End Role="DELIVERY_RIDER" Type="Self.DELIVERY_RIDER" Multiplicity="1" />
+          <End Role="DELIVERY" Type="Self.DELIVERY" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DELIVERY_RIDER">
+              <PropertyRef Name="RIDER_ID" />
+            </Principal>
+            <Dependent Role="DELIVERY">
+              <PropertyRef Name="RIDER_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="DRINK_FK">
+          <End Role="ITEM" Type="Self.ITEM" Multiplicity="1" />
+          <End Role="DRINK" Type="Self.DRINK" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ITEM">
+              <PropertyRef Name="ITEM_ID" />
+            </Principal>
+            <Dependent Role="DRINK">
+              <PropertyRef Name="ITEM_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="INGREDIENT_FK">
+          <End Role="INGREDIENT_TYPE" Type="Self.INGREDIENT_TYPE" Multiplicity="1" />
+          <End Role="INGREDIENT" Type="Self.INGREDIENT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="INGREDIENT_TYPE">
+              <PropertyRef Name="INGREDIENT_TYPE_ID" />
+            </Principal>
+            <Dependent Role="INGREDIENT">
+              <PropertyRef Name="INGREDIENT_TYPE_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="MENU_FK">
+          <End Role="BRANCH" Type="Self.BRANCH" Multiplicity="1" />
+          <End Role="MENU" Type="Self.MENU" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BRANCH">
+              <PropertyRef Name="BRANCH_ID" />
+            </Principal>
+            <Dependent Role="MENU">
+              <PropertyRef Name="BRANCH_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="MENU_ITEM_FK">
+          <End Role="MENU" Type="Self.MENU" Multiplicity="1" />
+          <End Role="MENU_ITEM" Type="Self.MENU_ITEM" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MENU">
+              <PropertyRef Name="MENU_ID" />
+            </Principal>
+            <Dependent Role="MENU_ITEM">
+              <PropertyRef Name="MENU_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="MENU_ITEM_FK2">
+          <End Role="ITEM" Type="Self.ITEM" Multiplicity="1" />
+          <End Role="MENU_ITEM" Type="Self.MENU_ITEM" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ITEM">
+              <PropertyRef Name="ITEM_ID" />
+            </Principal>
+            <Dependent Role="MENU_ITEM">
+              <PropertyRef Name="ITEM_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="ORDER_ITEM_FK">
+          <End Role="ITEM" Type="Self.ITEM" Multiplicity="1" />
+          <End Role="ORDER_ITEM" Type="Self.ORDER_ITEM" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ITEM">
+              <PropertyRef Name="ITEM_ID" />
+            </Principal>
+            <Dependent Role="ORDER_ITEM">
+              <PropertyRef Name="ITEM_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="ORDER_ITEM_FK2">
+          <End Role="ORDERS" Type="Self.ORDERS" Multiplicity="1" />
+          <End Role="ORDER_ITEM" Type="Self.ORDER_ITEM" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ORDERS">
+              <PropertyRef Name="ORDER_ID" />
+            </Principal>
+            <Dependent Role="ORDER_ITEM">
+              <PropertyRef Name="ORDER_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="ORDERS_FK">
+          <End Role="CUSTOMER" Type="Self.CUSTOMER" Multiplicity="1" />
+          <End Role="ORDERS" Type="Self.ORDERS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CUSTOMER">
+              <PropertyRef Name="CUSTOMER_ID" />
+            </Principal>
+            <Dependent Role="ORDERS">
+              <PropertyRef Name="CUSTOMER_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="PIZZA_FK">
+          <End Role="ITEM" Type="Self.ITEM" Multiplicity="1" />
+          <End Role="PIZZA" Type="Self.PIZZA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ITEM">
+              <PropertyRef Name="ITEM_ID" />
+            </Principal>
+            <Dependent Role="PIZZA">
+              <PropertyRef Name="ITEM_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="RIDER_ACTIVITY_FK">
+          <End Role="DELIVERY_RIDER" Type="Self.DELIVERY_RIDER" Multiplicity="1" />
+          <End Role="RIDER_ACTIVITY" Type="Self.RIDER_ACTIVITY" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DELIVERY_RIDER">
+              <PropertyRef Name="RIDER_ID" />
+            </Principal>
+            <Dependent Role="RIDER_ACTIVITY">
+              <PropertyRef Name="RIDER_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="SIDE_FK">
+          <End Role="ITEM" Type="Self.ITEM" Multiplicity="1" />
+          <End Role="SIDE" Type="Self.SIDE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ITEM">
+              <PropertyRef Name="ITEM_ID" />
+            </Principal>
+            <Dependent Role="SIDE">
+              <PropertyRef Name="ITEM_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="TRANSACTION_FK">
+          <End Role="ORDERS" Type="Self.ORDERS" Multiplicity="1" />
+          <End Role="TRANSACTION" Type="Self.TRANSACTION" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ORDERS">
+              <PropertyRef Name="ORDER_ID" />
+            </Principal>
+            <Dependent Role="TRANSACTION">
+              <PropertyRef Name="ORDER_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ModelStoreContainer">
+          <EntitySet Name="ADDRESS" EntityType="Self.ADDRESS" Schema="PRCS251Q" store:Type="Tables" />
+          <EntitySet Name="ADMIN" EntityType="Self.ADMIN" Schema="PRCS251Q" store:Type="Tables" />
+          <EntitySet Name="BRANCH" EntityType="Self.BRANCH" Schema="PRCS251Q" store:Type="Tables" />
+          <EntitySet Name="CUSTOMER" EntityType="Self.CUSTOMER" Schema="PRCS251Q" store:Type="Tables" />
+          <EntitySet Name="DEAL" EntityType="Self.DEAL" Schema="PRCS251Q" store:Type="Tables" />
+          <EntitySet Name="DEAL_BRANCH" EntityType="Self.DEAL_BRANCH" Schema="PRCS251Q" store:Type="Tables" />
+          <EntitySet Name="DEAL_ITEM" EntityType="Self.DEAL_ITEM" Schema="PRCS251Q" store:Type="Tables" />
+          <EntitySet Name="DELIVERY" EntityType="Self.DELIVERY" Schema="PRCS251Q" store:Type="Tables" />
+          <EntitySet Name="DELIVERY_RIDER" EntityType="Self.DELIVERY_RIDER" Schema="PRCS251Q" store:Type="Tables" />
+          <EntitySet Name="DRINK" EntityType="Self.DRINK" Schema="PRCS251Q" store:Type="Tables" />
+          <EntitySet Name="INGREDIENT" EntityType="Self.INGREDIENT" Schema="PRCS251Q" store:Type="Tables" />
+          <EntitySet Name="INGREDIENT_TYPE" EntityType="Self.INGREDIENT_TYPE" Schema="PRCS251Q" store:Type="Tables" />
+          <EntitySet Name="ITEM" EntityType="Self.ITEM" Schema="PRCS251Q" store:Type="Tables" />
+          <EntitySet Name="MENU" EntityType="Self.MENU" Schema="PRCS251Q" store:Type="Tables" />
+          <EntitySet Name="MENU_ITEM" EntityType="Self.MENU_ITEM" Schema="PRCS251Q" store:Type="Tables" />
+          <EntitySet Name="ORDER_ITEM" EntityType="Self.ORDER_ITEM" Schema="PRCS251Q" store:Type="Tables" />
+          <EntitySet Name="ORDERS" EntityType="Self.ORDERS" Schema="PRCS251Q" store:Type="Tables" />
+          <EntitySet Name="PIZZA" EntityType="Self.PIZZA" Schema="PRCS251Q" store:Type="Tables" />
+          <EntitySet Name="PIZZA_INGREDIENT" EntityType="Self.PIZZA_INGREDIENT" Schema="PRCS251Q" store:Type="Tables" />
+          <EntitySet Name="RIDER_ACTIVITY" EntityType="Self.RIDER_ACTIVITY" Schema="PRCS251Q" store:Type="Tables" />
+          <EntitySet Name="SIDE" EntityType="Self.SIDE" Schema="PRCS251Q" store:Type="Tables" />
+          <EntitySet Name="TRANSACTION" EntityType="Self.TRANSACTION" Schema="PRCS251Q" store:Type="Tables" />
+          <AssociationSet Name="ADDRESS_FK" Association="Self.ADDRESS_FK">
+            <End Role="CUSTOMER" EntitySet="CUSTOMER" />
+            <End Role="ADDRESS" EntitySet="ADDRESS" />
+          </AssociationSet>
+          <AssociationSet Name="DEAL_ITEM_FK" Association="Self.DEAL_ITEM_FK">
+            <End Role="DEAL" EntitySet="DEAL" />
+            <End Role="DEAL_ITEM" EntitySet="DEAL_ITEM" />
+          </AssociationSet>
+          <AssociationSet Name="DEAL_ITEM_FK2" Association="Self.DEAL_ITEM_FK2">
+            <End Role="ITEM" EntitySet="ITEM" />
+            <End Role="DEAL_ITEM" EntitySet="DEAL_ITEM" />
+          </AssociationSet>
+          <AssociationSet Name="DELIVERY_FK" Association="Self.DELIVERY_FK">
+            <End Role="ORDERS" EntitySet="ORDERS" />
+            <End Role="DELIVERY" EntitySet="DELIVERY" />
+          </AssociationSet>
+          <AssociationSet Name="DELIVERY_RIDER_FK" Association="Self.DELIVERY_RIDER_FK">
+            <End Role="DELIVERY_RIDER" EntitySet="DELIVERY_RIDER" />
+            <End Role="DELIVERY" EntitySet="DELIVERY" />
+          </AssociationSet>
+          <AssociationSet Name="DRINK_FK" Association="Self.DRINK_FK">
+            <End Role="ITEM" EntitySet="ITEM" />
+            <End Role="DRINK" EntitySet="DRINK" />
+          </AssociationSet>
+          <AssociationSet Name="INGREDIENT_FK" Association="Self.INGREDIENT_FK">
+            <End Role="INGREDIENT_TYPE" EntitySet="INGREDIENT_TYPE" />
+            <End Role="INGREDIENT" EntitySet="INGREDIENT" />
+          </AssociationSet>
+          <AssociationSet Name="MENU_FK" Association="Self.MENU_FK">
+            <End Role="BRANCH" EntitySet="BRANCH" />
+            <End Role="MENU" EntitySet="MENU" />
+          </AssociationSet>
+          <AssociationSet Name="MENU_ITEM_FK" Association="Self.MENU_ITEM_FK">
+            <End Role="MENU" EntitySet="MENU" />
+            <End Role="MENU_ITEM" EntitySet="MENU_ITEM" />
+          </AssociationSet>
+          <AssociationSet Name="MENU_ITEM_FK2" Association="Self.MENU_ITEM_FK2">
+            <End Role="ITEM" EntitySet="ITEM" />
+            <End Role="MENU_ITEM" EntitySet="MENU_ITEM" />
+          </AssociationSet>
+          <AssociationSet Name="ORDER_ITEM_FK" Association="Self.ORDER_ITEM_FK">
+            <End Role="ITEM" EntitySet="ITEM" />
+            <End Role="ORDER_ITEM" EntitySet="ORDER_ITEM" />
+          </AssociationSet>
+          <AssociationSet Name="ORDER_ITEM_FK2" Association="Self.ORDER_ITEM_FK2">
+            <End Role="ORDERS" EntitySet="ORDERS" />
+            <End Role="ORDER_ITEM" EntitySet="ORDER_ITEM" />
+          </AssociationSet>
+          <AssociationSet Name="ORDERS_FK" Association="Self.ORDERS_FK">
+            <End Role="CUSTOMER" EntitySet="CUSTOMER" />
+            <End Role="ORDERS" EntitySet="ORDERS" />
+          </AssociationSet>
+          <AssociationSet Name="PIZZA_FK" Association="Self.PIZZA_FK">
+            <End Role="ITEM" EntitySet="ITEM" />
+            <End Role="PIZZA" EntitySet="PIZZA" />
+          </AssociationSet>
+          <AssociationSet Name="RIDER_ACTIVITY_FK" Association="Self.RIDER_ACTIVITY_FK">
+            <End Role="DELIVERY_RIDER" EntitySet="DELIVERY_RIDER" />
+            <End Role="RIDER_ACTIVITY" EntitySet="RIDER_ACTIVITY" />
+          </AssociationSet>
+          <AssociationSet Name="SIDE_FK" Association="Self.SIDE_FK">
+            <End Role="ITEM" EntitySet="ITEM" />
+            <End Role="SIDE" EntitySet="SIDE" />
+          </AssociationSet>
+          <AssociationSet Name="TRANSACTION_FK" Association="Self.TRANSACTION_FK">
+            <End Role="ORDERS" EntitySet="ORDERS" />
+            <End Role="TRANSACTION" EntitySet="TRANSACTION" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="ADDRESS">
+          <Key>
+            <PropertyRef Name="ADDRESS_ID" />
+          </Key>
+          <Property Name="ADDRESS_ID" Type="Int16" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CUSTOMER_ID" Type="Int32" Nullable="false" />
+          <Property Name="ADDRESS_LINE_1" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ADDRESS_LINE_2" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="TOWN" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="POSTCODE" Type="String" MaxLength="7" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="CUSTOMER" Relationship="Self.ADDRESS_FK" FromRole="ADDRESS" ToRole="CUSTOMER" />
+        </EntityType>
+        <EntityType Name="ADMIN">
+          <Key>
+            <PropertyRef Name="ADMIN_ID" />
+          </Key>
+          <Property Name="ADMIN_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="BRANCH_ID" Type="Int32" Nullable="false" />
+          <Property Name="FORENAME" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="SURNAME" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="USERNAME" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="PASSWORD" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="BRANCH">
+          <Key>
+            <PropertyRef Name="BRANCH_ID" />
+          </Key>
+          <Property Name="BRANCH_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="BRANCH_NAME" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ADDRESS" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="POSTCODE" Type="String" MaxLength="7" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="MENUs" Relationship="Self.MENU_FK" FromRole="BRANCH" ToRole="MENU" />
+        </EntityType>
+        <EntityType Name="CUSTOMER">
+          <Key>
+            <PropertyRef Name="CUSTOMER_ID" />
+          </Key>
+          <Property Name="CUSTOMER_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CUSTOMER_TITLE" Type="String" MaxLength="5" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CUSTOMER_FORENAME" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CUSTOMER_SURNAME" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CUSTOMER_EMAIL" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CUSTOMER_PHONE" Type="String" MaxLength="11" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CUSTOMER_PASSWORD" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CUSTOMER_DOB" Type="DateTime" Nullable="false" />
+          <NavigationProperty Name="ADDRESSes" Relationship="Self.ADDRESS_FK" FromRole="CUSTOMER" ToRole="ADDRESS" />
+          <NavigationProperty Name="ORDERS" Relationship="Self.ORDERS_FK" FromRole="CUSTOMER" ToRole="ORDERS" />
+        </EntityType>
+        <EntityType Name="DEAL">
+          <Key>
+            <PropertyRef Name="DEAL_ID" />
+          </Key>
+          <Property Name="DEAL_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DEAL_NAME" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="DEAL_PRICE" Type="Decimal" Precision="4" Scale="2" Nullable="false" />
+          <NavigationProperty Name="DEAL_ITEM" Relationship="Self.DEAL_ITEM_FK" FromRole="DEAL" ToRole="DEAL_ITEM" />
+        </EntityType>
+        <EntityType Name="DEAL_BRANCH">
+          <Key>
+            <PropertyRef Name="DEAL_ID" />
+            <PropertyRef Name="BRANCH_ID" />
+          </Key>
+          <Property Name="DEAL_ID" Type="Int32" Nullable="false" />
+          <Property Name="BRANCH_ID" Type="Int32" Nullable="false" />
+          <Property Name="DEAL_START" Type="DateTime" Nullable="false" />
+          <Property Name="DEAL_END" Type="DateTime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="DEAL_ITEM">
+          <Key>
+            <PropertyRef Name="DEAL_ID" />
+            <PropertyRef Name="ITEM_ID" />
+          </Key>
+          <Property Name="DEAL_ID" Type="Int32" Nullable="false" />
+          <Property Name="ITEM_ID" Type="Int32" Nullable="false" />
+          <Property Name="ITEM_QUANTITY" Type="Int16" Nullable="false" />
+          <NavigationProperty Name="DEAL" Relationship="Self.DEAL_ITEM_FK" FromRole="DEAL_ITEM" ToRole="DEAL" />
+          <NavigationProperty Name="ITEM" Relationship="Self.DEAL_ITEM_FK2" FromRole="DEAL_ITEM" ToRole="ITEM" />
+        </EntityType>
+        <EntityType Name="DELIVERY">
+          <Key>
+            <PropertyRef Name="DELIVERY_ID" />
+          </Key>
+          <Property Name="DELIVERY_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ORDER_ID" Type="Int32" Nullable="false" />
+          <Property Name="DATE_DELIVERED" Type="DateTime" Nullable="false" />
+          <Property Name="DELIVERY_NOTES" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="RIDER_ID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="ORDER" Relationship="Self.DELIVERY_FK" FromRole="DELIVERY" ToRole="ORDERS" />
+          <NavigationProperty Name="DELIVERY_RIDER" Relationship="Self.DELIVERY_RIDER_FK" FromRole="DELIVERY" ToRole="DELIVERY_RIDER" />
+        </EntityType>
+        <EntityType Name="DELIVERY_RIDER">
+          <Key>
+            <PropertyRef Name="RIDER_ID" />
+          </Key>
+          <Property Name="RIDER_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RIDER_FORENAME" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="RIDER_SURNAME" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="RIDER_EMAIL" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="RIDER_PHONE" Type="String" MaxLength="11" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="RIDER_PASSWORD" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="VEHICLE_TYPE" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="RIDER_DOB" Type="DateTime" Nullable="false" />
+          <NavigationProperty Name="DELIVERies" Relationship="Self.DELIVERY_RIDER_FK" FromRole="DELIVERY_RIDER" ToRole="DELIVERY" />
+          <NavigationProperty Name="RIDER_ACTIVITY" Relationship="Self.RIDER_ACTIVITY_FK" FromRole="DELIVERY_RIDER" ToRole="RIDER_ACTIVITY" />
+        </EntityType>
+        <EntityType Name="DRINK">
+          <Key>
+            <PropertyRef Name="DRINK_ID" />
+          </Key>
+          <Property Name="DRINK_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ITEM_ID" Type="Int32" Nullable="false" />
+          <Property Name="STOCK" Type="Int32" Nullable="false" />
+          <Property Name="UNIT_PRICE" Type="Decimal" Precision="5" Scale="5" Nullable="false" />
+          <NavigationProperty Name="ITEM" Relationship="Self.DRINK_FK" FromRole="DRINK" ToRole="ITEM" />
+        </EntityType>
+        <EntityType Name="INGREDIENT">
+          <Key>
+            <PropertyRef Name="INGREDIENT_ID" />
+          </Key>
+          <Property Name="INGREDIENT_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="INGREDIENT_TYPE_ID" Type="Int32" Nullable="false" />
+          <Property Name="STOCK" Type="Int32" Nullable="false" />
+          <Property Name="UNIT_PRICE" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="VEGETARIAN" Type="Boolean" Nullable="false" />
+          <Property Name="VEGAN" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="INGREDIENT_TYPE" Relationship="Self.INGREDIENT_FK" FromRole="INGREDIENT" ToRole="INGREDIENT_TYPE" />
+        </EntityType>
+        <EntityType Name="INGREDIENT_TYPE">
+          <Key>
+            <PropertyRef Name="INGREDIENT_TYPE_ID" />
+          </Key>
+          <Property Name="INGREDIENT_TYPE_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="INGREDIENT_TYPE1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="DESCRIPTION" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="INGREDIENTs" Relationship="Self.INGREDIENT_FK" FromRole="INGREDIENT_TYPE" ToRole="INGREDIENT" />
+        </EntityType>
+        <EntityType Name="ITEM">
+          <Key>
+            <PropertyRef Name="ITEM_ID" />
+          </Key>
+          <Property Name="ITEM_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ITEM_NAME" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ITEM_TYPE" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="SELLING_PRICE" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="DEAL_ITEM" Relationship="Self.DEAL_ITEM_FK2" FromRole="ITEM" ToRole="DEAL_ITEM" />
+          <NavigationProperty Name="DRINKs" Relationship="Self.DRINK_FK" FromRole="ITEM" ToRole="DRINK" />
+          <NavigationProperty Name="MENU_ITEM" Relationship="Self.MENU_ITEM_FK2" FromRole="ITEM" ToRole="MENU_ITEM" />
+          <NavigationProperty Name="ORDER_ITEM" Relationship="Self.ORDER_ITEM_FK" FromRole="ITEM" ToRole="ORDER_ITEM" />
+          <NavigationProperty Name="PIZZAs" Relationship="Self.PIZZA_FK" FromRole="ITEM" ToRole="PIZZA" />
+          <NavigationProperty Name="SIDEs" Relationship="Self.SIDE_FK" FromRole="ITEM" ToRole="SIDE" />
+        </EntityType>
+        <EntityType Name="MENU">
+          <Key>
+            <PropertyRef Name="MENU_ID" />
+          </Key>
+          <Property Name="MENU_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="BRANCH_ID" Type="Int32" Nullable="false" />
+          <Property Name="PRICE_MULTIPLIER" Type="Decimal" Precision="5" Scale="5" Nullable="false" />
+          <NavigationProperty Name="BRANCH" Relationship="Self.MENU_FK" FromRole="MENU" ToRole="BRANCH" />
+          <NavigationProperty Name="MENU_ITEM" Relationship="Self.MENU_ITEM_FK" FromRole="MENU" ToRole="MENU_ITEM" />
+        </EntityType>
+        <EntityType Name="MENU_ITEM">
+          <Key>
+            <PropertyRef Name="MENU_ID" />
+            <PropertyRef Name="ITEM_ID" />
+          </Key>
+          <Property Name="MENU_ID" Type="Int32" Nullable="false" />
+          <Property Name="ITEM_ID" Type="Int32" Nullable="false" />
+          <Property Name="QUANTITY" Type="Int16" Nullable="false" />
+          <Property Name="UNIT_PRICE" Type="Decimal" Precision="5" Scale="5" Nullable="false" />
+          <NavigationProperty Name="ITEM" Relationship="Self.MENU_ITEM_FK2" FromRole="MENU_ITEM" ToRole="ITEM" />
+          <NavigationProperty Name="MENU" Relationship="Self.MENU_ITEM_FK" FromRole="MENU_ITEM" ToRole="MENU" />
+        </EntityType>
+        <EntityType Name="ORDER_ITEM">
+          <Key>
+            <PropertyRef Name="ITEM_ID" />
+            <PropertyRef Name="ORDER_ID" />
+          </Key>
+          <Property Name="ITEM_ID" Type="Int32" Nullable="false" />
+          <Property Name="ORDER_ID" Type="Int32" Nullable="false" />
+          <Property Name="QUANTITY" Type="Int32" Nullable="false" />
+          <Property Name="UNIT_PRICE" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="ITEM" Relationship="Self.ORDER_ITEM_FK" FromRole="ORDER_ITEM" ToRole="ITEM" />
+          <NavigationProperty Name="ORDER" Relationship="Self.ORDER_ITEM_FK2" FromRole="ORDER_ITEM" ToRole="ORDERS" />
+        </EntityType>
+        <EntityType Name="ORDER">
+          <Key>
+            <PropertyRef Name="ORDER_ID" />
+          </Key>
+          <Property Name="ORDER_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CUSTOMER_ID" Type="Int32" Nullable="false" />
+          <Property Name="DATE_PLACED" Type="DateTime" Nullable="false" />
+          <Property Name="DATE_REQUESTED" Type="DateTime" Nullable="false" />
+          <Property Name="TOTAL_COST" Type="Decimal" Precision="10" Scale="3" Nullable="false" />
+          <Property Name="ORDER_TYPE" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="NOTES" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="CUSTOMER" Relationship="Self.ORDERS_FK" FromRole="ORDERS" ToRole="CUSTOMER" />
+          <NavigationProperty Name="DELIVERies" Relationship="Self.DELIVERY_FK" FromRole="ORDERS" ToRole="DELIVERY" />
+          <NavigationProperty Name="ORDER_ITEM" Relationship="Self.ORDER_ITEM_FK2" FromRole="ORDERS" ToRole="ORDER_ITEM" />
+          <NavigationProperty Name="TRANSACTIONs" Relationship="Self.TRANSACTION_FK" FromRole="ORDERS" ToRole="TRANSACTION" />
+        </EntityType>
+        <EntityType Name="PIZZA">
+          <Key>
+            <PropertyRef Name="PIZZA_ID" />
+          </Key>
+          <Property Name="PIZZA_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ITEM_ID" Type="Int32" Nullable="false" />
+          <Property Name="UNIT_PRICE" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="ITEM" Relationship="Self.PIZZA_FK" FromRole="PIZZA" ToRole="ITEM" />
+        </EntityType>
+        <EntityType Name="PIZZA_INGREDIENT">
+          <Key>
+            <PropertyRef Name="PIZZA_ID" />
+            <PropertyRef Name="INGREDIENT_ID" />
+          </Key>
+          <Property Name="PIZZA_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="INGREDIENT_ID" Type="Int32" Nullable="false" />
+          <Property Name="QUANTITY_USED" Type="Int16" Nullable="false" />
+        </EntityType>
+        <EntityType Name="RIDER_ACTIVITY">
+          <Key>
+            <PropertyRef Name="SHIFT_ID" />
+          </Key>
+          <Property Name="SHIFT_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RIDER_ID" Type="Int32" Nullable="false" />
+          <Property Name="SHIFT_START" Type="DateTime" />
+          <Property Name="SHIFT_END" Type="DateTime" />
+          <Property Name="SHIFT_LENGTH" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="WAGE_MULTIPLIER" Type="Decimal" Precision="2" Scale="1" />
+          <Property Name="LOCATION" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="DELIVERIES_MADE" Type="Int16" />
+          <Property Name="STATUS" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="DELIVERY_RIDER" Relationship="Self.RIDER_ACTIVITY_FK" FromRole="RIDER_ACTIVITY" ToRole="DELIVERY_RIDER" />
+        </EntityType>
+        <EntityType Name="SIDE">
+          <Key>
+            <PropertyRef Name="SIDE_ID" />
+          </Key>
+          <Property Name="SIDE_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ITEM_ID" Type="Int32" Nullable="false" />
+          <Property Name="STOCK" Type="Int32" Nullable="false" />
+          <Property Name="UNIT_PRICE" Type="Decimal" Precision="5" Scale="5" Nullable="false" />
+          <NavigationProperty Name="ITEM" Relationship="Self.SIDE_FK" FromRole="SIDE" ToRole="ITEM" />
+        </EntityType>
+        <EntityType Name="TRANSACTION">
+          <Key>
+            <PropertyRef Name="TRANSACTION_ID" />
+          </Key>
+          <Property Name="TRANSACTION_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ORDER_ID" Type="Int32" Nullable="false" />
+          <Property Name="PAYMENT_METHOD" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="DETAIL_1" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="DETAIL_2" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="DETAIL_3" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="DETAIL_4" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="TRANSACTION_VALUE" Type="Decimal" Precision="10" Scale="3" Nullable="false" />
+          <NavigationProperty Name="ORDER" Relationship="Self.TRANSACTION_FK" FromRole="TRANSACTION" ToRole="ORDERS" />
+        </EntityType>
+        <Association Name="ADDRESS_FK">
+          <End Role="CUSTOMER" Type="Self.CUSTOMER" Multiplicity="1" />
+          <End Role="ADDRESS" Type="Self.ADDRESS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CUSTOMER">
+              <PropertyRef Name="CUSTOMER_ID" />
+            </Principal>
+            <Dependent Role="ADDRESS">
+              <PropertyRef Name="CUSTOMER_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="MENU_FK">
+          <End Role="BRANCH" Type="Self.BRANCH" Multiplicity="1" />
+          <End Role="MENU" Type="Self.MENU" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BRANCH">
+              <PropertyRef Name="BRANCH_ID" />
+            </Principal>
+            <Dependent Role="MENU">
+              <PropertyRef Name="BRANCH_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="ORDERS_FK">
+          <End Role="CUSTOMER" Type="Self.CUSTOMER" Multiplicity="1" />
+          <End Role="ORDERS" Type="Self.ORDER" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CUSTOMER">
+              <PropertyRef Name="CUSTOMER_ID" />
+            </Principal>
+            <Dependent Role="ORDERS">
+              <PropertyRef Name="CUSTOMER_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="DEAL_ITEM_FK">
+          <End Role="DEAL" Type="Self.DEAL" Multiplicity="1" />
+          <End Role="DEAL_ITEM" Type="Self.DEAL_ITEM" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DEAL">
+              <PropertyRef Name="DEAL_ID" />
+            </Principal>
+            <Dependent Role="DEAL_ITEM">
+              <PropertyRef Name="DEAL_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="DEAL_ITEM_FK2">
+          <End Role="ITEM" Type="Self.ITEM" Multiplicity="1" />
+          <End Role="DEAL_ITEM" Type="Self.DEAL_ITEM" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ITEM">
+              <PropertyRef Name="ITEM_ID" />
+            </Principal>
+            <Dependent Role="DEAL_ITEM">
+              <PropertyRef Name="ITEM_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="DELIVERY_FK">
+          <End Role="ORDERS" Type="Self.ORDER" Multiplicity="1" />
+          <End Role="DELIVERY" Type="Self.DELIVERY" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ORDERS">
+              <PropertyRef Name="ORDER_ID" />
+            </Principal>
+            <Dependent Role="DELIVERY">
+              <PropertyRef Name="ORDER_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="DELIVERY_RIDER_FK">
+          <End Role="DELIVERY_RIDER" Type="Self.DELIVERY_RIDER" Multiplicity="1" />
+          <End Role="DELIVERY" Type="Self.DELIVERY" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DELIVERY_RIDER">
+              <PropertyRef Name="RIDER_ID" />
+            </Principal>
+            <Dependent Role="DELIVERY">
+              <PropertyRef Name="RIDER_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="RIDER_ACTIVITY_FK">
+          <End Role="DELIVERY_RIDER" Type="Self.DELIVERY_RIDER" Multiplicity="1" />
+          <End Role="RIDER_ACTIVITY" Type="Self.RIDER_ACTIVITY" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DELIVERY_RIDER">
+              <PropertyRef Name="RIDER_ID" />
+            </Principal>
+            <Dependent Role="RIDER_ACTIVITY">
+              <PropertyRef Name="RIDER_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="DRINK_FK">
+          <End Role="ITEM" Type="Self.ITEM" Multiplicity="1" />
+          <End Role="DRINK" Type="Self.DRINK" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ITEM">
+              <PropertyRef Name="ITEM_ID" />
+            </Principal>
+            <Dependent Role="DRINK">
+              <PropertyRef Name="ITEM_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="INGREDIENT_FK">
+          <End Role="INGREDIENT_TYPE" Type="Self.INGREDIENT_TYPE" Multiplicity="1" />
+          <End Role="INGREDIENT" Type="Self.INGREDIENT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="INGREDIENT_TYPE">
+              <PropertyRef Name="INGREDIENT_TYPE_ID" />
+            </Principal>
+            <Dependent Role="INGREDIENT">
+              <PropertyRef Name="INGREDIENT_TYPE_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="MENU_ITEM_FK2">
+          <End Role="ITEM" Type="Self.ITEM" Multiplicity="1" />
+          <End Role="MENU_ITEM" Type="Self.MENU_ITEM" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ITEM">
+              <PropertyRef Name="ITEM_ID" />
+            </Principal>
+            <Dependent Role="MENU_ITEM">
+              <PropertyRef Name="ITEM_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="ORDER_ITEM_FK">
+          <End Role="ITEM" Type="Self.ITEM" Multiplicity="1" />
+          <End Role="ORDER_ITEM" Type="Self.ORDER_ITEM" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ITEM">
+              <PropertyRef Name="ITEM_ID" />
+            </Principal>
+            <Dependent Role="ORDER_ITEM">
+              <PropertyRef Name="ITEM_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="PIZZA_FK">
+          <End Role="ITEM" Type="Self.ITEM" Multiplicity="1" />
+          <End Role="PIZZA" Type="Self.PIZZA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ITEM">
+              <PropertyRef Name="ITEM_ID" />
+            </Principal>
+            <Dependent Role="PIZZA">
+              <PropertyRef Name="ITEM_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="SIDE_FK">
+          <End Role="ITEM" Type="Self.ITEM" Multiplicity="1" />
+          <End Role="SIDE" Type="Self.SIDE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ITEM">
+              <PropertyRef Name="ITEM_ID" />
+            </Principal>
+            <Dependent Role="SIDE">
+              <PropertyRef Name="ITEM_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="MENU_ITEM_FK">
+          <End Role="MENU" Type="Self.MENU" Multiplicity="1" />
+          <End Role="MENU_ITEM" Type="Self.MENU_ITEM" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MENU">
+              <PropertyRef Name="MENU_ID" />
+            </Principal>
+            <Dependent Role="MENU_ITEM">
+              <PropertyRef Name="MENU_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="ORDER_ITEM_FK2">
+          <End Role="ORDERS" Type="Self.ORDER" Multiplicity="1" />
+          <End Role="ORDER_ITEM" Type="Self.ORDER_ITEM" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ORDERS">
+              <PropertyRef Name="ORDER_ID" />
+            </Principal>
+            <Dependent Role="ORDER_ITEM">
+              <PropertyRef Name="ORDER_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="TRANSACTION_FK">
+          <End Role="ORDERS" Type="Self.ORDER" Multiplicity="1" />
+          <End Role="TRANSACTION" Type="Self.TRANSACTION" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ORDERS">
+              <PropertyRef Name="ORDER_ID" />
+            </Principal>
+            <Dependent Role="TRANSACTION">
+              <PropertyRef Name="ORDER_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Entities5" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="ADDRESSes" EntityType="Self.ADDRESS" />
+          <EntitySet Name="ADMINs" EntityType="Self.ADMIN" />
+          <EntitySet Name="BRANCHes" EntityType="Self.BRANCH" />
+          <EntitySet Name="CUSTOMERs" EntityType="Self.CUSTOMER" />
+          <EntitySet Name="DEALs" EntityType="Self.DEAL" />
+          <EntitySet Name="DEAL_BRANCH" EntityType="Self.DEAL_BRANCH" />
+          <EntitySet Name="DEAL_ITEM" EntityType="Self.DEAL_ITEM" />
+          <EntitySet Name="DELIVERies" EntityType="Self.DELIVERY" />
+          <EntitySet Name="DELIVERY_RIDER" EntityType="Self.DELIVERY_RIDER" />
+          <EntitySet Name="DRINKs" EntityType="Self.DRINK" />
+          <EntitySet Name="INGREDIENTs" EntityType="Self.INGREDIENT" />
+          <EntitySet Name="INGREDIENT_TYPE" EntityType="Self.INGREDIENT_TYPE" />
+          <EntitySet Name="ITEMs" EntityType="Self.ITEM" />
+          <EntitySet Name="MENUs" EntityType="Self.MENU" />
+          <EntitySet Name="MENU_ITEM" EntityType="Self.MENU_ITEM" />
+          <EntitySet Name="ORDER_ITEM" EntityType="Self.ORDER_ITEM" />
+          <EntitySet Name="ORDERS" EntityType="Self.ORDER" />
+          <EntitySet Name="PIZZAs" EntityType="Self.PIZZA" />
+          <EntitySet Name="PIZZA_INGREDIENT" EntityType="Self.PIZZA_INGREDIENT" />
+          <EntitySet Name="RIDER_ACTIVITY" EntityType="Self.RIDER_ACTIVITY" />
+          <EntitySet Name="SIDEs" EntityType="Self.SIDE" />
+          <EntitySet Name="TRANSACTIONs" EntityType="Self.TRANSACTION" />
+          <AssociationSet Name="ADDRESS_FK" Association="Self.ADDRESS_FK">
+            <End Role="CUSTOMER" EntitySet="CUSTOMERs" />
+            <End Role="ADDRESS" EntitySet="ADDRESSes" />
+          </AssociationSet>
+          <AssociationSet Name="MENU_FK" Association="Self.MENU_FK">
+            <End Role="BRANCH" EntitySet="BRANCHes" />
+            <End Role="MENU" EntitySet="MENUs" />
+          </AssociationSet>
+          <AssociationSet Name="ORDERS_FK" Association="Self.ORDERS_FK">
+            <End Role="CUSTOMER" EntitySet="CUSTOMERs" />
+            <End Role="ORDERS" EntitySet="ORDERS" />
+          </AssociationSet>
+          <AssociationSet Name="DEAL_ITEM_FK" Association="Self.DEAL_ITEM_FK">
+            <End Role="DEAL" EntitySet="DEALs" />
+            <End Role="DEAL_ITEM" EntitySet="DEAL_ITEM" />
+          </AssociationSet>
+          <AssociationSet Name="DEAL_ITEM_FK2" Association="Self.DEAL_ITEM_FK2">
+            <End Role="ITEM" EntitySet="ITEMs" />
+            <End Role="DEAL_ITEM" EntitySet="DEAL_ITEM" />
+          </AssociationSet>
+          <AssociationSet Name="DELIVERY_FK" Association="Self.DELIVERY_FK">
+            <End Role="ORDERS" EntitySet="ORDERS" />
+            <End Role="DELIVERY" EntitySet="DELIVERies" />
+          </AssociationSet>
+          <AssociationSet Name="DELIVERY_RIDER_FK" Association="Self.DELIVERY_RIDER_FK">
+            <End Role="DELIVERY_RIDER" EntitySet="DELIVERY_RIDER" />
+            <End Role="DELIVERY" EntitySet="DELIVERies" />
+          </AssociationSet>
+          <AssociationSet Name="RIDER_ACTIVITY_FK" Association="Self.RIDER_ACTIVITY_FK">
+            <End Role="DELIVERY_RIDER" EntitySet="DELIVERY_RIDER" />
+            <End Role="RIDER_ACTIVITY" EntitySet="RIDER_ACTIVITY" />
+          </AssociationSet>
+          <AssociationSet Name="DRINK_FK" Association="Self.DRINK_FK">
+            <End Role="ITEM" EntitySet="ITEMs" />
+            <End Role="DRINK" EntitySet="DRINKs" />
+          </AssociationSet>
+          <AssociationSet Name="INGREDIENT_FK" Association="Self.INGREDIENT_FK">
+            <End Role="INGREDIENT_TYPE" EntitySet="INGREDIENT_TYPE" />
+            <End Role="INGREDIENT" EntitySet="INGREDIENTs" />
+          </AssociationSet>
+          <AssociationSet Name="MENU_ITEM_FK2" Association="Self.MENU_ITEM_FK2">
+            <End Role="ITEM" EntitySet="ITEMs" />
+            <End Role="MENU_ITEM" EntitySet="MENU_ITEM" />
+          </AssociationSet>
+          <AssociationSet Name="ORDER_ITEM_FK" Association="Self.ORDER_ITEM_FK">
+            <End Role="ITEM" EntitySet="ITEMs" />
+            <End Role="ORDER_ITEM" EntitySet="ORDER_ITEM" />
+          </AssociationSet>
+          <AssociationSet Name="PIZZA_FK" Association="Self.PIZZA_FK">
+            <End Role="ITEM" EntitySet="ITEMs" />
+            <End Role="PIZZA" EntitySet="PIZZAs" />
+          </AssociationSet>
+          <AssociationSet Name="SIDE_FK" Association="Self.SIDE_FK">
+            <End Role="ITEM" EntitySet="ITEMs" />
+            <End Role="SIDE" EntitySet="SIDEs" />
+          </AssociationSet>
+          <AssociationSet Name="MENU_ITEM_FK" Association="Self.MENU_ITEM_FK">
+            <End Role="MENU" EntitySet="MENUs" />
+            <End Role="MENU_ITEM" EntitySet="MENU_ITEM" />
+          </AssociationSet>
+          <AssociationSet Name="ORDER_ITEM_FK2" Association="Self.ORDER_ITEM_FK2">
+            <End Role="ORDERS" EntitySet="ORDERS" />
+            <End Role="ORDER_ITEM" EntitySet="ORDER_ITEM" />
+          </AssociationSet>
+          <AssociationSet Name="TRANSACTION_FK" Association="Self.TRANSACTION_FK">
+            <End Role="ORDERS" EntitySet="ORDERS" />
+            <End Role="TRANSACTION" EntitySet="TRANSACTIONs" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ModelStoreContainer" CdmEntityContainer="Entities5">
+          <EntitySetMapping Name="ADDRESSes">
+            <EntityTypeMapping TypeName="Model.ADDRESS">
+              <MappingFragment StoreEntitySet="ADDRESS">
+                <ScalarProperty Name="ADDRESS_ID" ColumnName="ADDRESS_ID" />
+                <ScalarProperty Name="CUSTOMER_ID" ColumnName="CUSTOMER_ID" />
+                <ScalarProperty Name="ADDRESS_LINE_1" ColumnName="ADDRESS_LINE_1" />
+                <ScalarProperty Name="ADDRESS_LINE_2" ColumnName="ADDRESS_LINE_2" />
+                <ScalarProperty Name="TOWN" ColumnName="TOWN" />
+                <ScalarProperty Name="POSTCODE" ColumnName="POSTCODE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ADMINs">
+            <EntityTypeMapping TypeName="Model.ADMIN">
+              <MappingFragment StoreEntitySet="ADMIN">
+                <ScalarProperty Name="ADMIN_ID" ColumnName="ADMIN_ID" />
+                <ScalarProperty Name="BRANCH_ID" ColumnName="BRANCH_ID" />
+                <ScalarProperty Name="FORENAME" ColumnName="FORENAME" />
+                <ScalarProperty Name="SURNAME" ColumnName="SURNAME" />
+                <ScalarProperty Name="USERNAME" ColumnName="USERNAME" />
+                <ScalarProperty Name="PASSWORD" ColumnName="PASSWORD" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BRANCHes">
+            <EntityTypeMapping TypeName="Model.BRANCH">
+              <MappingFragment StoreEntitySet="BRANCH">
+                <ScalarProperty Name="BRANCH_ID" ColumnName="BRANCH_ID" />
+                <ScalarProperty Name="BRANCH_NAME" ColumnName="BRANCH_NAME" />
+                <ScalarProperty Name="ADDRESS" ColumnName="ADDRESS" />
+                <ScalarProperty Name="POSTCODE" ColumnName="POSTCODE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CUSTOMERs">
+            <EntityTypeMapping TypeName="Model.CUSTOMER">
+              <MappingFragment StoreEntitySet="CUSTOMER">
+                <ScalarProperty Name="CUSTOMER_ID" ColumnName="CUSTOMER_ID" />
+                <ScalarProperty Name="CUSTOMER_TITLE" ColumnName="CUSTOMER_TITLE" />
+                <ScalarProperty Name="CUSTOMER_FORENAME" ColumnName="CUSTOMER_FORENAME" />
+                <ScalarProperty Name="CUSTOMER_SURNAME" ColumnName="CUSTOMER_SURNAME" />
+                <ScalarProperty Name="CUSTOMER_EMAIL" ColumnName="CUSTOMER_EMAIL" />
+                <ScalarProperty Name="CUSTOMER_PHONE" ColumnName="CUSTOMER_PHONE" />
+                <ScalarProperty Name="CUSTOMER_PASSWORD" ColumnName="CUSTOMER_PASSWORD" />
+                <ScalarProperty Name="CUSTOMER_DOB" ColumnName="CUSTOMER_DOB" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DEALs">
+            <EntityTypeMapping TypeName="Model.DEAL">
+              <MappingFragment StoreEntitySet="DEAL">
+                <ScalarProperty Name="DEAL_ID" ColumnName="DEAL_ID" />
+                <ScalarProperty Name="DEAL_NAME" ColumnName="DEAL_NAME" />
+                <ScalarProperty Name="DEAL_PRICE" ColumnName="DEAL_PRICE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DEAL_BRANCH">
+            <EntityTypeMapping TypeName="Model.DEAL_BRANCH">
+              <MappingFragment StoreEntitySet="DEAL_BRANCH">
+                <ScalarProperty Name="DEAL_ID" ColumnName="DEAL_ID" />
+                <ScalarProperty Name="BRANCH_ID" ColumnName="BRANCH_ID" />
+                <ScalarProperty Name="DEAL_START" ColumnName="DEAL_START" />
+                <ScalarProperty Name="DEAL_END" ColumnName="DEAL_END" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DEAL_ITEM">
+            <EntityTypeMapping TypeName="Model.DEAL_ITEM">
+              <MappingFragment StoreEntitySet="DEAL_ITEM">
+                <ScalarProperty Name="DEAL_ID" ColumnName="DEAL_ID" />
+                <ScalarProperty Name="ITEM_ID" ColumnName="ITEM_ID" />
+                <ScalarProperty Name="ITEM_QUANTITY" ColumnName="ITEM_QUANTITY" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DELIVERies">
+            <EntityTypeMapping TypeName="Model.DELIVERY">
+              <MappingFragment StoreEntitySet="DELIVERY">
+                <ScalarProperty Name="DELIVERY_ID" ColumnName="DELIVERY_ID" />
+                <ScalarProperty Name="ORDER_ID" ColumnName="ORDER_ID" />
+                <ScalarProperty Name="DATE_DELIVERED" ColumnName="DATE_DELIVERED" />
+                <ScalarProperty Name="DELIVERY_NOTES" ColumnName="DELIVERY_NOTES" />
+                <ScalarProperty Name="RIDER_ID" ColumnName="RIDER_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DELIVERY_RIDER">
+            <EntityTypeMapping TypeName="Model.DELIVERY_RIDER">
+              <MappingFragment StoreEntitySet="DELIVERY_RIDER">
+                <ScalarProperty Name="RIDER_ID" ColumnName="RIDER_ID" />
+                <ScalarProperty Name="RIDER_FORENAME" ColumnName="RIDER_FORENAME" />
+                <ScalarProperty Name="RIDER_SURNAME" ColumnName="RIDER_SURNAME" />
+                <ScalarProperty Name="RIDER_EMAIL" ColumnName="RIDER_EMAIL" />
+                <ScalarProperty Name="RIDER_PHONE" ColumnName="RIDER_PHONE" />
+                <ScalarProperty Name="RIDER_PASSWORD" ColumnName="RIDER_PASSWORD" />
+                <ScalarProperty Name="VEHICLE_TYPE" ColumnName="VEHICLE_TYPE" />
+                <ScalarProperty Name="RIDER_DOB" ColumnName="RIDER_DOB" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DRINKs">
+            <EntityTypeMapping TypeName="Model.DRINK">
+              <MappingFragment StoreEntitySet="DRINK">
+                <ScalarProperty Name="DRINK_ID" ColumnName="DRINK_ID" />
+                <ScalarProperty Name="ITEM_ID" ColumnName="ITEM_ID" />
+                <ScalarProperty Name="STOCK" ColumnName="STOCK" />
+                <ScalarProperty Name="UNIT_PRICE" ColumnName="UNIT_PRICE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="INGREDIENTs">
+            <EntityTypeMapping TypeName="Model.INGREDIENT">
+              <MappingFragment StoreEntitySet="INGREDIENT">
+                <ScalarProperty Name="INGREDIENT_ID" ColumnName="INGREDIENT_ID" />
+                <ScalarProperty Name="INGREDIENT_TYPE_ID" ColumnName="INGREDIENT_TYPE_ID" />
+                <ScalarProperty Name="STOCK" ColumnName="STOCK" />
+                <ScalarProperty Name="UNIT_PRICE" ColumnName="UNIT_PRICE" />
+                <ScalarProperty Name="VEGETARIAN" ColumnName="VEGETARIAN" />
+                <ScalarProperty Name="VEGAN" ColumnName="VEGAN" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="INGREDIENT_TYPE">
+            <EntityTypeMapping TypeName="Model.INGREDIENT_TYPE">
+              <MappingFragment StoreEntitySet="INGREDIENT_TYPE">
+                <ScalarProperty Name="INGREDIENT_TYPE_ID" ColumnName="INGREDIENT_TYPE_ID" />
+                <ScalarProperty Name="INGREDIENT_TYPE1" ColumnName="INGREDIENT_TYPE" />
+                <ScalarProperty Name="DESCRIPTION" ColumnName="DESCRIPTION" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ITEMs">
+            <EntityTypeMapping TypeName="Model.ITEM">
+              <MappingFragment StoreEntitySet="ITEM">
+                <ScalarProperty Name="ITEM_ID" ColumnName="ITEM_ID" />
+                <ScalarProperty Name="ITEM_NAME" ColumnName="ITEM_NAME" />
+                <ScalarProperty Name="ITEM_TYPE" ColumnName="ITEM_TYPE" />
+                <ScalarProperty Name="SELLING_PRICE" ColumnName="SELLING_PRICE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MENUs">
+            <EntityTypeMapping TypeName="Model.MENU">
+              <MappingFragment StoreEntitySet="MENU">
+                <ScalarProperty Name="MENU_ID" ColumnName="MENU_ID" />
+                <ScalarProperty Name="BRANCH_ID" ColumnName="BRANCH_ID" />
+                <ScalarProperty Name="PRICE_MULTIPLIER" ColumnName="PRICE_MULTIPLIER" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MENU_ITEM">
+            <EntityTypeMapping TypeName="Model.MENU_ITEM">
+              <MappingFragment StoreEntitySet="MENU_ITEM">
+                <ScalarProperty Name="MENU_ID" ColumnName="MENU_ID" />
+                <ScalarProperty Name="ITEM_ID" ColumnName="ITEM_ID" />
+                <ScalarProperty Name="QUANTITY" ColumnName="QUANTITY" />
+                <ScalarProperty Name="UNIT_PRICE" ColumnName="UNIT_PRICE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ORDER_ITEM">
+            <EntityTypeMapping TypeName="Model.ORDER_ITEM">
+              <MappingFragment StoreEntitySet="ORDER_ITEM">
+                <ScalarProperty Name="ITEM_ID" ColumnName="ITEM_ID" />
+                <ScalarProperty Name="ORDER_ID" ColumnName="ORDER_ID" />
+                <ScalarProperty Name="QUANTITY" ColumnName="QUANTITY" />
+                <ScalarProperty Name="UNIT_PRICE" ColumnName="UNIT_PRICE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ORDERS">
+            <EntityTypeMapping TypeName="Model.ORDER">
+              <MappingFragment StoreEntitySet="ORDERS">
+                <ScalarProperty Name="ORDER_ID" ColumnName="ORDER_ID" />
+                <ScalarProperty Name="CUSTOMER_ID" ColumnName="CUSTOMER_ID" />
+                <ScalarProperty Name="DATE_PLACED" ColumnName="DATE_PLACED" />
+                <ScalarProperty Name="DATE_REQUESTED" ColumnName="DATE_REQUESTED" />
+                <ScalarProperty Name="TOTAL_COST" ColumnName="TOTAL_COST" />
+                <ScalarProperty Name="ORDER_TYPE" ColumnName="ORDER_TYPE" />
+                <ScalarProperty Name="NOTES" ColumnName="NOTES" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PIZZAs">
+            <EntityTypeMapping TypeName="Model.PIZZA">
+              <MappingFragment StoreEntitySet="PIZZA">
+                <ScalarProperty Name="PIZZA_ID" ColumnName="PIZZA_ID" />
+                <ScalarProperty Name="ITEM_ID" ColumnName="ITEM_ID" />
+                <ScalarProperty Name="UNIT_PRICE" ColumnName="UNIT_PRICE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PIZZA_INGREDIENT">
+            <EntityTypeMapping TypeName="Model.PIZZA_INGREDIENT">
+              <MappingFragment StoreEntitySet="PIZZA_INGREDIENT">
+                <ScalarProperty Name="PIZZA_ID" ColumnName="PIZZA_ID" />
+                <ScalarProperty Name="INGREDIENT_ID" ColumnName="INGREDIENT_ID" />
+                <ScalarProperty Name="QUANTITY_USED" ColumnName="QUANTITY_USED" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RIDER_ACTIVITY">
+            <EntityTypeMapping TypeName="Model.RIDER_ACTIVITY">
+              <MappingFragment StoreEntitySet="RIDER_ACTIVITY">
+                <ScalarProperty Name="SHIFT_ID" ColumnName="SHIFT_ID" />
+                <ScalarProperty Name="RIDER_ID" ColumnName="RIDER_ID" />
+                <ScalarProperty Name="SHIFT_START" ColumnName="SHIFT_START" />
+                <ScalarProperty Name="SHIFT_END" ColumnName="SHIFT_END" />
+                <ScalarProperty Name="SHIFT_LENGTH" ColumnName="SHIFT_LENGTH" />
+                <ScalarProperty Name="WAGE_MULTIPLIER" ColumnName="WAGE_MULTIPLIER" />
+                <ScalarProperty Name="LOCATION" ColumnName="LOCATION" />
+                <ScalarProperty Name="DELIVERIES_MADE" ColumnName="DELIVERIES_MADE" />
+                <ScalarProperty Name="STATUS" ColumnName="STATUS" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SIDEs">
+            <EntityTypeMapping TypeName="Model.SIDE">
+              <MappingFragment StoreEntitySet="SIDE">
+                <ScalarProperty Name="SIDE_ID" ColumnName="SIDE_ID" />
+                <ScalarProperty Name="ITEM_ID" ColumnName="ITEM_ID" />
+                <ScalarProperty Name="STOCK" ColumnName="STOCK" />
+                <ScalarProperty Name="UNIT_PRICE" ColumnName="UNIT_PRICE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TRANSACTIONs">
+            <EntityTypeMapping TypeName="Model.TRANSACTION">
+              <MappingFragment StoreEntitySet="TRANSACTION">
+                <ScalarProperty Name="TRANSACTION_ID" ColumnName="TRANSACTION_ID" />
+                <ScalarProperty Name="ORDER_ID" ColumnName="ORDER_ID" />
+                <ScalarProperty Name="PAYMENT_METHOD" ColumnName="PAYMENT_METHOD" />
+                <ScalarProperty Name="DETAIL_1" ColumnName="DETAIL_1" />
+                <ScalarProperty Name="DETAIL_2" ColumnName="DETAIL_2" />
+                <ScalarProperty Name="DETAIL_3" ColumnName="DETAIL_3" />
+                <ScalarProperty Name="DETAIL_4" ColumnName="DETAIL_4" />
+                <ScalarProperty Name="TRANSACTION_VALUE" ColumnName="TRANSACTION_VALUE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

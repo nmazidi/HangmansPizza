@@ -47,6 +47,6 @@ C:\Users\najim\Documents\GitHub\HangmansPizza\HangmansPizzaAPI\HangmansPizzaAPI\
 C:\Users\najim\Documents\GitHub\HangmansPizza\HangmansPizzaAPI\HangmansPizzaAPI\bin\System.Web.WebPages.Deployment.xml
 C:\Users\najim\Documents\GitHub\HangmansPizza\HangmansPizzaAPI\HangmansPizzaAPI\bin\System.Web.WebPages.Razor.xml
 C:\Users\najim\Documents\GitHub\HangmansPizza\HangmansPizzaAPI\HangmansPizzaAPI\bin\Antlr3.Runtime.pdb
-C:\Users\najim\Documents\GitHub\HangmansPizza\HangmansPizzaAPI\HangmansPizzaAPI\obj\Debug\HangmansPizzaAPI.csprojResolveAssemblyReference.cache
 C:\Users\najim\Documents\GitHub\HangmansPizza\HangmansPizzaAPI\HangmansPizzaAPI\obj\Debug\HangmansPizzaAPI.dll
 C:\Users\najim\Documents\GitHub\HangmansPizza\HangmansPizzaAPI\HangmansPizzaAPI\obj\Debug\HangmansPizzaAPI.pdb
+C:\Users\najim\Documents\GitHub\HangmansPizza\HangmansPizzaAPI\HangmansPizzaAPI\obj\Debug\HangmansPizzaAPI.csprojResolveAssemblyReference.cache
