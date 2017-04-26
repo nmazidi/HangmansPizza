@@ -3,6 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+
 package kitchen_system;
 
 /**
@@ -16,6 +17,7 @@ public class Kitchen_Screen extends javax.swing.JFrame {
      */
     public Kitchen_Screen() {
         initComponents();
+        orderPanel1_OrderUpdates.setVisible(false);
     }
 
     /**
@@ -34,8 +36,11 @@ public class Kitchen_Screen extends javax.swing.JFrame {
         orderPanel1_OrderStatus = new javax.swing.JTextField();
         jSeparator2 = new javax.swing.JToolBar.Separator();
         orderPanel1_OrderTimer = new javax.swing.JTextField();
-        jScrollPane1 = new javax.swing.JScrollPane();
+        orderPanel1_ScrollPane = new javax.swing.JScrollPane();
         orderPanel1_Order = new javax.swing.JList<>();
+        orderPanel1_OrderUpdates = new javax.swing.JPanel();
+        javax.swing.JButton orderPanel1_Prepping = new javax.swing.JButton();
+        orderPanel1_Ready = new javax.swing.JButton();
         orderPanel2 = new javax.swing.JPanel();
         jToolBar3 = new javax.swing.JToolBar();
         orderNumber2 = new javax.swing.JLabel();
@@ -102,8 +107,13 @@ public class Kitchen_Screen extends javax.swing.JFrame {
         jToolBar1.add(orderNumber1);
         jToolBar1.add(jSeparator1);
 
+        orderPanel1_OrderStatus.setEditable(false);
         orderPanel1_OrderStatus.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        orderPanel1_OrderStatus.setText("Active");
+        orderPanel1_OrderStatus.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                orderPanel1_OrderStatusMouseClicked(evt);
+            }
+        });
         orderPanel1_OrderStatus.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 orderPanel1_OrderStatusActionPerformed(evt);
@@ -112,6 +122,7 @@ public class Kitchen_Screen extends javax.swing.JFrame {
         jToolBar1.add(orderPanel1_OrderStatus);
         jToolBar1.add(jSeparator2);
 
+        orderPanel1_OrderTimer.setEditable(false);
         orderPanel1_OrderTimer.setText("00:00");
         jToolBar1.add(orderPanel1_OrderTimer);
 
@@ -120,21 +131,81 @@ public class Kitchen_Screen extends javax.swing.JFrame {
             public int getSize() { return strings.length; }
             public String getElementAt(int i) { return strings[i]; }
         });
-        jScrollPane1.setViewportView(orderPanel1_Order);
+        orderPanel1_Order.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        orderPanel1_Order.setToolTipText("");
+        orderPanel1_Order.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                orderPanel1_OrderMouseClicked(evt);
+            }
+        });
+        orderPanel1_ScrollPane.setViewportView(orderPanel1_Order);
+
+        orderPanel1_OrderUpdates.setEnabled(false);
+        orderPanel1_OrderUpdates.setFocusable(false);
+
+        orderPanel1_Prepping.setText("Prepping");
+        orderPanel1_Prepping.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                orderPanel1_PreppingMouseClicked(evt);
+            }
+        });
+
+        orderPanel1_Ready.setText("Ready");
+
+        javax.swing.GroupLayout orderPanel1_OrderUpdatesLayout = new javax.swing.GroupLayout(orderPanel1_OrderUpdates);
+        orderPanel1_OrderUpdates.setLayout(orderPanel1_OrderUpdatesLayout);
+        orderPanel1_OrderUpdatesLayout.setHorizontalGroup(
+            orderPanel1_OrderUpdatesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
+            .addGroup(orderPanel1_OrderUpdatesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(orderPanel1_OrderUpdatesLayout.createSequentialGroup()
+                    .addGap(12, 12, 12)
+                    .addComponent(orderPanel1_Prepping)
+                    .addContainerGap(13, Short.MAX_VALUE)))
+            .addGroup(orderPanel1_OrderUpdatesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, orderPanel1_OrderUpdatesLayout.createSequentialGroup()
+                    .addContainerGap(18, Short.MAX_VALUE)
+                    .addComponent(orderPanel1_Ready)
+                    .addContainerGap(19, Short.MAX_VALUE)))
+        );
+        orderPanel1_OrderUpdatesLayout.setVerticalGroup(
+            orderPanel1_OrderUpdatesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 195, Short.MAX_VALUE)
+            .addGroup(orderPanel1_OrderUpdatesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(orderPanel1_OrderUpdatesLayout.createSequentialGroup()
+                    .addGap(63, 63, 63)
+                    .addComponent(orderPanel1_Prepping, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(99, Short.MAX_VALUE)))
+            .addGroup(orderPanel1_OrderUpdatesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, orderPanel1_OrderUpdatesLayout.createSequentialGroup()
+                    .addContainerGap(132, Short.MAX_VALUE)
+                    .addComponent(orderPanel1_Ready)
+                    .addContainerGap(40, Short.MAX_VALUE)))
+        );
 
         javax.swing.GroupLayout orderPanel1Layout = new javax.swing.GroupLayout(orderPanel1);
         orderPanel1.setLayout(orderPanel1Layout);
         orderPanel1Layout.setHorizontalGroup(
             orderPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jToolBar1, javax.swing.GroupLayout.DEFAULT_SIZE, 253, Short.MAX_VALUE)
-            .addComponent(jScrollPane1)
+            .addComponent(orderPanel1_ScrollPane)
+            .addGroup(orderPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(orderPanel1Layout.createSequentialGroup()
+                    .addGap(76, 76, 76)
+                    .addComponent(orderPanel1_OrderUpdates, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(77, Short.MAX_VALUE)))
         );
         orderPanel1Layout.setVerticalGroup(
             orderPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(orderPanel1Layout.createSequentialGroup()
                 .addComponent(jToolBar1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 232, Short.MAX_VALUE))
+                .addComponent(orderPanel1_ScrollPane))
+            .addGroup(orderPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(orderPanel1Layout.createSequentialGroup()
+                    .addGap(57, 57, 57)
+                    .addComponent(orderPanel1_OrderUpdates, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(55, Short.MAX_VALUE)))
         );
 
         orderPanel2.setBorder(javax.swing.BorderFactory.createEtchedBorder());
@@ -145,11 +216,13 @@ public class Kitchen_Screen extends javax.swing.JFrame {
         jToolBar3.add(orderNumber2);
         jToolBar3.add(jSeparator5);
 
+        orderPanel2_OrderStatus.setEditable(false);
         orderPanel2_OrderStatus.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         orderPanel2_OrderStatus.setText("Active");
         jToolBar3.add(orderPanel2_OrderStatus);
         jToolBar3.add(jSeparator6);
 
+        orderPanel2_OrderTimer.setEditable(false);
         orderPanel2_OrderTimer.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         orderPanel2_OrderTimer.setText("00:00");
         jToolBar3.add(orderPanel2_OrderTimer);
@@ -173,7 +246,8 @@ public class Kitchen_Screen extends javax.swing.JFrame {
             .addGroup(orderPanel2Layout.createSequentialGroup()
                 .addComponent(jToolBar3, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 232, Short.MAX_VALUE))
+                .addComponent(jScrollPane5)
+                .addContainerGap())
         );
 
         orderPanel3.setBorder(javax.swing.BorderFactory.createEtchedBorder());
@@ -184,11 +258,13 @@ public class Kitchen_Screen extends javax.swing.JFrame {
         jToolBar6.add(jLabel4);
         jToolBar6.add(jSeparator11);
 
+        jTextField8.setEditable(false);
         jTextField8.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         jTextField8.setText("Active");
         jToolBar6.add(jTextField8);
         jToolBar6.add(jSeparator12);
 
+        jTextField9.setEditable(false);
         jTextField9.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         jTextField9.setText("00:00");
         jToolBar6.add(jTextField9);
@@ -205,18 +281,15 @@ public class Kitchen_Screen extends javax.swing.JFrame {
         orderPanel3Layout.setHorizontalGroup(
             orderPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jToolBar6, javax.swing.GroupLayout.DEFAULT_SIZE, 253, Short.MAX_VALUE)
-            .addGroup(orderPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(jScrollPane7, javax.swing.GroupLayout.DEFAULT_SIZE, 253, Short.MAX_VALUE))
+            .addComponent(jScrollPane7, javax.swing.GroupLayout.DEFAULT_SIZE, 253, Short.MAX_VALUE)
         );
         orderPanel3Layout.setVerticalGroup(
             orderPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(orderPanel3Layout.createSequentialGroup()
                 .addComponent(jToolBar6, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
-            .addGroup(orderPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, orderPanel3Layout.createSequentialGroup()
-                    .addGap(0, 33, Short.MAX_VALUE)
-                    .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 254, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 17, Short.MAX_VALUE))
         );
 
         jPanel4.setBorder(javax.swing.BorderFactory.createEtchedBorder());
@@ -231,11 +304,13 @@ public class Kitchen_Screen extends javax.swing.JFrame {
         jToolBar4.add(jLabel2);
         jToolBar4.add(jSeparator7);
 
+        jTextField4.setEditable(false);
         jTextField4.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         jTextField4.setText("Active");
         jToolBar4.add(jTextField4);
         jToolBar4.add(jSeparator8);
 
+        jTextField5.setEditable(false);
         jTextField5.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         jTextField5.setText("00:00");
         jToolBar4.add(jTextField5);
@@ -252,11 +327,11 @@ public class Kitchen_Screen extends javax.swing.JFrame {
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addComponent(jToolBar4, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addGap(0, 224, Short.MAX_VALUE))
             .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                    .addGap(0, 30, Short.MAX_VALUE)
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGap(0, 29, Short.MAX_VALUE)
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
 
         jPanel5.setBorder(javax.swing.BorderFactory.createEtchedBorder());
@@ -271,11 +346,13 @@ public class Kitchen_Screen extends javax.swing.JFrame {
         jToolBar5.add(jLabel3);
         jToolBar5.add(jSeparator9);
 
+        jTextField6.setEditable(false);
         jTextField6.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         jTextField6.setText("Active");
         jToolBar5.add(jTextField6);
         jToolBar5.add(jSeparator10);
 
+        jTextField7.setEditable(false);
         jTextField7.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         jTextField7.setText("00:00");
         jToolBar5.add(jTextField7);
@@ -292,7 +369,7 @@ public class Kitchen_Screen extends javax.swing.JFrame {
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addComponent(jToolBar5, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 233, Short.MAX_VALUE))
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 218, Short.MAX_VALUE))
         );
 
         jPanel7.setBorder(javax.swing.BorderFactory.createEtchedBorder());
@@ -307,11 +384,13 @@ public class Kitchen_Screen extends javax.swing.JFrame {
         jToolBar7.add(jLabel5);
         jToolBar7.add(jSeparator13);
 
+        jTextField10.setEditable(false);
         jTextField10.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         jTextField10.setText("Active");
         jToolBar7.add(jTextField10);
         jToolBar7.add(jSeparator14);
 
+        jTextField11.setEditable(false);
         jTextField11.setText("00:00");
         jToolBar7.add(jTextField11);
 
@@ -327,23 +406,21 @@ public class Kitchen_Screen extends javax.swing.JFrame {
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel7Layout.createSequentialGroup()
                 .addComponent(jToolBar7, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addGap(0, 224, Short.MAX_VALUE))
             .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
-                    .addGap(0, 30, Short.MAX_VALUE)
-                    .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGap(0, 33, Short.MAX_VALUE)
+                    .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
 
         kitchenScreen_HeadingBar.setBorder(new javax.swing.border.MatteBorder(null));
         kitchenScreen_HeadingBar.setRollover(true);
 
         jTextField1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jTextField1.setText("21:20");
         kitchenScreen_HeadingBar.add(jTextField1);
         kitchenScreen_HeadingBar.add(jSeparator4);
 
         jTextField3.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jTextField3.setText(sdf.format(cal.getTime()));
         kitchenScreen_HeadingBar.add(jTextField3);
         kitchenScreen_HeadingBar.add(jSeparator3);
 
@@ -398,15 +475,16 @@ public class Kitchen_Screen extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(orderPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(orderPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(orderPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGap(31, 31, 31)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(37, 37, 37))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(35, 35, 35)
                         .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -418,8 +496,25 @@ public class Kitchen_Screen extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void orderPanel1_OrderStatusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_orderPanel1_OrderStatusActionPerformed
-        // TODO add your handling code here:
+  
     }//GEN-LAST:event_orderPanel1_OrderStatusActionPerformed
+
+    private void orderPanel1_OrderStatusMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_orderPanel1_OrderStatusMouseClicked
+
+    }//GEN-LAST:event_orderPanel1_OrderStatusMouseClicked
+
+    private void orderPanel1_PreppingMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_orderPanel1_PreppingMouseClicked
+       
+orderPanel1_ScrollPane.setVisible(true);
+orderPanel1_OrderUpdates.setVisible(false);
+orderPanel1_OrderStatus.setText("Prepping");
+
+    }//GEN-LAST:event_orderPanel1_PreppingMouseClicked
+
+    private void orderPanel1_OrderMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_orderPanel1_OrderMouseClicked
+  orderPanel1_ScrollPane.setVisible(false);
+orderPanel1_OrderUpdates.setVisible(true);
+    }//GEN-LAST:event_orderPanel1_OrderMouseClicked
 
     /**
      * @param args the command line arguments
@@ -449,11 +544,14 @@ public class Kitchen_Screen extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
+       
         java.awt.EventQueue.invokeLater(new Runnable() {
+            @Override
             public void run() {
                 new Kitchen_Screen().setVisible(true);
             }
         });
+        
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -468,7 +566,6 @@ public class Kitchen_Screen extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel7;
-    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
@@ -515,6 +612,9 @@ public class Kitchen_Screen extends javax.swing.JFrame {
     private javax.swing.JList<String> orderPanel1_Order;
     private javax.swing.JTextField orderPanel1_OrderStatus;
     private javax.swing.JTextField orderPanel1_OrderTimer;
+    private javax.swing.JPanel orderPanel1_OrderUpdates;
+    private javax.swing.JButton orderPanel1_Ready;
+    private javax.swing.JScrollPane orderPanel1_ScrollPane;
     private javax.swing.JPanel orderPanel2;
     private javax.swing.JList<String> orderPanel2_Order;
     private javax.swing.JTextField orderPanel2_OrderStatus;
