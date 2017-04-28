@@ -8,13 +8,44 @@
 
 import Foundation
 
+/// Super class which gives DeliveryRider its base properties
 class Person {
-    var title : String
-    var forename : String
-    var surname : String
-    var phoneNumber : String
-    var emailAddress : String
-    var DOB : Date
+    var title : String {
+        get { return self.title }
+        set(newTitle) {
+            self.title = newTitle
+        }
+    }
+    var forename : String {
+        get { return self.forename }
+        set(newForename) {
+            self.forename = newForename
+        }
+    }
+    var surname : String {
+        get { return self.surname }
+        set(newSurname) {
+            self.surname = newSurname
+        }
+    }
+    var phoneNumber : String {
+        get { return self.phoneNumber }
+        set(newPhoneNumber) {
+            self.phoneNumber = newPhoneNumber
+        }
+    }
+    var emailAddress : String {
+        get { return self.emailAddress }
+        set(newEmailAddress) {
+            self.emailAddress = newEmailAddress
+        }
+    }
+    var DOB : Date {
+        get { return self.DOB }
+        set(newDOB) {
+            self.DOB = newDOB
+        }
+    }
     
     /**
      Default constructor of a person
@@ -27,6 +58,15 @@ class Person {
         self.emailAddress = "UNKNOWN"
         self.DOB = Date()
     }
+    /// Constructor for a person
+    ///
+    /// - Parameters:
+    ///   - title: person title
+    ///   - forename: person forename
+    ///   - surname: person surname
+    ///   - phoneNumber: person phone number
+    ///   - emailAddress: person email address
+    ///   - DOB: person date of birth
     init(title:String, forename:String, surname:String, phoneNumber:String, emailAddress:String, DOB:Date) {
         self.title = title
         self.forename = forename
@@ -35,6 +75,9 @@ class Person {
         self.emailAddress = emailAddress
         self.DOB = DOB
     }
-    
-    
+
+    func getFullName() -> String {
+        return "\(forename) \(surname)"
     }
+    
+}

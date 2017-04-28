@@ -59,6 +59,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
                         print("Error! Cannot convert data to JSON")
                         return
                     }
+                print(jsonData)
                 print(self.isValidCredentials(jsonArray: jsonData))
             } catch {
                 print("Error! Cannot convert data to JSON!")
