@@ -15,6 +15,8 @@
 		75C3401B1E428D2600A82FDF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 75C3401A1E428D2600A82FDF /* Assets.xcassets */; };
 		75C3401E1E428D2600A82FDF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 75C3401C1E428D2600A82FDF /* LaunchScreen.storyboard */; };
 		75C340291E428D2600A82FDF /* MobileApplicationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75C340281E428D2600A82FDF /* MobileApplicationTests.swift */; };
+		75C7C5A31EB364DD00753966 /* DeliveryRider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75C7C5A21EB364DD00753966 /* DeliveryRider.swift */; };
+		75C7C5A51EB3660B00753966 /* Person.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75C7C5A41EB3660B00753966 /* Person.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,6 +42,8 @@
 		75C340241E428D2600A82FDF /* MobileApplicationTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MobileApplicationTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		75C340281E428D2600A82FDF /* MobileApplicationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MobileApplicationTests.swift; sourceTree = "<group>"; };
 		75C3402A1E428D2600A82FDF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		75C7C5A21EB364DD00753966 /* DeliveryRider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeliveryRider.swift; sourceTree = "<group>"; };
+		75C7C5A41EB3660B00753966 /* Person.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Person.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,6 +101,8 @@
 				75C3401C1E428D2600A82FDF /* LaunchScreen.storyboard */,
 				75C3401F1E428D2600A82FDF /* Info.plist */,
 				754DC7251E8847D6009A929B /* Data.swift */,
+				75C7C5A21EB364DD00753966 /* DeliveryRider.swift */,
+				75C7C5A41EB3660B00753966 /* Person.swift */,
 			);
 			path = MobileApplication;
 			sourceTree = "<group>";
@@ -214,9 +220,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				75C7C5A51EB3660B00753966 /* Person.swift in Sources */,
 				75C340161E428D2600A82FDF /* ViewController.swift in Sources */,
 				752EC2281E71A23A00C57C39 /* CardView.swift in Sources */,
 				75C340141E428D2600A82FDF /* AppDelegate.swift in Sources */,
+				75C7C5A31EB364DD00753966 /* DeliveryRider.swift in Sources */,
 				754DC7261E8847D6009A929B /* Data.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
