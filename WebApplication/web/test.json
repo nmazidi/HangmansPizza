@@ -1,0 +1,30 @@
+[{
+        "ADDRESSes": [],
+        "ORDERS": [],
+        "CUSTOMER_ID": 2,
+        "CUSTOMER_TITLE": "Mr",
+        "CUSTOMER_FORENAME": "Najim",
+        "CUSTOMER_SURNAME": "Mazidi",
+        "CUSTOMER_EMAIL": "nmazidi95@gmail.com",
+        "CUSTOMER_PHONE": "07474306999",
+        "CUSTOMER_PASSWORD": "najim",
+        "CUSTOMER_DOB": "1995-07-26T14:29:07"
+    }, {
+        "ADDRESSes": [{
+                "ADDRESS_ID": 1,
+                "CUSTOMER_ID": 21,
+                "ADDRESS_LINE_1": "11 Archer Terrace",
+                "ADDRESS_LINE_2": "The Archers",
+                "TOWN": "Plymouth",
+                "POSTCODE": "PL1 5HD"
+            }],
+        "ORDERS": [],
+        "CUSTOMER_ID": 21,
+        "CUSTOMER_TITLE": "Mr",
+        "CUSTOMER_FORENAME": "Aaron",
+        "CUSTOMER_SURNAME": "Malzard",
+        "CUSTOMER_EMAIL": "amalzard@hotmail.co.uk",
+        "CUSTOMER_PHONE": "07852395006",
+        "CUSTOMER_PASSWORD": "qwerty",
+        "CUSTOMER_DOB": "1993-01-03T18:39:33"
+    }]
