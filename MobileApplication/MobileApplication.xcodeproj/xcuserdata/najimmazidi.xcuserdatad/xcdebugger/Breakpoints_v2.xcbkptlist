@@ -41,14 +41,78 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "MobileApplication/Data.swift"
-            timestampString = "515091377.070168"
+            filePath = "MobileApplication/ViewController.swift"
+            timestampString = "515282420.213076"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "36"
-            endingLineNumber = "36"
-            landmarkName = "GetRequest()"
-            landmarkType = "9">
+            startingLineNumber = "88"
+            endingLineNumber = "88"
+            landmarkName = "GetReq(completed:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "MobileApplication.ViewController.(GetReq () -&gt; Swift.Array&lt;Swift.Dictionary&lt;Swift.String, Swift.AnyObject&gt;&gt;).(closure #1)"
+                  moduleName = "MobileApplication"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/najimmazidi/Documents/University/Year2/PRCS251/HangmansPizza/MobileApplication/MobileApplication/ViewController.swift"
+                  timestampString = "515282421.384192"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "88"
+                  endingLineNumber = "88"
+                  offsetFromSymbolStart = "908">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "MobileApplication.ViewController.(GetReq () -&gt; Swift.Array&lt;Swift.Dictionary&lt;Swift.String, Swift.AnyObject&gt;&gt;).(closure #1)"
+                  moduleName = "MobileApplication"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/najimmazidi/Documents/University/Year2/PRCS251/HangmansPizza/MobileApplication/MobileApplication/ViewController.swift"
+                  timestampString = "515282421.407296"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "88"
+                  endingLineNumber = "88"
+                  offsetFromSymbolStart = "1293">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "MobileApplication/ViewController.swift"
+            timestampString = "515282422.800548"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "87"
+            endingLineNumber = "87"
+            landmarkName = "GetReq(completed:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "MobileApplication/ViewController.swift"
+            timestampString = "515282423.542958"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "86"
+            endingLineNumber = "86"
+            landmarkName = "GetReq(completed:)"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

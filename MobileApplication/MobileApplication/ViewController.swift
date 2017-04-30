@@ -9,7 +9,7 @@
 import UIKit
 
 class ViewController: UIViewController, UITextFieldDelegate {
-
+    var dataa = [[String: AnyObject]]()
     @IBOutlet weak var txtEmailAddress: UITextField!
     @IBOutlet weak var txtPassword: UITextField!
     @IBOutlet weak var StatView: UIView!
@@ -19,7 +19,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        print(GetReq())
     }
 
     override func didReceiveMemoryWarning() {
@@ -70,7 +70,28 @@ class ViewController: UIViewController, UITextFieldDelegate {
 //        }
 //        UIApplication.shared.isNetworkActivityIndicatorVisible = false
 //        dataTask.resume()
-        GetRequest()
+        print(self.dataa)
+    }
+    func GetReq(completed: FinishedDownload) -> [[String: AnyObject]] {
+        
+        
+        let url:String = "http://xserve.uopnet.plymouth.ac.uk/Modules/INTPROJ/PRCS251Q/api/delivery_rider"
+        let urlRequest = URL(string: url)
+        
+        URLSession.shared.dataTask(with: urlRequest!, completionHandler: {
+            (data, response, error) in
+            if (error != nil){
+                print(error.debugDescription)
+            } else {
+                do{
+                    self.dataa = try JSONSerialization.jsonObject(with: data!, options: .allowFragments) as! [[String: AnyObject]]
+                } catch let error as NSError {
+                    print(error)
+                }
+            }
+        }).resume()
+        completed()
+        return dataa
     }
     func isValidCredentials(jsonArray : [[String: AnyObject]]) -> Bool {
         for item in jsonArray {

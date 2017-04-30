@@ -8,6 +8,8 @@
 
 import Foundation
 
+
+
 func GetRequest() {
     var test = [[String: AnyObject]]()
     let url = URL(string : "http://xserve.uopnet.plymouth.ac.uk/Modules/INTPROJ/PRCS251Q/api/delivery_rider")!
