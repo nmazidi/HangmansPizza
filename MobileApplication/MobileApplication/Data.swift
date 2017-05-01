@@ -10,7 +10,7 @@ import Foundation
 
 
 
-func GetReq(completionHandler: @escaping (Bool) -> ()) {
+func GetReq(completionHandler: @escaping (Bool, [[String: AnyObject]]) -> ()) {
     
     var getData = [[String: AnyObject]]()
     let url:String = "http://xserve.uopnet.plymouth.ac.uk/Modules/INTPROJ/PRCS251Q/api/delivery_rider"
@@ -21,18 +21,17 @@ func GetReq(completionHandler: @escaping (Bool) -> ()) {
         
         if (error != nil){
             print(error.debugDescription)
-            completionHandler(false)
+            completionHandler(false, getData)
         } else {
             do{
                 getData = try JSONSerialization.jsonObject(with: data!, options: .allowFragments) as! [[String: AnyObject]]
-                completionHandler(true)
+                completionHandler(true, getData)
             } catch let error as NSError {
                 print(error)
-                completionHandler(false)
+                completionHandler(true, getData)
             }
         }
     }).resume()
-    
 }
 func convertToDictionary(str:String) -> [String: Any]? {
     if let data = str.data(using: .utf8) {

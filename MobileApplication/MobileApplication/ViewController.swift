@@ -9,7 +9,7 @@
 import UIKit
 
 class ViewController: UIViewController, UITextFieldDelegate {
-    var dataa = [[String: AnyObject]]()
+    var dataLoaded = [[String: AnyObject]]()
     @IBOutlet weak var txtEmailAddress: UITextField!
     @IBOutlet weak var txtPassword: UITextField!
     @IBOutlet weak var StatView: UIView!
@@ -33,45 +33,27 @@ class ViewController: UIViewController, UITextFieldDelegate {
     }
     
     @IBAction func btnLoginClicked(_ sender: Any) {
-//        UIApplication.shared.isNetworkActivityIndicatorVisible = true
-//        
-//        let url = URL(string : "http://xserve.uopnet.plymouth.ac.uk/Modules/INTPROJ/PRCS251Q/api/delivery_rider")!
-//        let sesh = URLSession(configuration: URLSessionConfiguration.default)
-//        
-//        var request = URLRequest(url: url)
-//        request.httpMethod = "GET"
-//        
-//        let dataTask = sesh.dataTask(with: request as URLRequest) {
-//            (data, response, error) in
-//            if error != nil {
-//                print("an error has occured while calling GET:")
-//                print(error!)
-//                return
-//            }
-//            guard let dataReceived = data
-//                else {
-//                    print("Error! No data received")
-//                    return
-//                }
-//            do {
-//                guard let jsonData = try JSONSerialization.jsonObject(with: dataReceived, options: []) as? [[String: AnyObject]]
-//                    else {
-//                        print("Error! Cannot convert data to JSON")
-//                        return
-//                    }
-//                print(jsonData)
-//                print(self.isValidCredentials(jsonArray: jsonData))
-//            } catch {
-//                print("Error! Cannot convert data to JSON!")
-//                return
-//            }
-//
-//            
-//        }
-//        UIApplication.shared.isNetworkActivityIndicatorVisible = false
-//        dataTask.resume()
+        
+        //creating alert to to make use wait for api call
+        let alert = UIAlertController(title: nil, message: "Please wait...", preferredStyle: .alert)
+        let loadingIndicator = UIActivityIndicatorView(frame: CGRect(x: 10, y: 5, width: 50, height: 50))
+        
+        loadingIndicator.hidesWhenStopped = true
+        loadingIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.gray
+        loadingIndicator.startAnimating()
+        
+        alert.view.addSubview(loadingIndicator)
+        present(alert, animated: true, completion: nil)
+        
+        //when GetReq is done
         GetReq() { success in
-            print("Successful? \(success)")
+            print("Successful? \(success.0)\n")
+            self.dataLoaded = success.1
+            //remove alert from screen when api call completed
+            alert.dismiss(animated: false, completion: nil)
+            loadingIndicator.stopAnimating()
+            
+            
         }
     }
     
