@@ -10,7 +10,7 @@ namespace HangmansPizzaAPI
     {
         public static void Register(HttpConfiguration config)
         {
-            var cors = new EnableCorsAttribute("eeyore.fost.plymouth.ac.uk", "*", "*");
+            var cors = new EnableCorsAttribute("*", "*", "*");
             config.EnableCors(cors);
             // Web API configuration and services
 
