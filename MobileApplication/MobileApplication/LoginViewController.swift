@@ -53,7 +53,14 @@ class ViewController: UIViewController, UITextFieldDelegate {
             alert.dismiss(animated: false, completion: nil)
             loadingIndicator.stopAnimating()
             
-            
+            if !success.0 {
+                let errorAlert = UIAlertController(title: "Error", message: "Could not connect. Please try again later.", preferredStyle: .alert)
+                let okAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.default)
+                errorAlert.addAction(okAction)
+                self.present(errorAlert, animated: true, completion: nil)
+            } else {
+                
+            }
         }
     }
     

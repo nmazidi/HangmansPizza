@@ -32,6 +32,7 @@ func GetReq(completionHandler: @escaping (Bool, [[String: AnyObject]]) -> ()) {
             }
         }
     }).resume()
+    
 }
 func convertToDictionary(str:String) -> [String: Any]? {
     if let data = str.data(using: .utf8) {
