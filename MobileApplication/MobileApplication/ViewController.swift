@@ -19,7 +19,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        print(GetReq())
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -70,29 +70,11 @@ class ViewController: UIViewController, UITextFieldDelegate {
 //        }
 //        UIApplication.shared.isNetworkActivityIndicatorVisible = false
 //        dataTask.resume()
-        print(self.dataa)
+        GetReq() { success in
+            print("Successful? \(success)")
+        }
     }
-    func GetReq(completed: FinishedDownload) -> [[String: AnyObject]] {
-        
-        
-        let url:String = "http://xserve.uopnet.plymouth.ac.uk/Modules/INTPROJ/PRCS251Q/api/delivery_rider"
-        let urlRequest = URL(string: url)
-        
-        URLSession.shared.dataTask(with: urlRequest!, completionHandler: {
-            (data, response, error) in
-            if (error != nil){
-                print(error.debugDescription)
-            } else {
-                do{
-                    self.dataa = try JSONSerialization.jsonObject(with: data!, options: .allowFragments) as! [[String: AnyObject]]
-                } catch let error as NSError {
-                    print(error)
-                }
-            }
-        }).resume()
-        completed()
-        return dataa
-    }
+    
     func isValidCredentials(jsonArray : [[String: AnyObject]]) -> Bool {
         for item in jsonArray {
             for (field, data) in item {

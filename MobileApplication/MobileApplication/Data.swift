@@ -10,43 +10,30 @@ import Foundation
 
 
 
-func GetRequest() {
-    var test = [[String: AnyObject]]()
-    let url = URL(string : "http://xserve.uopnet.plymouth.ac.uk/Modules/INTPROJ/PRCS251Q/api/delivery_rider")!
-    let sesh = URLSession(configuration: URLSessionConfiguration.default)
-    var request = URLRequest(url: url)
-    request.httpMethod = "GET"
+func GetReq(completionHandler: @escaping (Bool) -> ()) {
     
-    let dataTask = sesh.dataTask(with: request as URLRequest) {
+    var getData = [[String: AnyObject]]()
+    let url:String = "http://xserve.uopnet.plymouth.ac.uk/Modules/INTPROJ/PRCS251Q/api/delivery_rider"
+    let urlRequest = URL(string: url)
+    
+    URLSession.shared.dataTask(with: urlRequest!, completionHandler: {
         (data, response, error) in
-        if error != nil {
-            print("an error has occured while calling GET:")
-            print(error!)
-            return
-        }
-        guard let dataReceived = data
-            else {
-                print("Error! No data received")
-                return
-        }
-        do {
-            guard let jsonData = try JSONSerialization.jsonObject(with: dataReceived, options: []) as? [[String: AnyObject]]
-                else {
-                    print("Error! Cannot convert data to JSON")
-                    return
-            }
-            //print(jsonData)
-            test = jsonData
-        } catch {
-            print("Error! Cannot convert data to JSON!")
-            return
-        }
         
-    }
-    dataTask.resume()
-    print(test)
+        if (error != nil){
+            print(error.debugDescription)
+            completionHandler(false)
+        } else {
+            do{
+                getData = try JSONSerialization.jsonObject(with: data!, options: .allowFragments) as! [[String: AnyObject]]
+                completionHandler(true)
+            } catch let error as NSError {
+                print(error)
+                completionHandler(false)
+            }
+        }
+    }).resume()
+    
 }
-
 func convertToDictionary(str:String) -> [String: Any]? {
     if let data = str.data(using: .utf8) {
         do {
