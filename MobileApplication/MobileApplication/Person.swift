@@ -10,42 +10,12 @@ import Foundation
 
 /// Super class which gives DeliveryRider its base properties
 class Person {
-    var title : String {
-        get { return self.title }
-        set(newTitle) {
-            self.title = newTitle
-        }
-    }
-    var forename : String {
-        get { return self.forename }
-        set(newForename) {
-            self.forename = newForename
-        }
-    }
-    var surname : String {
-        get { return self.surname }
-        set(newSurname) {
-            self.surname = newSurname
-        }
-    }
-    var phoneNumber : String {
-        get { return self.phoneNumber }
-        set(newPhoneNumber) {
-            self.phoneNumber = newPhoneNumber
-        }
-    }
-    var emailAddress : String {
-        get { return self.emailAddress }
-        set(newEmailAddress) {
-            self.emailAddress = newEmailAddress
-        }
-    }
-    var DOB : Date {
-        get { return self.DOB }
-        set(newDOB) {
-            self.DOB = newDOB
-        }
-    }
+    var title : String
+    var forename : String
+    var surname : String
+    var phoneNumber : String
+    var emailAddress : String
+    var DOB : Date
     
     /**
      Default constructor of a person
@@ -75,9 +45,47 @@ class Person {
         self.emailAddress = emailAddress
         self.DOB = DOB
     }
-
+    
+    /// Getters and Setters for all properties
+    func getTitle() -> String{
+        return self.title
+    }
+    func setTitle(newTitle: String) {
+        self.title = newTitle
+    }
+    func getForename() -> String{
+        return self.forename
+    }
+    func setForename(newForename: String) {
+        self.forename = newForename
+    }
+    func getSurname() -> String{
+        return self.surname
+    }
+    func setSurname(newSurname: String) {
+        self.surname = newSurname
+    }
+    func getPhoneNumber() -> String{
+        return self.phoneNumber
+    }
+    func setPhoneNumber(newPhoneNumber: String) {
+        self.phoneNumber = newPhoneNumber
+    }
+    func getEmailAddress() -> String{
+        return self.emailAddress
+    }
+    func setEmailAddress(newEmailAddress: String) {
+        self.emailAddress = newEmailAddress
+    }
+    func getDOB() -> Date{
+        return self.DOB
+    }
+    func setDOB(newDOB: Date) {
+        self.DOB = newDOB
+    }
     func getFullName() -> String {
         return "\(forename) \(surname)"
     }
+    
     
 }

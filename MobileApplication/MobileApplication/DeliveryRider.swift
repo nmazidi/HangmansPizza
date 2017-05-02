@@ -9,30 +9,15 @@
 import Foundation
 
 class DeliveryRider : Person {
-    var riderID : Int {
-        get { return self.riderID }
-        set (newRiderID) {
-            self.riderID = newRiderID
-        }
-    }
-    var password : String {
-        get { return self.password }
-        set (newPassword) {
-            self.password = newPassword
-        }
-    }
-    var vehicleType : String {
-        get { return self.vehicleType }
-        set (newVehicleType) {
-            self.vehicleType = newVehicleType
-        }
-    }
+    var riderID : Int
+    var password : String
+    var vehicleType : String
     
     override init() {
-        super.init()
         self.riderID = 0
         self.password = "UNKNOWN"
         self.vehicleType = "UNKNOWN"
+        super.init()
     }
     /// Constructor for a delivery rider
     ///
@@ -47,10 +32,28 @@ class DeliveryRider : Person {
     ///   - password: rider's password
     ///   - vehicleType: type of vehicle that the rider owns
     init(title: String, forename: String, surname: String, phoneNumber: String, emailAddress: String, DOB: Date, riderID:Int, password:String, vehicleType:String) {
-        super.init(title: title, forename: forename, surname: surname, phoneNumber: phoneNumber, emailAddress: emailAddress, DOB: DOB)
         self.riderID = riderID
         self.password = password
         self.vehicleType = vehicleType
-        
+        super.init(title: title, forename: forename, surname: surname, phoneNumber: phoneNumber, emailAddress: emailAddress, DOB: DOB)
     }
+    func getRiderID() -> Int{
+        return self.riderID
+    }
+    func setRiderID(newRiderID: Int) {
+        self.riderID = newRiderID
+    }
+    func getPassword() -> String{
+        return self.password
+    }
+    func setPassword(newPassword: String) {
+        self.password = newPassword
+    }
+    func getVehicleType() -> String{
+        return self.vehicleType
+    }
+    func setVehicleType(newVehicleType: String) {
+        self.vehicleType = newVehicleType
+    }
+
 }

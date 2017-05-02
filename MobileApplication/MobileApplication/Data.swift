@@ -8,9 +8,7 @@
 
 import Foundation
 
-
-
-func GetReq(completionHandler: @escaping (Bool, [[String: AnyObject]]) -> ()) {
+func GetRequest(completionHandler: @escaping (Bool, [[String: AnyObject]]) -> ()) {
     
     var getData = [[String: AnyObject]]()
     let url:String = "http://xserve.uopnet.plymouth.ac.uk/Modules/INTPROJ/PRCS251Q/api/delivery_rider"

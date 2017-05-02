@@ -13,7 +13,7 @@
         <!--Log In-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController title="Log In" id="BYZ-38-t0r" customClass="ViewController" customModule="MobileApplication" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Log In" id="BYZ-38-t0r" customClass="LoginViewController" customModule="MobileApplication" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -95,7 +95,7 @@
         <!--Home-->
         <scene sceneID="kIi-gD-hJw">
             <objects>
-                <viewController title="Home" id="io9-9M-YD3" customClass="ViewController" customModule="MobileApplication" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Home" id="io9-9M-YD3" customClass="WelcomeViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="rQu-jR-giM"/>
                         <viewControllerLayoutGuide type="bottom" id="vW4-W5-oD7"/>

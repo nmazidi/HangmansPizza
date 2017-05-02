@@ -8,14 +8,11 @@
 
 import UIKit
 
-class ViewController: UIViewController, UITextFieldDelegate {
-    var dataLoaded = [[String: AnyObject]]()
+class LoginViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var txtEmailAddress: UITextField!
     @IBOutlet weak var txtPassword: UITextField!
-    @IBOutlet weak var StatView: UIView!
-    @IBAction func btnGoLive(_ sender: UIButton) {
-        
-    }
+    var dataLoaded = [[String: AnyObject]]()
+    var riderLoggedIn = DeliveryRider()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -46,7 +43,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
         present(alert, animated: true, completion: nil)
         
         //when GetReq is done
-        GetReq() { success in
+        GetRequest() { success in
             print("Successful? \(success.0)\n")
             self.dataLoaded = success.1
             //remove alert from screen when api call completed
@@ -59,11 +56,12 @@ class ViewController: UIViewController, UITextFieldDelegate {
                 errorAlert.addAction(okAction)
                 self.present(errorAlert, animated: true, completion: nil)
             } else {
-                
+                if self.isValidCredentials(jsonArray: success.1) {
+                    self.createRiderInstanceFromData(jsonData: success.1)
+                }
             }
         }
     }
-    
     func isValidCredentials(jsonArray : [[String: AnyObject]]) -> Bool {
         for item in jsonArray {
             for (field, data) in item {
@@ -74,7 +72,20 @@ class ViewController: UIViewController, UITextFieldDelegate {
             }
         }
         return false
-
+    }
+    func createRiderInstanceFromData(jsonData: [[String: AnyObject]]) {
+        for item in jsonData {
+            riderLoggedIn.riderID = item["RIDER_ID"] as! Int
+            riderLoggedIn.title = "UNKNOWN" //TODO: add title field to database and rebuild API
+            riderLoggedIn.forename = item["RIDER_FORENAME"] as! String
+            riderLoggedIn.surname = item["RIDER_SURNAME"] as! String
+            riderLoggedIn.emailAddress = item["RIDER_EMAIL"] as! String
+            riderLoggedIn.phoneNumber = item["RIDER_PHONE"] as! String
+            riderLoggedIn.password = item["RIDER_PASSWORD"] as! String
+            riderLoggedIn.vehicleType = item["VEHICLE_TYPE"] as! String
+            riderLoggedIn.DOB = item["RIDER_DOB"] as! Date
+            print("Rider instance successfully created")
+        }
     }
         
 }
