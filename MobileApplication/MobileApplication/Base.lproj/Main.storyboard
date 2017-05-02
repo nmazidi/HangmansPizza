@@ -52,7 +52,7 @@
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ig4-Nr-aaP">
-                                <rect key="frame" x="145" y="308" width="86" height="50"/>
+                                <rect key="frame" x="145" y="309" width="86" height="49"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="86" id="MDF-10-oYP"/>
                                 </constraints>
@@ -105,13 +105,13 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Welcome Dan!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d9f-P5-EN0">
-                                <rect key="frame" x="106" y="20" width="162" height="30"/>
+                                <rect key="frame" x="106.5" y="20" width="162" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="faA-S6-td3">
-                                <rect key="frame" x="16" y="93" width="343" height="68"/>
+                                <rect key="frame" x="16" y="93" width="344" height="68"/>
                                 <color key="backgroundColor" red="0.0" green="0.99986523389816284" blue="0.23592612985737244" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="24"/>
                                 <state key="normal" title="Go Live">
