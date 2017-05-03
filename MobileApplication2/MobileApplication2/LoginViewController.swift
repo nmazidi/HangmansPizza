@@ -66,16 +66,14 @@ class LoginViewController: UIViewController {
                 if self.isValidCredentials(jsonArray: success.1) {
                     self.createRiderInstanceFromData(jsonData: success.1)
                     DispatchQueue.main.async {
-                        let welcomeVC = self.storyboard?.instantiateViewController(withIdentifier: "WelcomeViewController") as! WelcomeViewController
-                        welcomeVC.riderLoggedIn = self.riderLoggedIn
-                        self.navigationController?.pushViewController(welcomeVC, animated: true)
+                        self.performSegue(withIdentifier: "LoggedInSegue", sender: self)
                     }
                 } else {
                     let invalidAlert = UIAlertController(title: "Error", message: "Invalid login credentials. Email address or password is incorrect.", preferredStyle: .alert)
                     let okAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.default)
                     invalidAlert.addAction(okAction)
                     DispatchQueue.main.async {
-                        self.performSegue(withIdentifier: "LoggedInSegue", sender: self)
+                        self.present(invalidAlert, animated: true, completion: nil)
                     }
                 }
             }

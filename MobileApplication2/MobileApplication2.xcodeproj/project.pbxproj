@@ -19,6 +19,7 @@
 		75DAEA5D1EB906800031C703 /* UtilityFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75DAEA5C1EB906800031C703 /* UtilityFunctions.swift */; };
 		75DAEA5F1EB9194F0031C703 /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75DAEA5E1EB9194F0031C703 /* WelcomeViewController.swift */; };
 		75DAEA641EB9213D0031C703 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75DAEA631EB9213D0031C703 /* CardView.swift */; };
+		75E516841EBA45AA00CB0BD4 /* AccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75E516831EBA45AA00CB0BD4 /* AccountViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -48,6 +49,7 @@
 		75DAEA5C1EB906800031C703 /* UtilityFunctions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UtilityFunctions.swift; sourceTree = "<group>"; };
 		75DAEA5E1EB9194F0031C703 /* WelcomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WelcomeViewController.swift; sourceTree = "<group>"; };
 		75DAEA631EB9213D0031C703 /* CardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
+		75E516831EBA45AA00CB0BD4 /* AccountViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -118,6 +120,7 @@
 			children = (
 				75DAEA381EB8F90B0031C703 /* LoginViewController.swift */,
 				75DAEA5E1EB9194F0031C703 /* WelcomeViewController.swift */,
+				75E516831EBA45AA00CB0BD4 /* AccountViewController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -235,6 +238,7 @@
 				75DAEA591EB8FCA10031C703 /* Data.swift in Sources */,
 				75DAEA371EB8F90B0031C703 /* AppDelegate.swift in Sources */,
 				75DAEA5F1EB9194F0031C703 /* WelcomeViewController.swift in Sources */,
+				75E516841EBA45AA00CB0BD4 /* AccountViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

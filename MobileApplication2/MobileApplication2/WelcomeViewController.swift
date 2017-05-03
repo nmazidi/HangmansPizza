@@ -15,7 +15,10 @@ class WelcomeViewController: UIViewController {
     @IBAction func btnGoLive(_ sender: Any) {
     }
     @IBAction func btnSignOut(_ sender: Any) {
-        performSegue(withIdentifier: "SignedOutSegue", sender: self)
+        DispatchQueue.main.async {
+            self.performSegue(withIdentifier: "SignedOutSegue", sender: self)
+        }
+        
     }
     override func viewDidLoad() {
         super.viewDidLoad()
