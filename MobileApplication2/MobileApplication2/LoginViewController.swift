@@ -18,7 +18,14 @@ class LoginViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
     }
-
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.navigationController?.setNavigationBarHidden(true, animated: animated)
+    }
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        self.navigationController?.setNavigationBarHidden(false, animated: animated)
+    }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -73,7 +80,6 @@ class LoginViewController: UIViewController {
                 }
             }
         }
-
     }
     func isValidCredentials(jsonArray : [[String: AnyObject]]) -> Bool {
         for item in jsonArray {
@@ -89,16 +95,15 @@ class LoginViewController: UIViewController {
     func createRiderInstanceFromData(jsonData: [[String: AnyObject]]) {
         for item in jsonData {
             if item["RIDER_EMAIL"] as? String == txtEmailAddress.text {
-                riderLoggedIn.riderID = item["RIDER_ID"] as! Int
-                riderLoggedIn.title = "UNKNOWN" //TODO: add title field to database and rebuild API
-                riderLoggedIn.forename = item["RIDER_FORENAME"] as! String
-                riderLoggedIn.surname = item["RIDER_SURNAME"] as! String
-                riderLoggedIn.emailAddress = item["RIDER_EMAIL"] as! String
-                riderLoggedIn.phoneNumber = item["RIDER_PHONE"] as! String
-                riderLoggedIn.password = item["RIDER_PASSWORD"] as! String
-                riderLoggedIn.vehicleType = item["VEHICLE_TYPE"] as! String
-                riderLoggedIn.DOB = formatDate(dateStr: item["RIDER_DOB"] as! String)
-                print("DOB: \(item["RIDER_DOB"])")
+                riderLoggedIn.setRiderID(newRiderID: item["RIDER_ID"] as! Int)
+                riderLoggedIn.setTitle(newTitle: "UNKNOWN")  //TODO: add title field to database and rebuild API
+                riderLoggedIn.setForename(newForename: item["RIDER_FORENAME"] as! String)
+                riderLoggedIn.setSurname(newSurname: item["RIDER_SURNAME"] as! String)
+                riderLoggedIn.setEmailAddress(newEmailAddress: item["RIDER_EMAIL"] as! String)
+                riderLoggedIn.setPhoneNumber(newPhoneNumber: item["RIDER_PHONE"] as! String)
+                riderLoggedIn.setPassword(newPassword: item["RIDER_PASSWORD"] as! String)
+                riderLoggedIn.setVehicleType(newVehicleType: item["VEHICLE_TYPE"] as! String)
+                riderLoggedIn.setDOB(newDOB: formatDate(dateStr: item["RIDER_DOB"] as! String))
                 print("Rider instance successfully created")
             }
         }
@@ -106,6 +111,7 @@ class LoginViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "LoggedInSegue" {
             if let destination = segue.destination as? WelcomeViewController {
+                //Pass rider object to WelcomeViewController
                 destination.riderLoggedIn = self.riderLoggedIn
             }
         }

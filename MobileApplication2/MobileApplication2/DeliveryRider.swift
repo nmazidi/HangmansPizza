@@ -55,5 +55,15 @@ class DeliveryRider : Person {
     func setVehicleType(newVehicleType: String) {
         self.vehicleType = newVehicleType
     }
-
+    func resetRider() {
+        self.riderID = 0
+        self.password = "UNKNOWN"
+        self.vehicleType = "UNKNOWN"
+        self.title = "UNKNOWN"
+        self.forename = "UNKNOWN"
+        self.surname = "UNKNOWN"
+        self.phoneNumber = "UNKNOWN"
+        self.emailAddress = "UNKNOWN"
+        self.DOB = Date()
+    }
 }

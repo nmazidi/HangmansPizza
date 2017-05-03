@@ -10,27 +10,39 @@ import UIKit
 
 class WelcomeViewController: UIViewController {
     var riderLoggedIn = DeliveryRider()
+    @IBOutlet weak var lblWelcome: UILabel!
     
+    @IBAction func btnGoLive(_ sender: Any) {
+    }
+    @IBAction func btnSignOut(_ sender: Any) {
+        performSegue(withIdentifier: "SignedOutSegue", sender: self)
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        DispatchQueue.main.async {
+            self.lblWelcome.text = "Welcome \(self.riderLoggedIn.getForename())!"
+        }
         // Do any additional setup after loading the view.
     }
-
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.navigationController?.setNavigationBarHidden(true, animated: animated)
     }
-    */
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        self.navigationController?.setNavigationBarHidden(false, animated: animated)
+    }
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "SignedOutSegue" {
+            if let destination = segue.destination as? LoginViewController {
+                //Pass rider object to WelcomeViewController
+                destination.riderLoggedIn.resetRider()
+            }
+        }
+    }
 
 }

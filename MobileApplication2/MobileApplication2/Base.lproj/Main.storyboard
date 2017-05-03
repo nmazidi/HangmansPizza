@@ -131,12 +131,12 @@
                     <connections>
                         <outlet property="txtEmailAddress" destination="d5O-li-0Ho" id="e3d-dH-YRH"/>
                         <outlet property="txtPassword" destination="8H4-or-XGY" id="zAZ-nP-giM"/>
-                        <segue destination="6s3-qE-cym" kind="show" id="wG2-LZ-6Dg"/>
+                        <segue destination="6s3-qE-cym" kind="show" identifier="LoggedInSegue" id="wG2-LZ-6Dg"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1076" y="138.98050974512745"/>
+            <point key="canvasLocation" x="956" y="137"/>
         </scene>
         <!--Welcome View Controller-->
         <scene sceneID="CmB-uW-jiR">
@@ -169,6 +169,7 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
+                                    <action selector="btnGoLive:" destination="6s3-qE-cym" eventType="touchUpInside" id="A31-bF-VOz"/>
                                     <action selector="btnLoginClicked:" destination="BYZ-38-t0r" eventType="touchUpInside" id="vrr-Pg-1Ra"/>
                                 </connections>
                             </button>
@@ -196,10 +197,12 @@
                                 </userDefinedRuntimeAttributes>
                                 <connections>
                                     <action selector="btnLoginClicked:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Zvb-WT-mYj"/>
+                                    <action selector="btnSignOut:" destination="6s3-qE-cym" eventType="touchUpInside" id="liq-FA-9zD"/>
+                                    <segue destination="BYZ-38-t0r" kind="showDetail" identifier="SignedOutSegue" id="ml1-3H-2Tq"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Welcome Dan!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5DL-Gw-ES6">
-                                <rect key="frame" x="102" y="20" width="170" height="32"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Welcome Dan!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5DL-Gw-ES6">
+                                <rect key="frame" x="16" y="20" width="343" height="32"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="32" id="MtN-9e-JOI"/>
                                 </constraints>
@@ -217,18 +220,30 @@
                             <constraint firstItem="vUz-VA-L1j" firstAttribute="top" secondItem="bsN-OP-k1X" secondAttribute="bottom" constant="14" id="JFL-Yn-9fv"/>
                             <constraint firstItem="Xyt-4A-aea" firstAttribute="top" secondItem="5DL-Gw-ES6" secondAttribute="bottom" constant="40" id="M6j-Ae-fjV"/>
                             <constraint firstItem="Xyt-4A-aea" firstAttribute="leading" secondItem="V3D-7J-R6O" secondAttribute="leadingMargin" id="MEb-U8-qgR"/>
-                            <constraint firstItem="5DL-Gw-ES6" firstAttribute="leading" secondItem="V3D-7J-R6O" secondAttribute="leadingMargin" constant="86" id="Mzj-Sy-5rs"/>
+                            <constraint firstItem="5DL-Gw-ES6" firstAttribute="leading" secondItem="V3D-7J-R6O" secondAttribute="leadingMargin" id="Mzj-Sy-5rs"/>
                             <constraint firstItem="bsN-OP-k1X" firstAttribute="top" secondItem="Xyt-4A-aea" secondAttribute="bottom" constant="26" id="VOj-XP-MWP"/>
                             <constraint firstItem="5DL-Gw-ES6" firstAttribute="centerX" secondItem="Xyt-4A-aea" secondAttribute="centerX" id="ifT-dr-XPH"/>
                             <constraint firstItem="5DL-Gw-ES6" firstAttribute="top" secondItem="8qV-Bl-Y5f" secondAttribute="bottom" id="jAf-JC-iWM"/>
                             <constraint firstItem="bsN-OP-k1X" firstAttribute="trailing" secondItem="vUz-VA-L1j" secondAttribute="trailing" id="wXR-jV-bsh"/>
                             <constraint firstItem="Xyt-4A-aea" firstAttribute="trailing" secondItem="V3D-7J-R6O" secondAttribute="trailingMargin" id="yWJ-EM-eyY"/>
                         </constraints>
+                        <variation key="heightClass=compact-widthClass=compact">
+                            <mask key="subviews">
+                                <exclude reference="Xyt-4A-aea"/>
+                                <exclude reference="bsN-OP-k1X"/>
+                                <exclude reference="vUz-VA-L1j"/>
+                                <exclude reference="5DL-Gw-ES6"/>
+                            </mask>
+                        </variation>
                     </view>
+                    <nil key="simulatedTopBarMetrics"/>
+                    <connections>
+                        <outlet property="lblWelcome" destination="5DL-Gw-ES6" id="m1E-yg-s0v"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gMa-Re-zWH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1794" y="139"/>
+            <point key="canvasLocation" x="1744.8" y="135.38230884557723"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="QOt-kn-xuD">
@@ -246,7 +261,10 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="76c-aK-j68" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="136.80000000000001" y="138.98050974512745"/>
+            <point key="canvasLocation" x="135" y="139"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="ml1-3H-2Tq"/>
+    </inferredMetricsTieBreakers>
 </document>
