@@ -26,21 +26,12 @@ func GetRequest(completionHandler: @escaping (Bool, [[String: AnyObject]]) -> ()
                 completionHandler(true, getData)
             } catch let error as NSError {
                 print(error)
-                completionHandler(true, getData)
+                completionHandler(false, getData)
             }
         }
     }).resume()
     
 }
-func convertToDictionary(str:String) -> [String: Any]? {
-    if let data = str.data(using: .utf8) {
-        do {
-            return try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any]
-        } catch {
-            print(error.localizedDescription)
-        }
-    }
-    return nil
-}
+
 
     
