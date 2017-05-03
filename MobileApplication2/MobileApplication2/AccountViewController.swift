@@ -43,8 +43,28 @@ class AccountViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
     @IBAction func btnSave(_ sender: Any) {
-        if txtCurrentPassword.text.co {
-            
+        if txtCurrentPassword.text == riderLoggedIn.getPassword() {
+            //check is password is correct
+            if riderLoggedIn.getForename() != txtForename.text {
+                riderLoggedIn.setForename(newForename: txtForename.text!)
+            }
+            if riderLoggedIn.getSurname() != txtSurname.text {
+                riderLoggedIn.setSurname(newSurname: txtSurname.text!)
+            }
+            if riderLoggedIn.getPhoneNumber() != txtPhone.text {
+                riderLoggedIn.setPhoneNumber(newPhoneNumber: txtPhone.text!)
+            }
+            if riderLoggedIn.getVehicleType() != txtVehicleType.text! {
+                riderLoggedIn.setVehicleType(newVehicleType: txtVehicleType.text!)
+            }
+            //set new password
+            if txtPassword.text == txtRetype.text {
+                //if passwords match
+                if (txtPassword.text?.characters.count)! <= 20 && (txtPassword.text?.characters.count)! >= 8 {
+                    riderLoggedIn.setPassword(newPassword: txtPassword.text!)
+                }
+                
+            }
         }
     }
 
