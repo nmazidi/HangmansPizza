@@ -9,7 +9,8 @@
 import UIKit
 
 class WelcomeViewController: UIViewController {
-
+    var riderLoggedIn = DeliveryRider()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
