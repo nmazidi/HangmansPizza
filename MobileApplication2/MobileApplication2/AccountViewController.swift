@@ -9,30 +9,49 @@
 import UIKit
 
 class AccountViewController: UIViewController {
+    var riderLoggedIn = DeliveryRider()
+    
+    @IBOutlet weak var lblTitleName: UILabel!
+    @IBOutlet weak var lblEmail: UILabel!
     @IBOutlet weak var txtForename: UITextField!
     @IBOutlet weak var txtSurname: UITextField!
     @IBOutlet weak var txtPhone: UITextField!
+    @IBOutlet weak var txtVehicleType: UITextField!
     @IBOutlet weak var txtPassword: UITextField!
     @IBOutlet weak var txtRetype: UITextField!
     @IBOutlet weak var txtCurrentPassword: UITextField!
+
 
     override func viewDidLoad() {
         super.viewDidLoad()
         txtForename.setBottomBorder()
         txtSurname.setBottomBorder()
         txtPhone.setBottomBorder()
+        txtVehicleType.setBottomBorder()
         txtPassword.setBottomBorder()
         txtRetype.setBottomBorder()
         txtCurrentPassword.setBottomBorder()
+        
+        //populate rider details
+        lblTitleName.text = riderLoggedIn.getFullName()
+        lblEmail.text = riderLoggedIn.getEmailAddress()
+        txtForename.text = riderLoggedIn.getForename()
+        txtSurname.text = riderLoggedIn.getSurname()
+        txtPhone.text = riderLoggedIn.getPhoneNumber()
+        txtVehicleType.text = riderLoggedIn.getVehicleType()
+        
         // Do any additional setup after loading the view.
+    }
+    @IBAction func btnSave(_ sender: Any) {
+        if txtCurrentPassword.text.co {
+            
+        }
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
-
 }
 
 extension UITextField {

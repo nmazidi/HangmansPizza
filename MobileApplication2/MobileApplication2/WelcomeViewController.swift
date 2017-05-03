@@ -45,6 +45,11 @@ class WelcomeViewController: UIViewController {
                 //Pass rider object to WelcomeViewController
                 destination.riderLoggedIn.resetRider()
             }
+        } else if segue.identifier == "AccountSegue" {
+            if let destination = segue.destination as? AccountViewController {
+                //Pass rider object to WelcomeViewController
+                destination.riderLoggedIn = self.riderLoggedIn
+            }
         }
     }
 
