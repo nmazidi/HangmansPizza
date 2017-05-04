@@ -26,7 +26,7 @@ public class HomeScreen extends javax.swing.JFrame {
         
             getR = new APIConnection();
         
-            getR.postRequest();
+            getR.deleteRequest();
         } catch (IOException e3) {
             
         }
