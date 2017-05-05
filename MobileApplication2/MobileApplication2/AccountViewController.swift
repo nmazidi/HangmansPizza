@@ -63,7 +63,6 @@ class AccountViewController: UIViewController {
                 if (txtPassword.text?.characters.count)! <= 20 && (txtPassword.text?.characters.count)! >= 8 {
                     riderLoggedIn.setPassword(newPassword: txtPassword.text!)
                 }
-                
             }
         }
     }
@@ -86,3 +85,4 @@ extension UITextField {
         self.layer.shadowRadius = 0.0
     }
 }
+
