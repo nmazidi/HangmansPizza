@@ -101,7 +101,7 @@ class LoginViewController: UIViewController {
                 riderLoggedIn.setPhoneNumber(newPhoneNumber: item["RIDER_PHONE"] as! String)
                 riderLoggedIn.setPassword(newPassword: item["RIDER_PASSWORD"] as! String)
                 riderLoggedIn.setVehicleType(newVehicleType: item["VEHICLE_TYPE"] as! String)
-                riderLoggedIn.setDOB(newDOB: formatDate(dateStr: item["RIDER_DOB"] as! String))
+                riderLoggedIn.setDOB(newDOB: UtilityFunctions.formatDate())
                 print("Rider instance successfully created")
             }
         }
