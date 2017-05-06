@@ -23,7 +23,7 @@ class UtilityFunctions {
     ///
     /// - Parameter dateObj: date that needs to be formatted
     /// - Returns: formatted date string
-    func formatDateForRequest(dateObj: Date) -> String {
+    static func formatDateForRequest(dateObj: Date) -> String {
         let dateFormatter: DateFormatter = DateFormatter()
         dateFormatter.dateFormat = "dd-MMM-yy"
         let formattedDate: String = dateFormatter.string(from: dateObj)
@@ -34,11 +34,12 @@ class UtilityFunctions {
     /// - Parameter params: dictionary of string values to be encoded
     /// - Returns: encoded string
     static func encodeParameters(params: [String:String]) -> Data {
-        let paramsArray = params.map {
+        let paramsArray = UtilityFunctions.changeKeysForRiderRequest(dict: params).map {
             (key,value) -> String in
             return "\(key)=\(value)"
         }
         return paramsArray.joined(separator: "&").data(using: String.Encoding.utf8)!
+        
     }
     
     /// Turns object, such as a delivery rider, into a dictionary of strings
@@ -46,13 +47,52 @@ class UtilityFunctions {
     /// - Parameter obj: object to convert
     /// - Returns: dictionary of strings
     static func getStringDictionaryFromRiderObject(obj: AnyObject) -> [String: String] {
-        let mirroredObject = Mirror(reflecting: obj)
-        var dict : [String: String]
-        for (index, attr) in mirroredObject.children.enumerated() {
+        let dict = Mirror(reflecting: obj).toDictionary()
+        return dict
+    }
+    static func changeKeysForRiderRequest(dict: [String: String]) -> [String: String] {
+        var updatedDict = dict
+        updatedDict.updateKey(from: "title", to: "RIDER_TITLE")
+        updatedDict.updateKey(from: "forename", to: "RIDER_FORENAME")
+        updatedDict.updateKey(from: "surname", to: "RIDER_SURNAME")
+        updatedDict.updateKey(from: "phoneNumber", to: "RIDER_PHONE")
+        updatedDict.updateKey(from: "emailAddress", to: "RIDER_EMAIL")
+        updatedDict.updateKey(from: "DOB", to: "RIDER_DOB")
+        updatedDict.updateKey(from: "riderID", to: "RIDER_ID")
+        updatedDict.updateKey(from: "password", to: "RIDER_PASSWORD")
+        updatedDict.updateKey(from: "vehicleType", to: "VEHICLE_TYPE")
+        return updatedDict
+    }
+}
+extension Mirror {
+    func toDictionary() -> [String: String] {
+        var dict = [String: String]()
+        for attr in self.children {
             if let propertyName = attr.label as String! {
-                dict[]
+                if attr.value is Date {
+                    let propertyVal = UtilityFunctions.formatDateForRequest(dateObj: attr.value as! Date)
+                        dict[propertyName] = propertyVal
+                } else if attr.value is Int {
+                    let propertyVal = "\(attr.value)"
+                    dict[propertyName] = propertyVal
+                } else {
+                    if let propertyVal = attr.value as? String {
+                        dict[propertyName] = propertyVal
+                    }
+                }
             }
         }
+        if let parent = self.superclassMirror {
+            for (propertyName, value) in parent.toDictionary() {
+                dict[propertyName] = value
+            }
+        }
+        return dict
     }
-
+}
+extension Dictionary {
+    mutating func updateKey(from:Key, to:Key) {
+        self[to] = self[from]
+        self.removeValue(forKey: from)
+    }
 }

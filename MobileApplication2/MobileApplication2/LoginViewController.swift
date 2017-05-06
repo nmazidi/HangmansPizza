@@ -8,15 +8,28 @@
 
 import UIKit
 
-class LoginViewController: UIViewController {
-    @IBOutlet weak var txtEmailAddress: UITextField!
-    @IBOutlet weak var txtPassword: UITextField!
+class LoginViewController: UIViewController, UITextFieldDelegate {
+    @IBOutlet var txtEmailAddress: UITextField?
+    @IBOutlet var txtPassword: UITextField?
     var dataLoaded = [[String: AnyObject]]()
     var riderLoggedIn = DeliveryRider()
     
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        txtPassword?.delegate = self
+        txtEmailAddress?.delegate = self
+        
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(LoginViewController.dismissKeyboard))
+        view.addGestureRecognizer(tap)
+    }
+    func dismissKeyboard() {
+        view.endEditing(true)
+    }
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -46,7 +59,7 @@ class LoginViewController: UIViewController {
         }
         
         //when GetReq is done
-        GETRequest() { success in
+        APICommunication.GETRequest(path: "delivery_rider") { success in
             print("Successful? \(success.0)\n")
             self.dataLoaded = success.1
             //remove alert from screen when api call completed
@@ -61,7 +74,6 @@ class LoginViewController: UIViewController {
                 DispatchQueue.main.async {
                     self.present(errorAlert, animated: true, completion: nil)
                 }
-                
             } else {
                 if self.isValidCredentials(jsonArray: success.1) {
                     self.createRiderInstanceFromData(jsonData: success.1)
@@ -84,7 +96,7 @@ class LoginViewController: UIViewController {
             for (field, data) in item {
                 print("\(field) : \(data)")
             }
-            if item["RIDER_EMAIL"] as? String == txtEmailAddress.text && item["RIDER_PASSWORD"] as? String == txtPassword.text {
+            if item["RIDER_EMAIL"] as? String == txtEmailAddress?.text && item["RIDER_PASSWORD"] as? String == txtPassword?.text {
                 return true
             }
         }
@@ -92,7 +104,7 @@ class LoginViewController: UIViewController {
     }
     func createRiderInstanceFromData(jsonData: [[String: AnyObject]]) {
         for item in jsonData {
-            if item["RIDER_EMAIL"] as? String == txtEmailAddress.text {
+            if item["RIDER_EMAIL"] as? String == txtEmailAddress?.text {
                 riderLoggedIn.setRiderID(newRiderID: item["RIDER_ID"] as! Int)
                 riderLoggedIn.setTitle(newTitle: "UNKNOWN")  //TODO: add title field to database and rebuild API
                 riderLoggedIn.setForename(newForename: item["RIDER_FORENAME"] as! String)
@@ -101,7 +113,7 @@ class LoginViewController: UIViewController {
                 riderLoggedIn.setPhoneNumber(newPhoneNumber: item["RIDER_PHONE"] as! String)
                 riderLoggedIn.setPassword(newPassword: item["RIDER_PASSWORD"] as! String)
                 riderLoggedIn.setVehicleType(newVehicleType: item["VEHICLE_TYPE"] as! String)
-                riderLoggedIn.setDOB(newDOB: UtilityFunctions.formatDate())
+                riderLoggedIn.setDOB(newDOB: UtilityFunctions.formatDateForStorage(dateStr: item["RIDER_DOB"] as! String))
                 print("Rider instance successfully created")
             }
         }

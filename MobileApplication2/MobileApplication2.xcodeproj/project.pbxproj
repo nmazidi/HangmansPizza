@@ -13,7 +13,7 @@
 		75DAEA3E1EB8F90B0031C703 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 75DAEA3D1EB8F90B0031C703 /* Assets.xcassets */; };
 		75DAEA411EB8F90B0031C703 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 75DAEA3F1EB8F90B0031C703 /* LaunchScreen.storyboard */; };
 		75DAEA4C1EB8F90B0031C703 /* MobileApplication2Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75DAEA4B1EB8F90B0031C703 /* MobileApplication2Tests.swift */; };
-		75DAEA591EB8FCA10031C703 /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75DAEA561EB8FCA10031C703 /* Data.swift */; };
+		75DAEA591EB8FCA10031C703 /* APICommunication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75DAEA561EB8FCA10031C703 /* APICommunication.swift */; };
 		75DAEA5A1EB8FCA10031C703 /* DeliveryRider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75DAEA571EB8FCA10031C703 /* DeliveryRider.swift */; };
 		75DAEA5B1EB8FCA10031C703 /* Person.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75DAEA581EB8FCA10031C703 /* Person.swift */; };
 		75DAEA5D1EB906800031C703 /* UtilityFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75DAEA5C1EB906800031C703 /* UtilityFunctions.swift */; };
@@ -43,7 +43,7 @@
 		75DAEA471EB8F90B0031C703 /* MobileApplication2Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MobileApplication2Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		75DAEA4B1EB8F90B0031C703 /* MobileApplication2Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MobileApplication2Tests.swift; sourceTree = "<group>"; };
 		75DAEA4D1EB8F90B0031C703 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		75DAEA561EB8FCA10031C703 /* Data.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Data.swift; sourceTree = "<group>"; };
+		75DAEA561EB8FCA10031C703 /* APICommunication.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APICommunication.swift; sourceTree = "<group>"; };
 		75DAEA571EB8FCA10031C703 /* DeliveryRider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeliveryRider.swift; sourceTree = "<group>"; };
 		75DAEA581EB8FCA10031C703 /* Person.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Person.swift; sourceTree = "<group>"; };
 		75DAEA5C1EB906800031C703 /* UtilityFunctions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UtilityFunctions.swift; sourceTree = "<group>"; };
@@ -98,7 +98,7 @@
 				75DAEA3D1EB8F90B0031C703 /* Assets.xcassets */,
 				75DAEA3F1EB8F90B0031C703 /* LaunchScreen.storyboard */,
 				75DAEA421EB8F90B0031C703 /* Info.plist */,
-				75DAEA561EB8FCA10031C703 /* Data.swift */,
+				75DAEA561EB8FCA10031C703 /* APICommunication.swift */,
 				75DAEA571EB8FCA10031C703 /* DeliveryRider.swift */,
 				75DAEA581EB8FCA10031C703 /* Person.swift */,
 				75DAEA5C1EB906800031C703 /* UtilityFunctions.swift */,
@@ -235,7 +235,7 @@
 				75DAEA5B1EB8FCA10031C703 /* Person.swift in Sources */,
 				75DAEA5A1EB8FCA10031C703 /* DeliveryRider.swift in Sources */,
 				75DAEA391EB8F90B0031C703 /* LoginViewController.swift in Sources */,
-				75DAEA591EB8FCA10031C703 /* Data.swift in Sources */,
+				75DAEA591EB8FCA10031C703 /* APICommunication.swift in Sources */,
 				75DAEA371EB8F90B0031C703 /* AppDelegate.swift in Sources */,
 				75DAEA5F1EB9194F0031C703 /* WelcomeViewController.swift in Sources */,
 				75E516841EBA45AA00CB0BD4 /* AccountViewController.swift in Sources */,

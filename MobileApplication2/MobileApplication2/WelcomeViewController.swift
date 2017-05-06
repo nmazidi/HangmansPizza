@@ -18,14 +18,12 @@ class WelcomeViewController: UIViewController {
         DispatchQueue.main.async {
             self.performSegue(withIdentifier: "SignedOutSegue", sender: self)
         }
-        
     }
     override func viewDidLoad() {
         super.viewDidLoad()
         DispatchQueue.main.async {
             self.lblWelcome.text = "Welcome \(self.riderLoggedIn.getForename())!"
         }
-        // Do any additional setup after loading the view.
     }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
