@@ -66,17 +66,15 @@ class APICommunication {
         request.setValue("application/json", forHTTPHeaderField: "Accept")
         
         request.httpBody = UtilityFunctions.encodeParameters(params: params)
-        print(UtilityFunctions.encodeParameters(params: params))
         let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
             if error != nil {
                 print(error.debugDescription)
             } else {
                 let httpresponse = response as? HTTPURLResponse
                 print(httpresponse as Any)
-                if httpresponse?.statusCode == 204 {
+                if (httpresponse?.statusCode)! >= 200 && (httpresponse?.statusCode)! < 300 {
                     completionHandler(true, (httpresponse?.statusCode)!)
                 } else {
-                    
                     completionHandler(false, (httpresponse?.statusCode)!)
                 }
             }
@@ -84,7 +82,7 @@ class APICommunication {
         task.resume()
     }
     
-    static func POSTRequest(path: String, params: [String: String]) {
+    static func POSTRequest(path: String, params: [String: String], completionHandler: @escaping (Bool,Int) -> ()) {
         let url = URL(string: "http://xserve.uopnet.plymouth.ac.uk/Modules/INTPROJ/PRCS251Q/api/\(path)")
         var request = URLRequest(url: url! as URL)
         request.httpMethod = "POST"
@@ -99,6 +97,11 @@ class APICommunication {
             } else {
                 let httpresponse = response as? HTTPURLResponse
                 print(httpresponse as Any)
+                if (httpresponse?.statusCode)! >= 200 && (httpresponse?.statusCode)! < 300 {
+                    completionHandler(true, (httpresponse?.statusCode)!)
+                } else {
+                    completionHandler(false, (httpresponse?.statusCode)!)
+                }
             }
         }
         task.resume()

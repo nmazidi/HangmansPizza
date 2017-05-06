@@ -32,7 +32,7 @@
                                 <rect key="frame" x="16" y="248" width="343" height="30"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hangman's Pizza" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zer-UR-KWH">
                                 <rect key="frame" x="88" y="20" width="199" height="32"/>
@@ -394,13 +394,13 @@
                                         <rect key="frame" x="8" y="263" width="359" height="30"/>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
+                                        <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                                     </textField>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="NEN-25-TU1">
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="NEN-25-TU1">
                                         <rect key="frame" x="8" y="318" width="359" height="21"/>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
+                                        <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                                     </textField>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="New Password" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vIP-zA-0wi">
                                         <rect key="frame" x="8" y="246" width="83" height="21"/>
@@ -421,15 +421,15 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="n88-K8-GWD">
-                                        <rect key="frame" x="9" y="395" width="359" height="17"/>
+                                        <rect key="frame" x="9" y="394" width="359" height="25"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="17" id="CM9-1g-iK0"/>
+                                            <constraint firstAttribute="height" constant="25" id="CM9-1g-iK0"/>
                                         </constraints>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
+                                        <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                                     </textField>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Enter current password to make changes" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ldV-HY-cTe">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Enter current password to make changes" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ldV-HY-cTe">
                                         <rect key="frame" x="10" y="378" width="232" height="15"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                         <color key="textColor" red="0.28232496979999999" green="0.28237074610000001" blue="0.28231498599999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -466,7 +466,7 @@
                                     <constraint firstItem="vIP-zA-0wi" firstAttribute="top" secondItem="s2t-31-41I" secondAttribute="bottom" constant="27" id="YxN-Ks-kmJ"/>
                                     <constraint firstItem="Pmc-wC-dBv" firstAttribute="top" secondItem="MwB-lM-peo" secondAttribute="bottom" constant="8" symbolic="YES" id="ZlN-Cr-QrA"/>
                                     <constraint firstItem="Czy-DV-Irf" firstAttribute="trailing" secondItem="Ca4-af-RSa" secondAttribute="trailingMargin" id="a9N-uX-R7x"/>
-                                    <constraint firstAttribute="bottom" secondItem="n88-K8-GWD" secondAttribute="bottom" constant="29" id="aK3-3m-e0U"/>
+                                    <constraint firstAttribute="bottom" secondItem="n88-K8-GWD" secondAttribute="bottom" constant="22" id="aK3-3m-e0U"/>
                                     <constraint firstItem="s2t-31-41I" firstAttribute="top" secondItem="yit-Zg-hWF" secondAttribute="bottom" constant="31" id="am1-Ff-XtT"/>
                                     <constraint firstItem="Pmc-wC-dBv" firstAttribute="leading" secondItem="Ca4-af-RSa" secondAttribute="leading" constant="9" id="cR6-hk-HiW"/>
                                     <constraint firstItem="w3b-kL-kcv" firstAttribute="trailing" secondItem="CF0-2L-ei5" secondAttribute="trailing" id="dmI-RE-g6N"/>

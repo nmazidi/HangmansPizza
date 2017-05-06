@@ -13,6 +13,10 @@ class WelcomeViewController: UIViewController {
     @IBOutlet weak var lblWelcome: UILabel!
     
     @IBAction func btnGoLive(_ sender: Any) {
+        var 
+        APICommunication.POSTRequest(path: "rider_activity", params: <#T##[String : String]#>) { success in
+            
+        }
     }
     @IBAction func btnSignOut(_ sender: Any) {
         DispatchQueue.main.async {

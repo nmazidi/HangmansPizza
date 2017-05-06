@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		752368A21EBE849A00E368CA /* Shift.swift in Sources */ = {isa = PBXBuildFile; fileRef = 752368A11EBE849A00E368CA /* Shift.swift */; };
 		75DAEA371EB8F90B0031C703 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75DAEA361EB8F90B0031C703 /* AppDelegate.swift */; };
 		75DAEA391EB8F90B0031C703 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75DAEA381EB8F90B0031C703 /* LoginViewController.swift */; };
 		75DAEA3C1EB8F90B0031C703 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 75DAEA3A1EB8F90B0031C703 /* Main.storyboard */; };
@@ -33,6 +34,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		752368A11EBE849A00E368CA /* Shift.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Shift.swift; sourceTree = "<group>"; };
 		75DAEA331EB8F90B0031C703 /* MobileApplication2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MobileApplication2.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		75DAEA361EB8F90B0031C703 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		75DAEA381EB8F90B0031C703 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -99,6 +101,7 @@
 				75DAEA3F1EB8F90B0031C703 /* LaunchScreen.storyboard */,
 				75DAEA421EB8F90B0031C703 /* Info.plist */,
 				75DAEA561EB8FCA10031C703 /* APICommunication.swift */,
+				752368A11EBE849A00E368CA /* Shift.swift */,
 				75DAEA571EB8FCA10031C703 /* DeliveryRider.swift */,
 				75DAEA581EB8FCA10031C703 /* Person.swift */,
 				75DAEA5C1EB906800031C703 /* UtilityFunctions.swift */,
@@ -234,6 +237,7 @@
 				75DAEA641EB9213D0031C703 /* CardView.swift in Sources */,
 				75DAEA5B1EB8FCA10031C703 /* Person.swift in Sources */,
 				75DAEA5A1EB8FCA10031C703 /* DeliveryRider.swift in Sources */,
+				752368A21EBE849A00E368CA /* Shift.swift in Sources */,
 				75DAEA391EB8F90B0031C703 /* LoginViewController.swift in Sources */,
 				75DAEA591EB8FCA10031C703 /* APICommunication.swift in Sources */,
 				75DAEA371EB8F90B0031C703 /* AppDelegate.swift in Sources */,
