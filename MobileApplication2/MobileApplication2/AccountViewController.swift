@@ -8,63 +8,101 @@
 
 import UIKit
 
-class AccountViewController: UIViewController {
+class AccountViewController: UIViewController, UITextFieldDelegate {
     var riderLoggedIn = DeliveryRider()
     
     @IBOutlet weak var lblTitleName: UILabel!
     @IBOutlet weak var lblEmail: UILabel!
-    @IBOutlet weak var txtForename: UITextField!
-    @IBOutlet weak var txtSurname: UITextField!
-    @IBOutlet weak var txtPhone: UITextField!
-    @IBOutlet weak var txtVehicleType: UITextField!
-    @IBOutlet weak var txtPassword: UITextField!
-    @IBOutlet weak var txtRetype: UITextField!
-    @IBOutlet weak var txtCurrentPassword: UITextField!
+    @IBOutlet var txtForename: UITextField?
+    @IBOutlet var txtSurname: UITextField?
+    @IBOutlet var txtPhone: UITextField?
+    @IBOutlet var txtVehicleType: UITextField?
+    @IBOutlet var txtPassword: UITextField?
+    @IBOutlet var txtRetype: UITextField?
+    @IBOutlet var txtCurrentPassword: UITextField?
 
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        txtForename.setBottomBorder()
-        txtSurname.setBottomBorder()
-        txtPhone.setBottomBorder()
-        txtVehicleType.setBottomBorder()
-        txtPassword.setBottomBorder()
-        txtRetype.setBottomBorder()
-        txtCurrentPassword.setBottomBorder()
+        txtForename?.delegate = self
+        txtSurname?.delegate = self
+        txtPhone?.delegate = self
+        txtVehicleType?.delegate = self
+        txtPassword?.delegate = self
+        txtRetype?.delegate = self
+        txtCurrentPassword?.delegate = self
+        
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(AccountViewController.dismissKeyboard))
+        view.addGestureRecognizer(tap)
+        
+        txtForename?.setBottomBorder()
+        txtSurname?.setBottomBorder()
+        txtPhone?.setBottomBorder()
+        txtVehicleType?.setBottomBorder()
+        txtPassword?.setBottomBorder()
+        txtRetype?.setBottomBorder()
+        txtCurrentPassword?.setBottomBorder()
         
         //populate rider details
         lblTitleName.text = riderLoggedIn.getFullName()
         lblEmail.text = riderLoggedIn.getEmailAddress()
-        txtForename.text = riderLoggedIn.getForename()
-        txtSurname.text = riderLoggedIn.getSurname()
-        txtPhone.text = riderLoggedIn.getPhoneNumber()
-        txtVehicleType.text = riderLoggedIn.getVehicleType()
+        txtForename?.text = riderLoggedIn.getForename()
+        txtSurname?.text = riderLoggedIn.getSurname()
+        txtPhone?.text = riderLoggedIn.getPhoneNumber()
+        txtVehicleType?.text = riderLoggedIn.getVehicleType()
         
         // Do any additional setup after loading the view.
     }
+    func dismissKeyboard() {
+        view.endEditing(true)
+    }
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
+
     @IBAction func btnSave(_ sender: Any) {
-        if txtCurrentPassword.text == riderLoggedIn.getPassword() {
-            
+        if txtCurrentPassword?.text == riderLoggedIn.getPassword() {
             //check is password is correct
-            if riderLoggedIn.getForename() != txtForename.text {
-                riderLoggedIn.setForename(newForename: txtForename.text!)
+            if riderLoggedIn.getForename() != txtForename?.text {
+                riderLoggedIn.setForename(newForename: (txtForename?.text!)!)
             }
-            if riderLoggedIn.getSurname() != txtSurname.text {
-                riderLoggedIn.setSurname(newSurname: txtSurname.text!)
+            if riderLoggedIn.getSurname() != txtSurname?.text {
+                riderLoggedIn.setSurname(newSurname: (txtSurname?.text!)!)
             }
-            if riderLoggedIn.getPhoneNumber() != txtPhone.text {
-                riderLoggedIn.setPhoneNumber(newPhoneNumber: txtPhone.text!)
+            if riderLoggedIn.getPhoneNumber() != txtPhone?.text {
+                riderLoggedIn.setPhoneNumber(newPhoneNumber: (txtPhone?.text!)!)
             }
-            if riderLoggedIn.getVehicleType() != txtVehicleType.text! {
-                riderLoggedIn.setVehicleType(newVehicleType: txtVehicleType.text!)
+            if riderLoggedIn.getVehicleType() != txtVehicleType?.text! {
+                riderLoggedIn.setVehicleType(newVehicleType: (txtVehicleType?.text!)!)
             }
             //set new password
-            if txtPassword.text != "" {
-                if txtPassword.text == txtRetype.text {
+            if txtPassword?.text != "" {
+                if txtPassword?.text == txtRetype?.text {
                     //if passwords match
-                    if (txtPassword.text?.characters.count)! <= 20 && (txtPassword.text?.characters.count)! >= 8 {
-                        riderLoggedIn.setPassword(newPassword: txtPassword.text!)
+                    if (txtPassword?.text?.characters.count)! <= 20 && (txtPassword?.text?.characters.count)! >= 8 {
+                        riderLoggedIn.setPassword(newPassword: (txtPassword?.text!)!)
+                    } else {
+                        let errorAlert = UIAlertController(title: "Error", message: "Password must be between 8 and 20 characters long. Please choose another password.", preferredStyle: .alert)
+                        let okAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.default)
+                        errorAlert.addAction(okAction)
+                        DispatchQueue.main.async {
+                            self.present(errorAlert, animated: true, completion: nil)
+                        }
+                        txtCurrentPassword?.text = ""
+                        txtPassword?.text = ""
+                        txtRetype?.text = ""
                     }
+                } else {
+                    let errorAlert = UIAlertController(title: "Error", message: "Passwords typed do not match. Please try again.", preferredStyle: .alert)
+                    let okAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.default)
+                    errorAlert.addAction(okAction)
+                    DispatchQueue.main.async {
+                        self.present(errorAlert, animated: true, completion: nil)
+                    }
+                    txtCurrentPassword?.text = ""
+                    txtPassword?.text = ""
+                    txtRetype?.text = ""
                 }
             }
             let alert = UIAlertController(title: nil, message: "Please wait...", preferredStyle: .alert)
@@ -85,23 +123,34 @@ class AccountViewController: UIViewController {
                 print("PUT Successful? \(success)\n")
                 //remove alert from screen when api call completed
                 DispatchQueue.main.async {
-                    alert.dismiss(animated: false, completion: nil)
-                    loadingIndicator.stopAnimating()
                 }
                 if success.0 {
                     DispatchQueue.main.async {
-                        self.performSegue(withIdentifier: "AccountSaveSegue", sender: self)
+                        alert.dismiss(animated: true) {
+                            self.performSegue(withIdentifier: "AccountSaveSegue", sender: self)
+                        }
                     }
                 } else {
                     let errorAlert = UIAlertController(title: "Error", message: "Could not complete PUT request. Code: \(success.1)", preferredStyle: .alert)
                     let okAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.default)
                     errorAlert.addAction(okAction)
                     DispatchQueue.main.async {
-                        self.present(errorAlert, animated: true, completion: nil)
+                        alert.dismiss(animated: true) {
+                            self.present(errorAlert, animated: true)
+                        }
                     }
-
                 }
             }
+        } else {
+            let errorAlert = UIAlertController(title: "Error", message: "The password that you have entered is wrong. Please try again.", preferredStyle: .alert)
+            let okAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.default)
+            errorAlert.addAction(okAction)
+            DispatchQueue.main.async {
+                self.present(errorAlert, animated: true)
+            }
+            txtCurrentPassword?.text = ""
+            txtPassword?.text = ""
+            txtRetype?.text = ""
         }
     }
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

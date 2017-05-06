@@ -13,9 +13,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet var txtPassword: UITextField?
     var dataLoaded = [[String: AnyObject]]()
     var riderLoggedIn = DeliveryRider()
-    
-    
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         txtPassword?.delegate = self
@@ -63,29 +61,31 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
             print("Successful? \(success.0)\n")
             self.dataLoaded = success.1
             //remove alert from screen when api call completed
-            DispatchQueue.main.async {
-                alert.dismiss(animated: false, completion: nil)
-                loadingIndicator.stopAnimating()
-            }
             if !success.0 {
                 let errorAlert = UIAlertController(title: "Error", message: "Could not connect. Please try again later.", preferredStyle: .alert)
                 let okAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.default)
                 errorAlert.addAction(okAction)
                 DispatchQueue.main.async {
-                    self.present(errorAlert, animated: true, completion: nil)
+                    alert.dismiss(animated: true) {
+                        self.present(errorAlert, animated: true)
+                    }
                 }
             } else {
                 if self.isValidCredentials(jsonArray: success.1) {
                     self.createRiderInstanceFromData(jsonData: success.1)
                     DispatchQueue.main.async {
-                        self.performSegue(withIdentifier: "LoggedInSegue", sender: self)
+                        alert.dismiss(animated: true) {
+                            self.performSegue(withIdentifier: "LoggedInSegue", sender: self)
+                        }
                     }
                 } else {
                     let invalidAlert = UIAlertController(title: "Error", message: "Invalid login credentials. Email address or password is incorrect.", preferredStyle: .alert)
                     let okAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.default)
                     invalidAlert.addAction(okAction)
                     DispatchQueue.main.async {
-                        self.present(invalidAlert, animated: true, completion: nil)
+                        alert.dismiss(animated: true) {
+                            self.present(invalidAlert, animated: true)
+                        }
                     }
                 }
             }
