@@ -15,22 +15,22 @@
 			<li><a href="menu.jsp">Menu</a></li>
 			<li><a href="deals.jsp">Deals</a></li>
 			<li><a href="basket.jsp"><span id='basketStatus'>Basket </span></a></li>
-		<li style="float:right"><a id='loginButton' href="#/?action=checklogin"><span>TestLogin</span></a></li>
-			<li style="float:right"><a id='registerButton' href="register.jsp"><span id='registerButton'>TestRegister</span></a></li>
+		<li style="float:right"><a id='loginButton' href="login.jsp"><span>TestLogin</span></a></li>
+			<li style="float:right"><a id='registerButton' href="addressregister.jsp"><span id='registerButton'>Register</span></a></li>
 		</ul>
 	</div>
 
 	<div class='page mainSection'>
 		<h1>Map</h1>
-			<table id="map" style="width: 100%; height: 300px;">
+			<table id="map" style="height: 300px;">
 				<tr>
-					<th>Map to store</th>
+					<th style="width: 2000px">Map to store</th>
 				</tr>
 			</table>	
-			<table id="openingTimes" align="center" style="width: 100%:">
+			<table id="openingTimes" align="center">
 			<tr>
-				<td>Monday</td>
-				<td>17:00 - 23:00</td>
+				<td style="width: 2000px">Monday</td>
+				<td style="width: 2000px">17:00 - 23:00</td>
 			</tr>
 			<tr>
 				<td>Tuesday</td>

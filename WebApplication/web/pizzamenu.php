@@ -1,4 +1,4 @@
-
+ng-href='?action=addpizza&itemid={{itemID}}&pizzasize={{sizeSelection[x.ITEM_ID].id}}&pizzacrust={{crustSelection[x.ITEM_ID].id}}'>Add to basket</a></td><td>{{x.SELLING_PRICE * sizeSelection[x.ITEM_ID].mod | currency : "£"}}
 
 <?php
 	if(isset($_GET['action']) && $_GET['action']=="checklogin"){

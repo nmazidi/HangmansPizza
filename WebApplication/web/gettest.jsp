@@ -31,8 +31,7 @@ var app = angular.module('myApp', []);
 app.controller('customersCtrl', function($scope, $http) {
     $http({
         method: 'GET', 
-        dataType: 'jsonp',
-        url:"http://xserve.uopnet.plymouth.ac.uk/Modules/INTPROJ/PRCS251Q/api/customers"
+        url:"http://xserve.uopnet.plymouth.ac.uk/Modules/INTPROJ/PRCS251Q/api/items"
     }).then(function(response)
     {
         $scope.myData = response.data;

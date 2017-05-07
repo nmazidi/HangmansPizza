@@ -27,39 +27,14 @@
 	</div>
 
 	<div class='page mainSection'>
-		<h1>Map</h1>
-			<table id="map" style="width: 100%; height: 300px;">
-				<tr>
-					<th>Map to store</th>
-				</tr>
-			</table>	
-			<table id="openingTimes" align="center" style="width: 100%:">
-			<tr>
-				<td>Monday</td>
-				<td>17:00 - 23:00</td>
-			</tr>
-			<tr>
-				<td>Tuesday</td>
-				<td>17:00 - 23:00</td>
-			</tr>
-			<tr>
-				<td>Wednesday</td>
-				<td>17:00 - 23:00</td>
-			</tr>
-			<tr>
-				<td>Thursday</td>
-				<td>17:00 - 23:00</td>
-			</tr>
-			<tr>
-				<td>Friday</td>
-				<td>17:00 - 23:00</td>
-			</tr>
-			<tr>
-				<td>Saturday</td>
-				<td>17:00 - 23:00</td>
-			</tr>
-			</table>
-	</div>
+            <form action='login_submit.jsp' method='POST'>
+                    Username:<br>
+                    <input type='text' name='username' value=''><br>
+                    Password:<br>
+                    <input type='text' name='password' value=''><br>
+                <input type='submit' value='submit'>
+            </form>
+        </div>
 	
 </body>
 </html>
