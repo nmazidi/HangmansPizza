@@ -9,6 +9,7 @@ using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Description;
 using HangmansPizzaAPI;
+using System.Web.Helpers;
 
 namespace HangmansPizzaAPI.Controllers
 {
@@ -16,6 +17,26 @@ namespace HangmansPizzaAPI.Controllers
     {
         private Entities db = new Entities();
 
+        public static String HashFunction(String unhashedPassword)
+        {
+            var hashedPassword = "";
+            var salt = "";
+            var verify = false;
+
+            salt = Crypto.GenerateSalt();
+            unhashedPassword += salt;
+            hashedPassword = Crypto.HashPassword(unhashedPassword);
+
+            verify = Crypto.VerifyHashedPassword(hashedPassword, unhashedPassword);
+            if (verify)
+            {
+                return hashedPassword;
+            } else
+            {
+                return null;
+            }
+            
+        }
         // GET: api/DELIVERY_RIDER
         public IQueryable<DELIVERY_RIDER> GetDELIVERY_RIDER()
         {
@@ -39,6 +60,7 @@ namespace HangmansPizzaAPI.Controllers
         [ResponseType(typeof(void))]
         public IHttpActionResult PutDELIVERY_RIDER(int id, DELIVERY_RIDER dELIVERY_RIDER)
         {
+            dELIVERY_RIDER.RIDER_PASSWORD = HashFunction(dELIVERY_RIDER.RIDER_PASSWORD);
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
@@ -48,9 +70,10 @@ namespace HangmansPizzaAPI.Controllers
             {
                 return BadRequest();
             }
-
-            db.Entry(dELIVERY_RIDER).State = EntityState.Modified;
-
+            if (dELIVERY_RIDER.RIDER_PASSWORD != null)
+            {
+                db.Entry(dELIVERY_RIDER).State = EntityState.Modified;
+            }  
             try
             {
                 db.SaveChanges();
@@ -74,13 +97,21 @@ namespace HangmansPizzaAPI.Controllers
         [ResponseType(typeof(DELIVERY_RIDER))]
         public IHttpActionResult PostDELIVERY_RIDER(DELIVERY_RIDER dELIVERY_RIDER)
         {
+            dELIVERY_RIDER.RIDER_PASSWORD = HashFunction(dELIVERY_RIDER.RIDER_PASSWORD);
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
+            if (dELIVERY_RIDER.RIDER_PASSWORD != null)
+            {
+                db.DELIVERY_RIDER.Add(dELIVERY_RIDER);
+                db.SaveChanges();
+            } else
+            {
+                return InternalServerError();
+            }
+            
 
-            db.DELIVERY_RIDER.Add(dELIVERY_RIDER);
-            db.SaveChanges();
 
             return CreatedAtRoute("DefaultApi", new { id = dELIVERY_RIDER.RIDER_ID }, dELIVERY_RIDER);
         }

@@ -52,3 +52,4 @@ C:\Users\najim\Documents\GitHub\HangmansPizza\HangmansPizzaAPI\HangmansPizzaAPI\
 C:\Users\najim\Documents\GitHub\HangmansPizza\HangmansPizzaAPI\HangmansPizzaAPI\bin\System.Web.Cors.dll
 C:\Users\najim\Documents\GitHub\HangmansPizza\HangmansPizzaAPI\HangmansPizzaAPI\bin\System.Web.Http.Cors.dll
 C:\Users\najim\Documents\GitHub\HangmansPizza\HangmansPizzaAPI\HangmansPizzaAPI\bin\System.Web.Http.Cors.xml
+C:\Users\najim\Documents\GitHub\HangmansPizza\HangmansPizzaAPI\HangmansPizzaAPI\obj\Release\HangmansPizzaAPI.csprojResolveAssemblyReference.cache

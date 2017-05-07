@@ -9,11 +9,33 @@ using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Description;
 using HangmansPizzaAPI;
+using System.Web.Helpers;
 
 namespace HangmansPizzaAPI.Controllers
 {
     public class CUSTOMERsController : ApiController
     {
+        public static String HashFunction(String unhashedPassword)
+        {
+            var hashedPassword = "";
+            var salt = "";
+            var verify = false;
+
+            salt = Crypto.GenerateSalt();
+            unhashedPassword += salt;
+            hashedPassword = Crypto.HashPassword(unhashedPassword);
+
+            verify = Crypto.VerifyHashedPassword(hashedPassword, unhashedPassword);
+            if (verify)
+            {
+                return hashedPassword;
+            }
+            else
+            {
+                return null;
+            }
+
+        }
         private Entities db = new Entities();
 
         // GET: api/CUSTOMERs
@@ -39,6 +61,7 @@ namespace HangmansPizzaAPI.Controllers
         [ResponseType(typeof(void))]
         public IHttpActionResult PutCUSTOMER(int id, CUSTOMER cUSTOMER)
         {
+            cUSTOMER.CUSTOMER_PASSWORD = HashFunction(cUSTOMER.CUSTOMER_PASSWORD);
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
@@ -48,9 +71,14 @@ namespace HangmansPizzaAPI.Controllers
             {
                 return BadRequest();
             }
-
-            db.Entry(cUSTOMER).State = EntityState.Modified;
-
+            if (cUSTOMER.CUSTOMER_PASSWORD != null)
+            {
+                db.Entry(cUSTOMER).State = EntityState.Modified;
+            } else
+            {
+                return InternalServerError();
+            }
+            
             try
             {
                 db.SaveChanges();
@@ -74,14 +102,21 @@ namespace HangmansPizzaAPI.Controllers
         [ResponseType(typeof(CUSTOMER))]
         public IHttpActionResult PostCUSTOMER(CUSTOMER cUSTOMER)
         {
+            cUSTOMER.CUSTOMER_PASSWORD = HashFunction(cUSTOMER.CUSTOMER_PASSWORD);
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
-
-            db.CUSTOMERs.Add(cUSTOMER);
-            db.SaveChanges();
-
+            if (cUSTOMER.CUSTOMER_PASSWORD != null)
+            {
+                db.CUSTOMERs.Add(cUSTOMER);
+                db.SaveChanges();
+            } else
+            {
+                return InternalServerError();
+            }
+                
+            
             return CreatedAtRoute("DefaultApi", new { id = cUSTOMER.CUSTOMER_ID }, cUSTOMER);
         }
 
