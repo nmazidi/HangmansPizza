@@ -106,7 +106,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         for item in jsonData {
             if item["RIDER_EMAIL"] as? String == txtEmailAddress?.text {
                 riderLoggedIn.setRiderID(newRiderID: item["RIDER_ID"] as! Int)
-                riderLoggedIn.setTitle(newTitle: "UNKNOWN")  //TODO: add title field to database and rebuild API
+                riderLoggedIn.setTitle(newTitle: item["RIDER_TITLE"] as! String)
                 riderLoggedIn.setForename(newForename: item["RIDER_FORENAME"] as! String)
                 riderLoggedIn.setSurname(newSurname: item["RIDER_SURNAME"] as! String)
                 riderLoggedIn.setEmailAddress(newEmailAddress: item["RIDER_EMAIL"] as! String)

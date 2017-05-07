@@ -34,10 +34,11 @@ class UtilityFunctions {
     /// - Parameter params: dictionary of string values to be encoded
     /// - Returns: encoded string
     static func encodeParameters(params: [String:String]) -> Data {
-        let paramsArray = UtilityFunctions.changeKeysForRiderRequest(dict: params).map {
+        let paramsArray = UtilityFunctions.changeKeysForRequest(dict: params).map {
             (key,value) -> String in
             return "\(key)=\(value)"
         }
+        print(paramsArray.joined(separator: "&"))
         return paramsArray.joined(separator: "&").data(using: String.Encoding.utf8)!
         
     }
@@ -46,11 +47,11 @@ class UtilityFunctions {
     ///
     /// - Parameter obj: object to convert
     /// - Returns: dictionary of strings
-    static func getStringDictionaryFromRiderObject(obj: AnyObject) -> [String: String] {
+    static func getStringDictionaryFromObject(obj: AnyObject) -> [String: String] {
         let dict = Mirror(reflecting: obj).toDictionary()
         return dict
     }
-    static func changeKeysForRiderRequest(dict: [String: String]) -> [String: String] {
+    static func changeKeysForRequest(dict: [String: String]) -> [String: String] {
         var updatedDict = dict
         updatedDict.updateKey(from: "title", to: "RIDER_TITLE")
         updatedDict.updateKey(from: "forename", to: "RIDER_FORENAME")
@@ -61,6 +62,14 @@ class UtilityFunctions {
         updatedDict.updateKey(from: "riderID", to: "RIDER_ID")
         updatedDict.updateKey(from: "password", to: "RIDER_PASSWORD")
         updatedDict.updateKey(from: "vehicleType", to: "VEHICLE_TYPE")
+        updatedDict.updateKey(from: "shiftID", to: "SHIFT_ID")
+        updatedDict.updateKey(from: "shiftStart", to: "SHIFT_START")
+        updatedDict.updateKey(from: "shiftEnd", to: "SHIFT_END")
+        updatedDict.updateKey(from: "shiftLength", to: "SHIFT_LENGTH")
+        updatedDict.updateKey(from: "riderLocation", to: "LOCATION")
+        updatedDict.updateKey(from: "deliveriesMade", to: "DELIVERIES_MADE")
+        updatedDict.updateKey(from: "status", to: "STATUS")
+        updatedDict.updateKey(from: "totalEarned", to: "TOTAL_EARNED")
         return updatedDict
     }
 }
@@ -73,6 +82,9 @@ extension Mirror {
                     let propertyVal = UtilityFunctions.formatDateForRequest(dateObj: attr.value as! Date)
                         dict[propertyName] = propertyVal
                 } else if attr.value is Int {
+                    let propertyVal = "\(attr.value)"
+                    dict[propertyName] = propertyVal
+                } else if attr.value is Double {
                     let propertyVal = "\(attr.value)"
                     dict[propertyName] = propertyVal
                 } else {

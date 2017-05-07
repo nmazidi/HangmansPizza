@@ -308,6 +308,7 @@
                     <nil key="simulatedTopBarMetrics"/>
                     <connections>
                         <outlet property="lblWelcome" destination="5DL-Gw-ES6" id="m1E-yg-s0v"/>
+                        <segue destination="ZQ6-lH-Gjg" kind="show" identifier="GoLiveSegue" id="rlJ-XY-vji"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gMa-Re-zWH" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -585,7 +586,25 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BRP-UA-qTu" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2525.5999999999999" y="138.98050974512745"/>
+            <point key="canvasLocation" x="1745" y="-620"/>
+        </scene>
+        <!--Live View Controller-->
+        <scene sceneID="tRZ-Ps-7Va">
+            <objects>
+                <viewController id="ZQ6-lH-Gjg" customClass="LiveViewController" customModule="MobileApplication2" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="uko-3h-xEm"/>
+                        <viewControllerLayoutGuide type="bottom" id="TDg-Tv-i7t"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="2hV-EQ-6y5">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="YUG-xl-g5f" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2583" y="139"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="QOt-kn-xuD">

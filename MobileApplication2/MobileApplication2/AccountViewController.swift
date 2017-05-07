@@ -117,13 +117,8 @@ class AccountViewController: UIViewController, UITextFieldDelegate {
                 self.present(alert, animated: true, completion: nil)
             }
             //Update user details on database
-            print(riderLoggedIn.getDOB())
-            print(UtilityFunctions.getStringDictionaryFromRiderObject(obj: riderLoggedIn))
-            APICommunication.PUTRequest(path: "delivery_rider", id: riderLoggedIn.getRiderID(), params: UtilityFunctions.getStringDictionaryFromRiderObject(obj: riderLoggedIn)) { success in
+            APICommunication.PUTRequest(path: "delivery_rider", id: riderLoggedIn.getRiderID(), params: UtilityFunctions.getStringDictionaryFromObject(obj: riderLoggedIn)) { success in
                 print("PUT Successful? \(success)\n")
-                //remove alert from screen when api call completed
-                DispatchQueue.main.async {
-                }
                 if success.0 {
                     DispatchQueue.main.async {
                         alert.dismiss(animated: true) {

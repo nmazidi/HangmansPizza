@@ -13,9 +13,38 @@ class WelcomeViewController: UIViewController {
     @IBOutlet weak var lblWelcome: UILabel!
     
     @IBAction func btnGoLive(_ sender: Any) {
-        var 
-        APICommunication.POSTRequest(path: "rider_activity", params: <#T##[String : String]#>) { success in
-            
+        let newShift = Shift(shiftID: 1, riderID: riderLoggedIn.getRiderID(), shiftStart: Date(), riderLocation: "", deliveriesMade: 0, status: "Available", totalEarned: 0)
+        
+        let alert = UIAlertController(title: nil, message: "Please wait, going online...", preferredStyle: .alert)
+        let loadingIndicator = UIActivityIndicatorView(frame: CGRect(x: 10, y: 5, width: 50, height: 50))
+        
+        loadingIndicator.hidesWhenStopped = true
+        loadingIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.gray
+        loadingIndicator.startAnimating()
+        
+        alert.view.addSubview(loadingIndicator)
+        DispatchQueue.main.async {
+            self.present(alert, animated: true, completion: nil)
+        }
+        APICommunication.POSTRequest(path: "rider_activity", params: UtilityFunctions.getStringDictionaryFromObject(obj: newShift)) { success in
+            print("POST successful? \(success.0) with code: \(success.1)")
+            if success.0 {
+                DispatchQueue.main.async {
+                    alert.dismiss(animated: true) {
+                        self.performSegue(withIdentifier: "GoLiveSegue", sender: self)
+                    }
+                }
+            } else {
+                let errorAlert = UIAlertController(title: "Error", message: "Could not sign in. Code: \(success.1)", preferredStyle: .alert)
+                let okAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.default)
+                errorAlert.addAction(okAction)
+                DispatchQueue.main.async {
+                    alert.dismiss(animated: true) {
+                        self.present(errorAlert, animated: true)
+                    }
+                }
+            }
+
         }
     }
     @IBAction func btnSignOut(_ sender: Any) {
