@@ -8,13 +8,13 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Description;
-using HangmansPizzaAPI.Models;
+using HangmansPizzaAPI;
 
 namespace HangmansPizzaAPI.Controllers
 {
     public class RIDER_ACTIVITYController : ApiController
     {
-        private Entities5 db = new Entities5();
+        private Entities db = new Entities();
 
         // GET: api/RIDER_ACTIVITY
         public IQueryable<RIDER_ACTIVITY> GetRIDER_ACTIVITY()
