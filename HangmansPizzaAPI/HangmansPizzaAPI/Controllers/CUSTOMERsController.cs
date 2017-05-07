@@ -21,7 +21,7 @@ namespace HangmansPizzaAPI.Controllers
             var saltedPassword = "";
             var salt  = "";
             var verify = false;
-
+            
             if (saltFromDB != null)
             {
                 salt = saltFromDB;
@@ -30,17 +30,10 @@ namespace HangmansPizzaAPI.Controllers
             }
             
             saltedPassword = unhashedPassword + salt;
-            hashedPassword = Crypto.HashPassword(saltedPassword);
+            hashedPassword = Crypto.SHA256(saltedPassword);
             string[] arrayToReturn = { hashedPassword, salt };
-            //verify = Crypto.VerifyHashedPassword(hashedPassword, unhashedPassword);
-            //if (verify)
-            //{
-                return arrayToReturn;
-            //}
-            //else
-            //{
-             //   return null;
-           // }
+
+            return arrayToReturn;
         }
         private Entities db = new Entities();
 
@@ -141,7 +134,9 @@ namespace HangmansPizzaAPI.Controllers
             {
                 try
                 {
-                    var cUSTOMER = db.CUSTOMERs.Find(145);
+                    CUSTOMER customer = db.CUSTOMERs.Single(p => p.CUSTOMER_EMAIL == loginDetails.email); 
+                    int custID = customer.CUSTOMER_ID;
+                    var cUSTOMER = db.CUSTOMERs.Find(custID);
                 
                 try
                 {
