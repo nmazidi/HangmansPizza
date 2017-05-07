@@ -15,26 +15,32 @@ namespace HangmansPizzaAPI.Controllers
 {
     public class CUSTOMERsController : ApiController
     {
-        public static String HashFunction(String unhashedPassword)
+        public static string[] HashFunction(String unhashedPassword, String saltFromDB)
         {
             var hashedPassword = "";
-            var salt = "";
+            var saltedPassword = "";
+            var salt  = "";
             var verify = false;
 
-            salt = Crypto.GenerateSalt();
-            unhashedPassword += salt;
-            hashedPassword = Crypto.HashPassword(unhashedPassword);
-
-            verify = Crypto.VerifyHashedPassword(hashedPassword, unhashedPassword);
-            if (verify)
+            if (saltFromDB != null)
             {
-                return hashedPassword;
+                salt = saltFromDB;
+            } else {
+                salt = Crypto.GenerateSalt();
             }
-            else
-            {
-                return null;
-            }
-
+            
+            saltedPassword = unhashedPassword + salt;
+            hashedPassword = Crypto.HashPassword(saltedPassword);
+            string[] arrayToReturn = { hashedPassword, salt };
+            //verify = Crypto.VerifyHashedPassword(hashedPassword, unhashedPassword);
+            //if (verify)
+            //{
+                return arrayToReturn;
+            //}
+            //else
+            //{
+             //   return null;
+           // }
         }
         private Entities db = new Entities();
 
@@ -43,12 +49,12 @@ namespace HangmansPizzaAPI.Controllers
         {
             return db.CUSTOMERs;
         }
-
         // GET: api/CUSTOMERs/5
         [ResponseType(typeof(CUSTOMER))]
         public IHttpActionResult GetCUSTOMER(int id)
         {
             CUSTOMER cUSTOMER = db.CUSTOMERs.Find(id);
+
             if (cUSTOMER == null)
             {
                 return NotFound();
@@ -61,7 +67,9 @@ namespace HangmansPizzaAPI.Controllers
         [ResponseType(typeof(void))]
         public IHttpActionResult PutCUSTOMER(int id, CUSTOMER cUSTOMER)
         {
-            cUSTOMER.CUSTOMER_PASSWORD = HashFunction(cUSTOMER.CUSTOMER_PASSWORD);
+            var hashed = HashFunction(cUSTOMER.CUSTOMER_PASSWORD, cUSTOMER.PASSWORD_SALT);
+            cUSTOMER.CUSTOMER_PASSWORD = hashed[0];
+            cUSTOMER.PASSWORD_SALT = hashed[1];
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
@@ -102,7 +110,10 @@ namespace HangmansPizzaAPI.Controllers
         [ResponseType(typeof(CUSTOMER))]
         public IHttpActionResult PostCUSTOMER(CUSTOMER cUSTOMER)
         {
-            cUSTOMER.CUSTOMER_PASSWORD = HashFunction(cUSTOMER.CUSTOMER_PASSWORD);
+            var hashed = HashFunction(cUSTOMER.CUSTOMER_PASSWORD, cUSTOMER.PASSWORD_SALT);
+            //verifyLogin(cUSTOMER.CUSTOMER_PASSWORD, db.CUSTOMERs., cUSTOMER.CUSTOMER_EMAIL);
+            cUSTOMER.CUSTOMER_PASSWORD = hashed[0];
+            cUSTOMER.PASSWORD_SALT = hashed[1];
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
@@ -115,11 +126,47 @@ namespace HangmansPizzaAPI.Controllers
             {
                 return InternalServerError();
             }
-                
-            
+ 
             return CreatedAtRoute("DefaultApi", new { id = cUSTOMER.CUSTOMER_ID }, cUSTOMER);
         }
-
+        // POST: api/CUSTOMERs
+        [ResponseType(typeof(void))]
+        public IHttpActionResult LoginCUSTOMER(string login, LoginDetails loginDetails)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+            if (login.Equals("login"))
+            {
+                try
+                {
+                    var cUSTOMER = db.CUSTOMERs.Find(145);
+                
+                try
+                {
+                    var hashedPassword = HashFunction(loginDetails.password, cUSTOMER.PASSWORD_SALT)[0];
+                    if (hashedPassword == cUSTOMER.CUSTOMER_PASSWORD)
+                    {
+                        return StatusCode(HttpStatusCode.Accepted);
+                    }
+                    else
+                    {
+                        return StatusCode(HttpStatusCode.NotAcceptable);
+                    }
+                }
+                catch (Exception e)
+                {
+                    return StatusCode(HttpStatusCode.Forbidden);
+                }
+                }
+                catch (Exception e)
+                {
+                    return StatusCode(HttpStatusCode.Unauthorized);
+                }
+            }
+            return InternalServerError();
+        }
         // DELETE: api/CUSTOMERs/5
         [ResponseType(typeof(CUSTOMER))]
         public IHttpActionResult DeleteCUSTOMER(int id)

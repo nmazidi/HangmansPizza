@@ -30,20 +30,6 @@
     <Property Name="ADDRESS" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="POSTCODE" Type="String" MaxLength="7" FixedLength="false" Unicode="false" Nullable="false" />
   </EntityType>
-  <EntityType Name="CUSTOMER">
-    <Key>
-      <PropertyRef Name="CUSTOMER_ID" />
-    </Key>
-    <Property Name="CUSTOMER_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="CUSTOMER_TITLE" Type="String" MaxLength="5" FixedLength="false" Unicode="false" Nullable="false" />
-    <Property Name="CUSTOMER_FORENAME" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
-    <Property Name="CUSTOMER_SURNAME" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
-    <Property Name="CUSTOMER_EMAIL" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-    <Property Name="CUSTOMER_PHONE" Type="String" MaxLength="11" FixedLength="false" Unicode="false" Nullable="false" />
-    <Property Name="CUSTOMER_PASSWORD" Type="String" MaxLength="256" FixedLength="false" Unicode="false" Nullable="false" />
-    <Property Name="CUSTOMER_DOB" Type="DateTime" Nullable="false" />
-    <Property Name="ADDRESS_ID" Type="Int32" Nullable="false" />
-  </EntityType>
   <EntityType Name="DEAL">
     <Key>
       <PropertyRef Name="DEAL_ID" />
@@ -243,18 +229,6 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="ORDERS_FK">
-    <End Role="CUSTOMER" Type="Self.CUSTOMER" Multiplicity="1" />
-    <End Role="ORDERS" Type="Self.ORDER" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="CUSTOMER">
-        <PropertyRef Name="CUSTOMER_ID" />
-      </Principal>
-      <Dependent Role="ORDERS">
-        <PropertyRef Name="CUSTOMER_ID" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Association Name="DEAL_ITEM_FK">
     <End Role="DEAL" Type="Self.DEAL" Multiplicity="1" />
     <End Role="DEAL_ITEM" Type="Self.DEAL_ITEM" Multiplicity="*" />
@@ -427,7 +401,6 @@
     <EntitySet Name="ADDRESSes" EntityType="Self.ADDRESS" />
     <EntitySet Name="ADMINs" EntityType="Self.ADMIN" />
     <EntitySet Name="BRANCHes" EntityType="Self.BRANCH" />
-    <EntitySet Name="CUSTOMERs" EntityType="Self.CUSTOMER" />
     <EntitySet Name="DEALs" EntityType="Self.DEAL" />
     <EntitySet Name="DEAL_BRANCH" EntityType="Self.DEAL_BRANCH" />
     <EntitySet Name="DEAL_ITEM" EntityType="Self.DEAL_ITEM" />
@@ -449,10 +422,6 @@
     <AssociationSet Name="MENU_FK" Association="Self.MENU_FK">
       <End Role="BRANCH" EntitySet="BRANCHes" />
       <End Role="MENU" EntitySet="MENUs" />
-    </AssociationSet>
-    <AssociationSet Name="ORDERS_FK" Association="Self.ORDERS_FK">
-      <End Role="CUSTOMER" EntitySet="CUSTOMERs" />
-      <End Role="ORDERS" EntitySet="ORDERS" />
     </AssociationSet>
     <AssociationSet Name="DEAL_ITEM_FK" Association="Self.DEAL_ITEM_FK">
       <End Role="DEAL" EntitySet="DEALs" />
@@ -510,5 +479,37 @@
       <End Role="ORDERS" EntitySet="ORDERS" />
       <End Role="TRANSACTION" EntitySet="TRANSACTIONs" />
     </AssociationSet>
+    <EntitySet Name="CUSTOMERs" EntityType="Model.CUSTOMER" />
+    <AssociationSet Name="ORDERS_FK" Association="Model.ORDERS_FK">
+      <End Role="CUSTOMER" EntitySet="CUSTOMERs" />
+      <End Role="ORDER" EntitySet="ORDERS" />
+    </AssociationSet>
   </EntityContainer>
+  <EntityType Name="CUSTOMER">
+    <Key>
+      <PropertyRef Name="CUSTOMER_ID" />
+    </Key>
+    <Property Name="CUSTOMER_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CUSTOMER_TITLE" Type="String" Nullable="false" MaxLength="5" FixedLength="false" Unicode="false" />
+    <Property Name="CUSTOMER_FORENAME" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="CUSTOMER_SURNAME" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="CUSTOMER_EMAIL" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="CUSTOMER_PHONE" Type="String" Nullable="false" MaxLength="11" FixedLength="false" Unicode="false" />
+    <Property Name="CUSTOMER_PASSWORD" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="false" />
+    <Property Name="CUSTOMER_DOB" Type="DateTime" Nullable="false" />
+    <Property Name="ADDRESS_ID" Type="Int32" Nullable="false" />
+    <Property Name="PASSWORD_SALT" Type="String" MaxLength="64" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <Association Name="ORDERS_FK">
+    <End Type="Model.CUSTOMER" Role="CUSTOMER" Multiplicity="1" />
+    <End Type="Model.ORDER" Role="ORDER" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CUSTOMER">
+        <PropertyRef Name="CUSTOMER_ID" />
+      </Principal>
+      <Dependent Role="ORDER">
+        <PropertyRef Name="CUSTOMER_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
 </Schema>

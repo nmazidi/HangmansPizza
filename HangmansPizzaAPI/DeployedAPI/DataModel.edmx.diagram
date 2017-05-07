@@ -4,11 +4,10 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="12293044efed4467b5ed26389db31914" Name="Diagram1" ZoomLevel="114">
+      <Diagram DiagramId="12293044efed4467b5ed26389db31914" Name="Diagram1" ZoomLevel="99">
         <EntityTypeShape EntityType="Model.ADDRESS" Width="1.5" PointX="10.75" PointY="1.5" IsExpanded="true" />
         <EntityTypeShape EntityType="Model.ADMIN" Width="1.5" PointX="10.75" PointY="4.5" IsExpanded="true" />
         <EntityTypeShape EntityType="Model.BRANCH" Width="1.5" PointX="1.5" PointY="23.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="Model.CUSTOMER" Width="1.5" PointX="1.5" PointY="1" IsExpanded="true" />
         <EntityTypeShape EntityType="Model.DEAL" Width="1.5" PointX="0.75" PointY="5.375" IsExpanded="true" />
         <EntityTypeShape EntityType="Model.DEAL_BRANCH" Width="1.5" PointX="8.75" PointY="12.5" IsExpanded="true" />
         <EntityTypeShape EntityType="Model.DEAL_ITEM" Width="1.5" PointX="3" PointY="6.375" IsExpanded="true" />
@@ -28,7 +27,6 @@
         <EntityTypeShape EntityType="Model.SIDE" Width="1.5" PointX="3" PointY="20.5" IsExpanded="true" />
         <EntityTypeShape EntityType="Model.TRANSACTION" Width="1.5" PointX="6" PointY="12.875" IsExpanded="true" />
         <AssociationConnector Association="Model.MENU_FK" ManuallyRouted="false" />
-        <AssociationConnector Association="Model.ORDERS_FK" ManuallyRouted="false" />
         <AssociationConnector Association="Model.DEAL_ITEM_FK" ManuallyRouted="false" />
         <AssociationConnector Association="Model.DEAL_ITEM_FK2" ManuallyRouted="false" />
         <AssociationConnector Association="Model.DELIVERY_FK" ManuallyRouted="false" />
@@ -43,6 +41,8 @@
         <AssociationConnector Association="Model.MENU_ITEM_FK" ManuallyRouted="false" />
         <AssociationConnector Association="Model.ORDER_ITEM_FK2" ManuallyRouted="false" />
         <AssociationConnector Association="Model.TRANSACTION_FK" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="Model.CUSTOMER" Width="1.5" PointX="1.5" PointY="0.875" />
+        <AssociationConnector Association="Model.ORDERS_FK" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

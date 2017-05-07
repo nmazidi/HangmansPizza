@@ -23,5 +23,6 @@ namespace HangmansPizzaAPI
         public string CUSTOMER_PASSWORD { get; set; }
         public System.DateTime CUSTOMER_DOB { get; set; }
         public int ADDRESS_ID { get; set; }
+        public string PASSWORD_SALT { get; set; }
     }
 }

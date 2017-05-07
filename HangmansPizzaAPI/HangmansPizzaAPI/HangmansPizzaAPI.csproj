@@ -263,6 +263,7 @@
     <Compile Include="ITEM.cs">
       <DependentUpon>DataModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="LoginDetails.cs" />
     <Compile Include="MENU.cs">
       <DependentUpon>DataModel.tt</DependentUpon>
     </Compile>

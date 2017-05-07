@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="Model.Store" Provider="Oracle.ManagedDataAccess.Client" ProviderManifestToken="12.1" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="Model.Store" Provider="Oracle.ManagedDataAccess.Client" ProviderManifestToken="12.1" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="ADDRESS">
           <Key>
             <PropertyRef Name="ADDRESS_ID" />
@@ -45,9 +45,10 @@
           <Property Name="CUSTOMER_SURNAME" Type="varchar2" MaxLength="30" Nullable="false" />
           <Property Name="CUSTOMER_EMAIL" Type="varchar2" MaxLength="50" Nullable="false" />
           <Property Name="CUSTOMER_PHONE" Type="varchar2" MaxLength="11" Nullable="false" />
-          <Property Name="CUSTOMER_PASSWORD" Type="varchar2" MaxLength="20" Nullable="false" />
+          <Property Name="CUSTOMER_PASSWORD" Type="varchar2" MaxLength="256" Nullable="false" />
           <Property Name="CUSTOMER_DOB" Type="date" Nullable="false" />
           <Property Name="ADDRESS_ID" Type="number" Precision="10" Scale="0" Nullable="false" />
+          <Property Name="PASSWORD_SALT" Type="varchar2" MaxLength="64" />
         </EntityType>
         <EntityType Name="DEAL">
           <Key>
@@ -510,8 +511,7 @@
             <End Role="TRANSACTION" EntitySet="TRANSACTION" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -544,20 +544,6 @@
           <Property Name="BRANCH_NAME" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="ADDRESS" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="POSTCODE" Type="String" MaxLength="7" FixedLength="false" Unicode="false" Nullable="false" />
-        </EntityType>
-        <EntityType Name="CUSTOMER">
-          <Key>
-            <PropertyRef Name="CUSTOMER_ID" />
-          </Key>
-          <Property Name="CUSTOMER_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="CUSTOMER_TITLE" Type="String" MaxLength="5" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="CUSTOMER_FORENAME" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="CUSTOMER_SURNAME" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="CUSTOMER_EMAIL" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="CUSTOMER_PHONE" Type="String" MaxLength="11" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="CUSTOMER_PASSWORD" Type="String" MaxLength="256" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="CUSTOMER_DOB" Type="DateTime" Nullable="false" />
-          <Property Name="ADDRESS_ID" Type="Int32" Nullable="false" />
         </EntityType>
         <EntityType Name="DEAL">
           <Key>
@@ -758,18 +744,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="ORDERS_FK">
-          <End Role="CUSTOMER" Type="Self.CUSTOMER" Multiplicity="1" />
-          <End Role="ORDERS" Type="Self.ORDER" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="CUSTOMER">
-              <PropertyRef Name="CUSTOMER_ID" />
-            </Principal>
-            <Dependent Role="ORDERS">
-              <PropertyRef Name="CUSTOMER_ID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="DEAL_ITEM_FK">
           <End Role="DEAL" Type="Self.DEAL" Multiplicity="1" />
           <End Role="DEAL_ITEM" Type="Self.DEAL_ITEM" Multiplicity="*" />
@@ -942,7 +916,6 @@
           <EntitySet Name="ADDRESSes" EntityType="Self.ADDRESS" />
           <EntitySet Name="ADMINs" EntityType="Self.ADMIN" />
           <EntitySet Name="BRANCHes" EntityType="Self.BRANCH" />
-          <EntitySet Name="CUSTOMERs" EntityType="Self.CUSTOMER" />
           <EntitySet Name="DEALs" EntityType="Self.DEAL" />
           <EntitySet Name="DEAL_BRANCH" EntityType="Self.DEAL_BRANCH" />
           <EntitySet Name="DEAL_ITEM" EntityType="Self.DEAL_ITEM" />
@@ -964,10 +937,6 @@
           <AssociationSet Name="MENU_FK" Association="Self.MENU_FK">
             <End Role="BRANCH" EntitySet="BRANCHes" />
             <End Role="MENU" EntitySet="MENUs" />
-          </AssociationSet>
-          <AssociationSet Name="ORDERS_FK" Association="Self.ORDERS_FK">
-            <End Role="CUSTOMER" EntitySet="CUSTOMERs" />
-            <End Role="ORDERS" EntitySet="ORDERS" />
           </AssociationSet>
           <AssociationSet Name="DEAL_ITEM_FK" Association="Self.DEAL_ITEM_FK">
             <End Role="DEAL" EntitySet="DEALs" />
@@ -1025,7 +994,39 @@
             <End Role="ORDERS" EntitySet="ORDERS" />
             <End Role="TRANSACTION" EntitySet="TRANSACTIONs" />
           </AssociationSet>
+          <EntitySet Name="CUSTOMERs" EntityType="Model.CUSTOMER" />
+          <AssociationSet Name="ORDERS_FK" Association="Model.ORDERS_FK">
+            <End Role="CUSTOMER" EntitySet="CUSTOMERs" />
+            <End Role="ORDER" EntitySet="ORDERS" />
+          </AssociationSet>
         </EntityContainer>
+        <EntityType Name="CUSTOMER">
+          <Key>
+            <PropertyRef Name="CUSTOMER_ID" />
+          </Key>
+          <Property Name="CUSTOMER_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CUSTOMER_TITLE" Type="String" Nullable="false" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="CUSTOMER_FORENAME" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="CUSTOMER_SURNAME" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="CUSTOMER_EMAIL" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CUSTOMER_PHONE" Type="String" Nullable="false" MaxLength="11" FixedLength="false" Unicode="false" />
+          <Property Name="CUSTOMER_PASSWORD" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="false" />
+          <Property Name="CUSTOMER_DOB" Type="DateTime" Nullable="false" />
+          <Property Name="ADDRESS_ID" Type="Int32" Nullable="false" />
+          <Property Name="PASSWORD_SALT" Type="String" MaxLength="64" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <Association Name="ORDERS_FK">
+          <End Type="Model.CUSTOMER" Role="CUSTOMER" Multiplicity="1" />
+          <End Type="Model.ORDER" Role="ORDER" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CUSTOMER">
+              <PropertyRef Name="CUSTOMER_ID" />
+            </Principal>
+            <Dependent Role="ORDER">
+              <PropertyRef Name="CUSTOMER_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1062,21 +1063,6 @@
                 <ScalarProperty Name="BRANCH_NAME" ColumnName="BRANCH_NAME" />
                 <ScalarProperty Name="ADDRESS" ColumnName="ADDRESS" />
                 <ScalarProperty Name="POSTCODE" ColumnName="POSTCODE" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="CUSTOMERs">
-            <EntityTypeMapping TypeName="Model.CUSTOMER">
-              <MappingFragment StoreEntitySet="CUSTOMER">
-                <ScalarProperty Name="CUSTOMER_ID" ColumnName="CUSTOMER_ID" />
-                <ScalarProperty Name="CUSTOMER_TITLE" ColumnName="CUSTOMER_TITLE" />
-                <ScalarProperty Name="CUSTOMER_FORENAME" ColumnName="CUSTOMER_FORENAME" />
-                <ScalarProperty Name="CUSTOMER_SURNAME" ColumnName="CUSTOMER_SURNAME" />
-                <ScalarProperty Name="CUSTOMER_EMAIL" ColumnName="CUSTOMER_EMAIL" />
-                <ScalarProperty Name="CUSTOMER_PHONE" ColumnName="CUSTOMER_PHONE" />
-                <ScalarProperty Name="CUSTOMER_PASSWORD" ColumnName="CUSTOMER_PASSWORD" />
-                <ScalarProperty Name="CUSTOMER_DOB" ColumnName="CUSTOMER_DOB" />
-                <ScalarProperty Name="ADDRESS_ID" ColumnName="ADDRESS_ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1271,6 +1257,22 @@
                 <ScalarProperty Name="DETAIL_3" ColumnName="DETAIL_3" />
                 <ScalarProperty Name="DETAIL_4" ColumnName="DETAIL_4" />
                 <ScalarProperty Name="TRANSACTION_VALUE" ColumnName="TRANSACTION_VALUE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CUSTOMERs">
+            <EntityTypeMapping TypeName="Model.CUSTOMER">
+              <MappingFragment StoreEntitySet="CUSTOMER">
+                <ScalarProperty Name="PASSWORD_SALT" ColumnName="PASSWORD_SALT" />
+                <ScalarProperty Name="ADDRESS_ID" ColumnName="ADDRESS_ID" />
+                <ScalarProperty Name="CUSTOMER_DOB" ColumnName="CUSTOMER_DOB" />
+                <ScalarProperty Name="CUSTOMER_PASSWORD" ColumnName="CUSTOMER_PASSWORD" />
+                <ScalarProperty Name="CUSTOMER_PHONE" ColumnName="CUSTOMER_PHONE" />
+                <ScalarProperty Name="CUSTOMER_EMAIL" ColumnName="CUSTOMER_EMAIL" />
+                <ScalarProperty Name="CUSTOMER_SURNAME" ColumnName="CUSTOMER_SURNAME" />
+                <ScalarProperty Name="CUSTOMER_FORENAME" ColumnName="CUSTOMER_FORENAME" />
+                <ScalarProperty Name="CUSTOMER_TITLE" ColumnName="CUSTOMER_TITLE" />
+                <ScalarProperty Name="CUSTOMER_ID" ColumnName="CUSTOMER_ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

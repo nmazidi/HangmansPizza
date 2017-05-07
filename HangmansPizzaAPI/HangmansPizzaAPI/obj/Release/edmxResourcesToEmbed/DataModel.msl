@@ -34,21 +34,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="CUSTOMERs">
-      <EntityTypeMapping TypeName="Model.CUSTOMER">
-        <MappingFragment StoreEntitySet="CUSTOMER">
-          <ScalarProperty Name="CUSTOMER_ID" ColumnName="CUSTOMER_ID" />
-          <ScalarProperty Name="CUSTOMER_TITLE" ColumnName="CUSTOMER_TITLE" />
-          <ScalarProperty Name="CUSTOMER_FORENAME" ColumnName="CUSTOMER_FORENAME" />
-          <ScalarProperty Name="CUSTOMER_SURNAME" ColumnName="CUSTOMER_SURNAME" />
-          <ScalarProperty Name="CUSTOMER_EMAIL" ColumnName="CUSTOMER_EMAIL" />
-          <ScalarProperty Name="CUSTOMER_PHONE" ColumnName="CUSTOMER_PHONE" />
-          <ScalarProperty Name="CUSTOMER_PASSWORD" ColumnName="CUSTOMER_PASSWORD" />
-          <ScalarProperty Name="CUSTOMER_DOB" ColumnName="CUSTOMER_DOB" />
-          <ScalarProperty Name="ADDRESS_ID" ColumnName="ADDRESS_ID" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="DEALs">
       <EntityTypeMapping TypeName="Model.DEAL">
         <MappingFragment StoreEntitySet="DEAL">
@@ -240,6 +225,22 @@
           <ScalarProperty Name="DETAIL_3" ColumnName="DETAIL_3" />
           <ScalarProperty Name="DETAIL_4" ColumnName="DETAIL_4" />
           <ScalarProperty Name="TRANSACTION_VALUE" ColumnName="TRANSACTION_VALUE" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CUSTOMERs">
+      <EntityTypeMapping TypeName="Model.CUSTOMER">
+        <MappingFragment StoreEntitySet="CUSTOMER">
+          <ScalarProperty Name="PASSWORD_SALT" ColumnName="PASSWORD_SALT" />
+          <ScalarProperty Name="ADDRESS_ID" ColumnName="ADDRESS_ID" />
+          <ScalarProperty Name="CUSTOMER_DOB" ColumnName="CUSTOMER_DOB" />
+          <ScalarProperty Name="CUSTOMER_PASSWORD" ColumnName="CUSTOMER_PASSWORD" />
+          <ScalarProperty Name="CUSTOMER_PHONE" ColumnName="CUSTOMER_PHONE" />
+          <ScalarProperty Name="CUSTOMER_EMAIL" ColumnName="CUSTOMER_EMAIL" />
+          <ScalarProperty Name="CUSTOMER_SURNAME" ColumnName="CUSTOMER_SURNAME" />
+          <ScalarProperty Name="CUSTOMER_FORENAME" ColumnName="CUSTOMER_FORENAME" />
+          <ScalarProperty Name="CUSTOMER_TITLE" ColumnName="CUSTOMER_TITLE" />
+          <ScalarProperty Name="CUSTOMER_ID" ColumnName="CUSTOMER_ID" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

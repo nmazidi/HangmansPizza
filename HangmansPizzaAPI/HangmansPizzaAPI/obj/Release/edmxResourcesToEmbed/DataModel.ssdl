@@ -40,9 +40,10 @@
     <Property Name="CUSTOMER_SURNAME" Type="varchar2" MaxLength="30" Nullable="false" />
     <Property Name="CUSTOMER_EMAIL" Type="varchar2" MaxLength="50" Nullable="false" />
     <Property Name="CUSTOMER_PHONE" Type="varchar2" MaxLength="11" Nullable="false" />
-    <Property Name="CUSTOMER_PASSWORD" Type="varchar2" MaxLength="20" Nullable="false" />
+    <Property Name="CUSTOMER_PASSWORD" Type="varchar2" MaxLength="256" Nullable="false" />
     <Property Name="CUSTOMER_DOB" Type="date" Nullable="false" />
     <Property Name="ADDRESS_ID" Type="number" Precision="10" Scale="0" Nullable="false" />
+    <Property Name="PASSWORD_SALT" Type="varchar2" MaxLength="64" />
   </EntityType>
   <EntityType Name="DEAL">
     <Key>
