@@ -8,13 +8,13 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Description;
-using HangmansPizzaAPI.Models;
+using HangmansPizzaAPI;
 
 namespace HangmansPizzaAPI.Controllers
 {
     public class BRANCHesController : ApiController
     {
-        private Entities5 db = new Entities5();
+        private Entities db = new Entities();
 
         // GET: api/BRANCHes
         public IQueryable<BRANCH> GetBRANCHes()
