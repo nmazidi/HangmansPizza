@@ -6,16 +6,14 @@
 package desktopapp.datamodel;
 
 import java.io.BufferedReader;
+import java.io.DataOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.io.Reader;
+import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.ProtocolException;
 import java.net.URL;
-import java.net.URLEncoder;
-import java.util.LinkedHashMap;
-import java.util.Map;
 
 /**
  *
@@ -25,7 +23,7 @@ public class APIConnection {
     
     public static final String USER_AGENT = "Mozilla/5.0";          
     public static String url = 
-                    "http://xserve.uopnet.plymouth.ac.uk/modules/intproj/prcs251q/API/customers";
+             "http://xserve.uopnet.plymouth.ac.uk/modules/intproj/prcs251q/API/customers/41";
     
     //HTTP GET request
     public void getRequest() throws IOException {
@@ -59,48 +57,83 @@ public class APIConnection {
                   
             } catch (IOException e1) {
                 System.out.println("IOException");
-            }           
-            
+            }                   
     }
     
     //HTTP POST request
     public void postRequest() throws IOException, MalformedURLException, ProtocolException {
-        
-        URL url = new URL("http://xserve.uopnet.plymouth.ac.uk/modules/intproj/prcs251q/API/customers");
-        Map<String,Object> params = new LinkedHashMap<>();
-        params.put("CUSTOMER_ID", 3);
-        params.put("CUSTOMER_TITLE", "Mr");
-        params.put("CUSTOMER_FORENAME", "Nathan");
-        params.put("CUSTOMER_SURNAME", "Scarfi");
-        params.put("CUSTOMER_EMAIL", "nathanscarfi@gmail.com");
-        params.put("CUSTOMER_PHONE", "07565772859");
-        params.put("CUSTOMER_PASSWORD", "password");
-        params.put("CUSTOMER_DOB", "30-MAR-97");
-        
-        StringBuilder postData = new StringBuilder();
-        for (Map.Entry<String,Object> param : params.entrySet()) {
-            if (postData.length() != 0) postData.append('&');
-            postData.append(URLEncoder.encode(param.getKey(), "UTF-8"));
-            postData.append('=');
-            postData.append(URLEncoder.encode(String.valueOf(param.getValue()), "UTF-8"));
-        }
-        byte[] postDataBytes = postData.toString().getBytes("UTF-8");
+                	
+	URL obj = new URL(url);
+	HttpURLConnection con = (HttpURLConnection) obj.openConnection();
 
-        HttpURLConnection conn = (HttpURLConnection)url.openConnection();
-        conn.setRequestMethod("POST");
-        conn.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
-        conn.setRequestProperty("Content-Length", String.valueOf(postDataBytes.length));
-        int responseCode = conn.getResponseCode();
-        System.out.println("Response Code : " + responseCode);
-        conn.setDoOutput(true);
-        conn.getOutputStream().write(postDataBytes);
+	//add reuqest header
+	con.setRequestMethod("POST");
+	con.setRequestProperty("User-Agent", USER_AGENT);
+	con.setRequestProperty("Accept-Language", "en-US,en;q=0.5");
 
-        Reader in = new BufferedReader(new InputStreamReader(conn.getInputStream(), "UTF-8"));
+            String urlParameters = "CUSTOMER_ID=3&CUSTOMER_TITLE=Mr&CUSTOMER_FORENAME=Nathan&CUSTOMER_SURNAME=Scarfi&CUSTOMER_EMAIL=natsca@gmail.com&CUSTOMER_PHONE=07555666777&CUSTOMER_PASSWORD=password&CUSTOMER_DOB=30-MAR-97";
+
+	// Send post request
+	con.setDoOutput(true);
+	DataOutputStream wr = new DataOutputStream(con.getOutputStream());
+	wr.writeBytes(urlParameters);
+	wr.flush();
+	wr.close();
+
+	int responseCode = con.getResponseCode();
+	System.out.println("\nSending 'POST' request to URL : " + url);
+	System.out.println("Post parameters : " + urlParameters);
+	System.out.println("Response Code : " + responseCode);
+
+	BufferedReader in = new BufferedReader(
+		 new InputStreamReader(con.getInputStream()));
+	String inputLine;
+	StringBuffer response = new StringBuffer();
+
+	while ((inputLine = in.readLine()) != null) {
+		response.append(inputLine);
+	}
+	in.close();
+
+	//print result
+	System.out.println(response.toString());               
+    }
+    
+    
+    public void putRequest() throws IOException, MalformedURLException, ProtocolException {        
+        try {
+            URL obj = new URL(url);
+            HttpURLConnection con = (HttpURLConnection) obj.openConnection();
         
-        for (int c; (c = in.read()) >= 0;)
-            System.out.print((char)c); 
+            con.setRequestMethod("PUT");
+            con.setRequestProperty("Content-Type", "application/x-www-form-urlencoded" );
+            con.setDoOutput(true);
         
+            String payload = "CUSTOMER_ID=41&CUSTOMER_TITLE=Mrs&CUSTOMER_FORENAME=Nathan&CUSTOMER_SURNAME=Scarfi&CUSTOMER_EMAIL=natsca@gmail.com&CUSTOMER_PHONE=07555666777&CUSTOMER_PASSWORD=password&CUSTOMER_DOB=30-MAR-97";
+
+
+            OutputStreamWriter osw = new OutputStreamWriter(con.getOutputStream());
+            osw.write(payload);
+            osw.close();
+            con.getInputStream();
+        } catch (MalformedURLException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }   
+    }
+    
+    public void deleteRequest() throws IOException, MalformedURLException, ProtocolException { 
         
+        URL obj = new URL(url);
+        HttpURLConnection con = (HttpURLConnection) obj.openConnection();
+        
+        con.setRequestMethod("DELETE");
+        con.setRequestProperty("Content-Type", "application/x-www-form-urlencoded" );
+        con.setDoOutput(true);
+        con.connect();
     }
     
 }

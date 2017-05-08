@@ -27,19 +27,457 @@ public class KitchenScreen extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        lblCurrentTime = new javax.swing.JLabel();
+        btnHomePage = new javax.swing.JButton();
+        jSeparator1 = new javax.swing.JSeparator();
+        pnlOrder1 = new javax.swing.JPanel();
+        jTextField1 = new javax.swing.JTextField();
+        lblOrderNumber1 = new javax.swing.JLabel();
+        lblOrderTime1 = new javax.swing.JLabel();
+        cmbOrderStatus1 = new javax.swing.JComboBox<>();
+        pnlOrder2 = new javax.swing.JPanel();
+        jTextField2 = new javax.swing.JTextField();
+        lblOrderNumber2 = new javax.swing.JLabel();
+        lblOrderTime2 = new javax.swing.JLabel();
+        cmbOrderStatus2 = new javax.swing.JComboBox<>();
+        pnlOrder3 = new javax.swing.JPanel();
+        jTextField3 = new javax.swing.JTextField();
+        lblOrderNumber3 = new javax.swing.JLabel();
+        lblOrderTime3 = new javax.swing.JLabel();
+        cmbOrderStatus3 = new javax.swing.JComboBox<>();
+        pnlOrder4 = new javax.swing.JPanel();
+        jTextField4 = new javax.swing.JTextField();
+        lblOrderNumber4 = new javax.swing.JLabel();
+        lblOrderTime4 = new javax.swing.JLabel();
+        cmbOrderStatus4 = new javax.swing.JComboBox<>();
+        pnlOrder5 = new javax.swing.JPanel();
+        jTextField5 = new javax.swing.JTextField();
+        lblOrderNumber5 = new javax.swing.JLabel();
+        lblOrderTime5 = new javax.swing.JLabel();
+        cmbOrderStatus5 = new javax.swing.JComboBox<>();
+        pnlOrder6 = new javax.swing.JPanel();
+        jTextField6 = new javax.swing.JTextField();
+        lblOrderNumber6 = new javax.swing.JLabel();
+        lblOrderTime6 = new javax.swing.JLabel();
+        cmbOrderStatus6 = new javax.swing.JComboBox<>();
+        pnlOrder7 = new javax.swing.JPanel();
+        jTextField7 = new javax.swing.JTextField();
+        lblOrderNumber7 = new javax.swing.JLabel();
+        lblOrderTime7 = new javax.swing.JLabel();
+        cmbOrderStatus7 = new javax.swing.JComboBox<>();
+        pnlOrder8 = new javax.swing.JPanel();
+        jTextField8 = new javax.swing.JTextField();
+        lblOrderNumber8 = new javax.swing.JLabel();
+        lblOrderTime8 = new javax.swing.JLabel();
+        cmbOrderStatus8 = new javax.swing.JComboBox<>();
+
+        lblCurrentTime.setText("14:29");
+
+        btnHomePage.setText("X");
+
+        pnlOrder1.setPreferredSize(new java.awt.Dimension(218, 100));
+
+        jTextField1.setText("jTextField1");
+
+        lblOrderNumber1.setText("1");
+
+        lblOrderTime1.setText("01:00");
+
+        cmbOrderStatus1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        javax.swing.GroupLayout pnlOrder1Layout = new javax.swing.GroupLayout(pnlOrder1);
+        pnlOrder1.setLayout(pnlOrder1Layout);
+        pnlOrder1Layout.setHorizontalGroup(
+            pnlOrder1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlOrder1Layout.createSequentialGroup()
+                .addGroup(pnlOrder1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(pnlOrder1Layout.createSequentialGroup()
+                        .addComponent(lblOrderNumber1)
+                        .addGap(18, 18, 18)
+                        .addComponent(cmbOrderStatus1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(lblOrderTime1))
+                    .addComponent(jTextField1))
+                .addContainerGap())
+        );
+        pnlOrder1Layout.setVerticalGroup(
+            pnlOrder1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlOrder1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(pnlOrder1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblOrderNumber1)
+                    .addComponent(lblOrderTime1)
+                    .addComponent(cmbOrderStatus1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(7, 7, 7)
+                .addComponent(jTextField1)
+                .addContainerGap())
+        );
+
+        pnlOrder2.setPreferredSize(new java.awt.Dimension(218, 100));
+
+        jTextField2.setText("jTextField2");
+
+        lblOrderNumber2.setText("2");
+
+        lblOrderTime2.setText("02:00");
+
+        cmbOrderStatus2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        javax.swing.GroupLayout pnlOrder2Layout = new javax.swing.GroupLayout(pnlOrder2);
+        pnlOrder2.setLayout(pnlOrder2Layout);
+        pnlOrder2Layout.setHorizontalGroup(
+            pnlOrder2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlOrder2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(pnlOrder2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jTextField2)
+                    .addGroup(pnlOrder2Layout.createSequentialGroup()
+                        .addComponent(lblOrderNumber2)
+                        .addGap(18, 18, 18)
+                        .addComponent(cmbOrderStatus2, 0, 100, Short.MAX_VALUE)
+                        .addGap(18, 18, 18)
+                        .addComponent(lblOrderTime2)))
+                .addContainerGap())
+        );
+        pnlOrder2Layout.setVerticalGroup(
+            pnlOrder2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlOrder2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(pnlOrder2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblOrderNumber2)
+                    .addComponent(lblOrderTime2)
+                    .addComponent(cmbOrderStatus2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+
+        pnlOrder3.setPreferredSize(new java.awt.Dimension(218, 100));
+
+        jTextField3.setText("jTextField3");
+
+        lblOrderNumber3.setText("3");
+
+        lblOrderTime3.setText("03:00");
+
+        cmbOrderStatus3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        javax.swing.GroupLayout pnlOrder3Layout = new javax.swing.GroupLayout(pnlOrder3);
+        pnlOrder3.setLayout(pnlOrder3Layout);
+        pnlOrder3Layout.setHorizontalGroup(
+            pnlOrder3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlOrder3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(pnlOrder3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jTextField3)
+                    .addGroup(pnlOrder3Layout.createSequentialGroup()
+                        .addComponent(lblOrderNumber3)
+                        .addGap(18, 18, 18)
+                        .addComponent(cmbOrderStatus3, 0, 100, Short.MAX_VALUE)
+                        .addGap(18, 18, 18)
+                        .addComponent(lblOrderTime3)))
+                .addContainerGap())
+        );
+        pnlOrder3Layout.setVerticalGroup(
+            pnlOrder3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlOrder3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(pnlOrder3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblOrderNumber3)
+                    .addComponent(lblOrderTime3)
+                    .addComponent(cmbOrderStatus3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(7, 7, 7)
+                .addComponent(jTextField3)
+                .addContainerGap())
+        );
+
+        pnlOrder4.setPreferredSize(new java.awt.Dimension(218, 100));
+
+        jTextField4.setText("jTextField4");
+
+        lblOrderNumber4.setText("4");
+
+        lblOrderTime4.setText("04:00");
+
+        cmbOrderStatus4.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        javax.swing.GroupLayout pnlOrder4Layout = new javax.swing.GroupLayout(pnlOrder4);
+        pnlOrder4.setLayout(pnlOrder4Layout);
+        pnlOrder4Layout.setHorizontalGroup(
+            pnlOrder4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlOrder4Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(pnlOrder4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jTextField4)
+                    .addGroup(pnlOrder4Layout.createSequentialGroup()
+                        .addComponent(lblOrderNumber4)
+                        .addGap(18, 18, 18)
+                        .addComponent(cmbOrderStatus4, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(lblOrderTime4)))
+                .addContainerGap())
+        );
+        pnlOrder4Layout.setVerticalGroup(
+            pnlOrder4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlOrder4Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(pnlOrder4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblOrderNumber4)
+                    .addComponent(lblOrderTime4)
+                    .addComponent(cmbOrderStatus4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(7, 7, 7)
+                .addComponent(jTextField4, javax.swing.GroupLayout.DEFAULT_SIZE, 187, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        jTextField5.setText("jTextField5");
+
+        lblOrderNumber5.setText("5");
+
+        lblOrderTime5.setText("05:00");
+
+        cmbOrderStatus5.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        javax.swing.GroupLayout pnlOrder5Layout = new javax.swing.GroupLayout(pnlOrder5);
+        pnlOrder5.setLayout(pnlOrder5Layout);
+        pnlOrder5Layout.setHorizontalGroup(
+            pnlOrder5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlOrder5Layout.createSequentialGroup()
+                .addGroup(pnlOrder5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jTextField5)
+                    .addGroup(pnlOrder5Layout.createSequentialGroup()
+                        .addComponent(lblOrderNumber5)
+                        .addGap(18, 18, 18)
+                        .addComponent(cmbOrderStatus5, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(18, 18, 18)
+                        .addComponent(lblOrderTime5)))
+                .addContainerGap())
+        );
+        pnlOrder5Layout.setVerticalGroup(
+            pnlOrder5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlOrder5Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(pnlOrder5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblOrderNumber5)
+                    .addComponent(lblOrderTime5)
+                    .addComponent(cmbOrderStatus5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+
+        jTextField6.setText("jTextField6");
+
+        lblOrderNumber6.setText("6");
+
+        lblOrderTime6.setText("06:00");
+
+        cmbOrderStatus6.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        javax.swing.GroupLayout pnlOrder6Layout = new javax.swing.GroupLayout(pnlOrder6);
+        pnlOrder6.setLayout(pnlOrder6Layout);
+        pnlOrder6Layout.setHorizontalGroup(
+            pnlOrder6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlOrder6Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(pnlOrder6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jTextField6)
+                    .addGroup(pnlOrder6Layout.createSequentialGroup()
+                        .addComponent(lblOrderNumber6)
+                        .addGap(18, 18, 18)
+                        .addComponent(cmbOrderStatus6, 0, 100, Short.MAX_VALUE)
+                        .addGap(18, 18, 18)
+                        .addComponent(lblOrderTime6)))
+                .addContainerGap())
+        );
+        pnlOrder6Layout.setVerticalGroup(
+            pnlOrder6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlOrder6Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(pnlOrder6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblOrderNumber6)
+                    .addComponent(lblOrderTime6)
+                    .addComponent(cmbOrderStatus6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(7, 7, 7)
+                .addComponent(jTextField6)
+                .addContainerGap())
+        );
+
+        jTextField7.setText("jTextField7");
+
+        lblOrderNumber7.setText("7");
+
+        lblOrderTime7.setText("07:00");
+
+        cmbOrderStatus7.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        javax.swing.GroupLayout pnlOrder7Layout = new javax.swing.GroupLayout(pnlOrder7);
+        pnlOrder7.setLayout(pnlOrder7Layout);
+        pnlOrder7Layout.setHorizontalGroup(
+            pnlOrder7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlOrder7Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(pnlOrder7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jTextField7)
+                    .addGroup(pnlOrder7Layout.createSequentialGroup()
+                        .addComponent(lblOrderNumber7)
+                        .addGap(18, 18, 18)
+                        .addComponent(cmbOrderStatus7, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(18, 18, 18)
+                        .addComponent(lblOrderTime7)))
+                .addContainerGap())
+        );
+        pnlOrder7Layout.setVerticalGroup(
+            pnlOrder7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlOrder7Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(pnlOrder7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblOrderNumber7)
+                    .addComponent(lblOrderTime7)
+                    .addComponent(cmbOrderStatus7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(7, 7, 7)
+                .addComponent(jTextField7)
+                .addContainerGap())
+        );
+
+        jTextField8.setText("jTextField8");
+
+        lblOrderNumber8.setText("8");
+
+        lblOrderTime8.setText("08:00");
+
+        cmbOrderStatus8.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        javax.swing.GroupLayout pnlOrder8Layout = new javax.swing.GroupLayout(pnlOrder8);
+        pnlOrder8.setLayout(pnlOrder8Layout);
+        pnlOrder8Layout.setHorizontalGroup(
+            pnlOrder8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlOrder8Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(pnlOrder8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jTextField8)
+                    .addGroup(pnlOrder8Layout.createSequentialGroup()
+                        .addComponent(lblOrderNumber8)
+                        .addGap(18, 18, 18)
+                        .addComponent(cmbOrderStatus8, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(18, 18, 18)
+                        .addComponent(lblOrderTime8)))
+                .addContainerGap())
+        );
+        pnlOrder8Layout.setVerticalGroup(
+            pnlOrder8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlOrder8Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(pnlOrder8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblOrderNumber8)
+                    .addComponent(lblOrderTime8)
+                    .addComponent(cmbOrderStatus8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(7, 7, 7)
+                .addComponent(jTextField8)
+                .addContainerGap())
+        );
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addComponent(jSeparator1)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(lblCurrentTime)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnHomePage))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(pnlOrder5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(pnlOrder1, javax.swing.GroupLayout.DEFAULT_SIZE, 180, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(pnlOrder2, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(pnlOrder6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(pnlOrder3, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(pnlOrder7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(pnlOrder4, javax.swing.GroupLayout.DEFAULT_SIZE, 190, Short.MAX_VALUE)
+                            .addComponent(pnlOrder8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(0, 134, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblCurrentTime)
+                    .addComponent(btnHomePage))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(pnlOrder4, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(pnlOrder3, javax.swing.GroupLayout.DEFAULT_SIZE, 238, Short.MAX_VALUE)
+                        .addComponent(pnlOrder2, javax.swing.GroupLayout.DEFAULT_SIZE, 238, Short.MAX_VALUE)
+                        .addComponent(pnlOrder1, javax.swing.GroupLayout.DEFAULT_SIZE, 238, Short.MAX_VALUE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(pnlOrder7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(pnlOrder6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(pnlOrder5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(pnlOrder8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnHomePage;
+    private javax.swing.JComboBox<String> cmbOrderStatus1;
+    private javax.swing.JComboBox<String> cmbOrderStatus2;
+    private javax.swing.JComboBox<String> cmbOrderStatus3;
+    private javax.swing.JComboBox<String> cmbOrderStatus4;
+    private javax.swing.JComboBox<String> cmbOrderStatus5;
+    private javax.swing.JComboBox<String> cmbOrderStatus6;
+    private javax.swing.JComboBox<String> cmbOrderStatus7;
+    private javax.swing.JComboBox<String> cmbOrderStatus8;
+    private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextField jTextField2;
+    private javax.swing.JTextField jTextField3;
+    private javax.swing.JTextField jTextField4;
+    private javax.swing.JTextField jTextField5;
+    private javax.swing.JTextField jTextField6;
+    private javax.swing.JTextField jTextField7;
+    private javax.swing.JTextField jTextField8;
+    private javax.swing.JLabel lblCurrentTime;
+    private javax.swing.JLabel lblOrderNumber1;
+    private javax.swing.JLabel lblOrderNumber2;
+    private javax.swing.JLabel lblOrderNumber3;
+    private javax.swing.JLabel lblOrderNumber4;
+    private javax.swing.JLabel lblOrderNumber5;
+    private javax.swing.JLabel lblOrderNumber6;
+    private javax.swing.JLabel lblOrderNumber7;
+    private javax.swing.JLabel lblOrderNumber8;
+    private javax.swing.JLabel lblOrderTime1;
+    private javax.swing.JLabel lblOrderTime2;
+    private javax.swing.JLabel lblOrderTime3;
+    private javax.swing.JLabel lblOrderTime4;
+    private javax.swing.JLabel lblOrderTime5;
+    private javax.swing.JLabel lblOrderTime6;
+    private javax.swing.JLabel lblOrderTime7;
+    private javax.swing.JLabel lblOrderTime8;
+    private javax.swing.JPanel pnlOrder1;
+    private javax.swing.JPanel pnlOrder2;
+    private javax.swing.JPanel pnlOrder3;
+    private javax.swing.JPanel pnlOrder4;
+    private javax.swing.JPanel pnlOrder5;
+    private javax.swing.JPanel pnlOrder6;
+    private javax.swing.JPanel pnlOrder7;
+    private javax.swing.JPanel pnlOrder8;
     // End of variables declaration//GEN-END:variables
 }

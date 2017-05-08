@@ -16,6 +16,7 @@ public class AdminDashboard extends javax.swing.JPanel {
      */
     public AdminDashboard() {
         initComponents();
+        
     }
 
     /**
@@ -27,19 +28,330 @@ public class AdminDashboard extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        lblCurrentTime = new javax.swing.JLabel();
+        btnSignOut = new javax.swing.JButton();
+        jSeparator1 = new javax.swing.JSeparator();
+        tabDashboard = new javax.swing.JTabbedPane();
+        pnlAdmin = new javax.swing.JPanel();
+        lblSearchAdmin = new javax.swing.JLabel();
+        txtSearchAdmin = new javax.swing.JTextField();
+        jScrollPane6 = new javax.swing.JScrollPane();
+        tblAdmins = new javax.swing.JTable();
+        pnlCustomers = new javax.swing.JPanel();
+        lblSearchCustomers = new javax.swing.JLabel();
+        txtSearchCustomers = new javax.swing.JTextField();
+        jScrollPane5 = new javax.swing.JScrollPane();
+        tblCustomers = new javax.swing.JTable();
+        pnlOrders = new javax.swing.JPanel();
+        lblSearchOrders = new javax.swing.JLabel();
+        txtSearchOrders = new javax.swing.JTextField();
+        pnlSales = new javax.swing.JPanel();
+        lblSearchSales = new javax.swing.JLabel();
+        txtSearchSales = new javax.swing.JTextField();
+        pnlStaff = new javax.swing.JPanel();
+        lblSearchStaff = new javax.swing.JLabel();
+        txtSearchStaff = new javax.swing.JTextField();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        tblStaff = new javax.swing.JTable();
+        pnlStock = new javax.swing.JPanel();
+        lblSearchStock = new javax.swing.JLabel();
+        txtSearchStock = new javax.swing.JTextField();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tblStock = new javax.swing.JTable();
+
+        lblCurrentTime.setText("13:47");
+
+        btnSignOut.setText("Sign Out");
+
+        pnlAdmin.setName(""); // NOI18N
+
+        lblSearchAdmin.setText("Search:");
+
+        tblAdmins.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane6.setViewportView(tblAdmins);
+
+        javax.swing.GroupLayout pnlAdminLayout = new javax.swing.GroupLayout(pnlAdmin);
+        pnlAdmin.setLayout(pnlAdminLayout);
+        pnlAdminLayout.setHorizontalGroup(
+            pnlAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlAdminLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(pnlAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 755, Short.MAX_VALUE)
+                    .addGroup(pnlAdminLayout.createSequentialGroup()
+                        .addComponent(lblSearchAdmin)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtSearchAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
+        );
+        pnlAdminLayout.setVerticalGroup(
+            pnlAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlAdminLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(pnlAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblSearchAdmin)
+                    .addComponent(txtSearchAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(24, Short.MAX_VALUE))
+        );
+
+        tabDashboard.addTab("Admin", pnlAdmin);
+
+        lblSearchCustomers.setText("Search:");
+
+        tblCustomers.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane5.setViewportView(tblCustomers);
+
+        javax.swing.GroupLayout pnlCustomersLayout = new javax.swing.GroupLayout(pnlCustomers);
+        pnlCustomers.setLayout(pnlCustomersLayout);
+        pnlCustomersLayout.setHorizontalGroup(
+            pnlCustomersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlCustomersLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(pnlCustomersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 755, Short.MAX_VALUE)
+                    .addGroup(pnlCustomersLayout.createSequentialGroup()
+                        .addComponent(lblSearchCustomers)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtSearchCustomers, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
+        );
+        pnlCustomersLayout.setVerticalGroup(
+            pnlCustomersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlCustomersLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(pnlCustomersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblSearchCustomers)
+                    .addComponent(txtSearchCustomers, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(75, Short.MAX_VALUE))
+        );
+
+        tabDashboard.addTab("Customers", pnlCustomers);
+
+        lblSearchOrders.setText("Search:");
+
+        javax.swing.GroupLayout pnlOrdersLayout = new javax.swing.GroupLayout(pnlOrders);
+        pnlOrders.setLayout(pnlOrdersLayout);
+        pnlOrdersLayout.setHorizontalGroup(
+            pnlOrdersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlOrdersLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(lblSearchOrders)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(txtSearchOrders, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(574, Short.MAX_VALUE))
+        );
+        pnlOrdersLayout.setVerticalGroup(
+            pnlOrdersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlOrdersLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(pnlOrdersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblSearchOrders)
+                    .addComponent(txtSearchOrders, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(441, Short.MAX_VALUE))
+        );
+
+        tabDashboard.addTab("Orders", pnlOrders);
+
+        lblSearchSales.setText("Search:");
+
+        javax.swing.GroupLayout pnlSalesLayout = new javax.swing.GroupLayout(pnlSales);
+        pnlSales.setLayout(pnlSalesLayout);
+        pnlSalesLayout.setHorizontalGroup(
+            pnlSalesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlSalesLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(lblSearchSales)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(txtSearchSales, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(574, Short.MAX_VALUE))
+        );
+        pnlSalesLayout.setVerticalGroup(
+            pnlSalesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlSalesLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(pnlSalesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblSearchSales)
+                    .addComponent(txtSearchSales, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(441, Short.MAX_VALUE))
+        );
+
+        tabDashboard.addTab("Sales", pnlSales);
+
+        lblSearchStaff.setText("Search:");
+
+        tblStaff.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane2.setViewportView(tblStaff);
+
+        javax.swing.GroupLayout pnlStaffLayout = new javax.swing.GroupLayout(pnlStaff);
+        pnlStaff.setLayout(pnlStaffLayout);
+        pnlStaffLayout.setHorizontalGroup(
+            pnlStaffLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlStaffLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(pnlStaffLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(pnlStaffLayout.createSequentialGroup()
+                        .addComponent(lblSearchStaff)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtSearchStaff, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 755, Short.MAX_VALUE))
+                .addContainerGap())
+        );
+        pnlStaffLayout.setVerticalGroup(
+            pnlStaffLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlStaffLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(pnlStaffLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblSearchStaff)
+                    .addComponent(txtSearchStaff, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(75, Short.MAX_VALUE))
+        );
+
+        tabDashboard.addTab("Staff", pnlStaff);
+
+        lblSearchStock.setText("Search:");
+
+        tblStock.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane1.setViewportView(tblStock);
+
+        javax.swing.GroupLayout pnlStockLayout = new javax.swing.GroupLayout(pnlStock);
+        pnlStock.setLayout(pnlStockLayout);
+        pnlStockLayout.setHorizontalGroup(
+            pnlStockLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlStockLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(pnlStockLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 755, Short.MAX_VALUE)
+                    .addGroup(pnlStockLayout.createSequentialGroup()
+                        .addComponent(lblSearchStock)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtSearchStock, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
+        );
+        pnlStockLayout.setVerticalGroup(
+            pnlStockLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlStockLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(pnlStockLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblSearchStock)
+                    .addComponent(txtSearchStock, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(75, Short.MAX_VALUE))
+        );
+
+        tabDashboard.addTab("Stock", pnlStock);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addComponent(jSeparator1)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(tabDashboard)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(lblCurrentTime)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnSignOut)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblCurrentTime)
+                    .addComponent(btnSignOut))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(tabDashboard, javax.swing.GroupLayout.PREFERRED_SIZE, 500, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnSignOut;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane5;
+    private javax.swing.JScrollPane jScrollPane6;
+    private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JLabel lblCurrentTime;
+    private javax.swing.JLabel lblSearchAdmin;
+    private javax.swing.JLabel lblSearchCustomers;
+    private javax.swing.JLabel lblSearchOrders;
+    private javax.swing.JLabel lblSearchSales;
+    private javax.swing.JLabel lblSearchStaff;
+    private javax.swing.JLabel lblSearchStock;
+    private javax.swing.JPanel pnlAdmin;
+    private javax.swing.JPanel pnlCustomers;
+    private javax.swing.JPanel pnlOrders;
+    private javax.swing.JPanel pnlSales;
+    private javax.swing.JPanel pnlStaff;
+    private javax.swing.JPanel pnlStock;
+    private javax.swing.JTabbedPane tabDashboard;
+    private javax.swing.JTable tblAdmins;
+    private javax.swing.JTable tblCustomers;
+    private javax.swing.JTable tblStaff;
+    private javax.swing.JTable tblStock;
+    private javax.swing.JTextField txtSearchAdmin;
+    private javax.swing.JTextField txtSearchCustomers;
+    private javax.swing.JTextField txtSearchOrders;
+    private javax.swing.JTextField txtSearchSales;
+    private javax.swing.JTextField txtSearchStaff;
+    private javax.swing.JTextField txtSearchStock;
     // End of variables declaration//GEN-END:variables
 }
