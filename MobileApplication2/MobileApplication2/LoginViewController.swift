@@ -11,7 +11,6 @@ import UIKit
 class LoginViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet var txtEmailAddress: UITextField?
     @IBOutlet var txtPassword: UITextField?
-    var dataLoaded = [[String: AnyObject]]()
     var riderLoggedIn = DeliveryRider()
 
     override func viewDidLoad() {
@@ -55,31 +54,33 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         DispatchQueue.main.async {
             self.present(alert, animated: true, completion: nil)
         }
-        
-        //when GetReq is done
-        APICommunication.GETRequest(path: "delivery_rider") { success in
-            print("Successful? \(success.0)\n")
-            self.dataLoaded = success.1
-            //remove alert from screen when api call completed
-            if !success.0 {
-                let errorAlert = UIAlertController(title: "Error", message: "Could not connect. Please try again later.", preferredStyle: .alert)
-                let okAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.default)
-                errorAlert.addAction(okAction)
+        var loginDetails = [String: String]()
+        loginDetails["email"] = txtEmailAddress?.text
+        loginDetails["password"] = txtPassword?.text
+        APICommunication.POSTLoginRequest(params: loginDetails) { success in
+            print("POST login Successful? \(success.0)\n")
+            let isValidCredentials = success.0
+            let responseCode = success.1
+            let dataResponse = success.2
+            if isValidCredentials {
+                self.createRiderInstanceFromData(jsonData: dataResponse)
                 DispatchQueue.main.async {
                     alert.dismiss(animated: true) {
-                        self.present(errorAlert, animated: true)
+                        self.performSegue(withIdentifier: "LoggedInSegue", sender: self)
                     }
                 }
             } else {
-                if self.isValidCredentials(jsonArray: success.1) {
-                    self.createRiderInstanceFromData(jsonData: success.1)
+                if responseCode == 401 || responseCode == 406 {
+                    let invalidAlert = UIAlertController(title: "Error", message: "Invalid login credentials. Email address or password is incorrect. Code: \(responseCode)", preferredStyle: .alert)
+                    let okAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.default)
+                    invalidAlert.addAction(okAction)
                     DispatchQueue.main.async {
                         alert.dismiss(animated: true) {
-                            self.performSegue(withIdentifier: "LoggedInSegue", sender: self)
+                            self.present(invalidAlert, animated: true)
                         }
                     }
                 } else {
-                    let invalidAlert = UIAlertController(title: "Error", message: "Invalid login credentials. Email address or password is incorrect.", preferredStyle: .alert)
+                    let invalidAlert = UIAlertController(title: "Error", message: "Theres was an error logging in. Code: \(responseCode)", preferredStyle: .alert)
                     let okAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.default)
                     invalidAlert.addAction(okAction)
                     DispatchQueue.main.async {
@@ -90,17 +91,6 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                 }
             }
         }
-    }
-    func isValidCredentials(jsonArray : [[String: AnyObject]]) -> Bool {
-        for item in jsonArray {
-            for (field, data) in item {
-                print("\(field) : \(data)")
-            }
-            if item["RIDER_EMAIL"] as? String == txtEmailAddress?.text && item["RIDER_PASSWORD"] as? String == txtPassword?.text {
-                return true
-            }
-        }
-        return false
     }
     func createRiderInstanceFromData(jsonData: [[String: AnyObject]]) {
         for item in jsonData {

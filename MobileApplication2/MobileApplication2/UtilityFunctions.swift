@@ -42,6 +42,15 @@ class UtilityFunctions {
         return paramsArray.joined(separator: "&").data(using: String.Encoding.utf8)!
         
     }
+    static func encodeLoginParameters(params: [String:String]) -> Data {
+        let paramsArray = params.map {
+            (key,value) -> String in
+            return "\(key)=\(value)"
+        }
+        print(paramsArray.joined(separator: "&"))
+        return paramsArray.joined(separator: "&").data(using: String.Encoding.utf8)!
+        
+    }
     
     /// Turns object, such as a delivery rider, into a dictionary of strings
     ///

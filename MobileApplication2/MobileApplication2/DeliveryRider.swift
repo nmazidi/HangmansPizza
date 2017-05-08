@@ -66,4 +66,14 @@ class DeliveryRider : Person {
         self.emailAddress = "UNKNOWN"
         self.DOB = Date()
     }
+    func verifyPassword(pass: String, completionHandler: @escaping (Bool) -> ()){
+        var loginDetails = [String: String]()
+        loginDetails["email"] = self.emailAddress
+        loginDetails["password"] = pass
+        APICommunication.POSTLoginRequest(params: loginDetails) { success in
+            print("POST login verification Successful? \(success.0)\n")
+            let isValidCredentials = success.0
+            completionHandler(isValidCredentials)
+        }
+    }
 }
