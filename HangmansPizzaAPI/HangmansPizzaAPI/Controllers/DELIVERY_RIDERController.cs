@@ -142,7 +142,7 @@ namespace HangmansPizzaAPI.Controllers
                         var hashedPassword = HashFunction(loginDetails.password, rIDER.PASSWORD_SALT)[0];
                         if (hashedPassword == rIDER.RIDER_PASSWORD)
                         {
-                            return StatusCode(HttpStatusCode.Accepted);
+                            return Ok(rIDER);
                         }
                         else
                         {
