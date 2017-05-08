@@ -1,15 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Schema Namespace="Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-  <EntityType Name="ADDRESS">
-    <Key>
-      <PropertyRef Name="ADDRESS_ID" />
-    </Key>
-    <Property Name="ADDRESS_ID" Type="Int16" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="ADDRESS_LINE_1" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
-    <Property Name="ADDRESS_LINE_2" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
-    <Property Name="TOWN" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
-    <Property Name="POSTCODE" Type="String" MaxLength="7" FixedLength="false" Unicode="false" Nullable="false" />
-  </EntityType>
   <EntityType Name="ADMIN">
     <Key>
       <PropertyRef Name="ADMIN_ID" />
@@ -76,10 +66,11 @@
     <Property Name="RIDER_SURNAME" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="RIDER_EMAIL" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="RIDER_PHONE" Type="String" MaxLength="11" FixedLength="false" Unicode="false" Nullable="false" />
-    <Property Name="RIDER_PASSWORD" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="RIDER_PASSWORD" Type="String" MaxLength="256" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="VEHICLE_TYPE" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="RIDER_DOB" Type="DateTime" Nullable="false" />
     <Property Name="RIDER_TITLE" Type="String" MaxLength="5" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="PASSWORD_SALT" Type="String" MaxLength="64" FixedLength="false" Unicode="false" />
   </EntityType>
   <EntityType Name="DRINK">
     <Key>
@@ -117,12 +108,6 @@
     <Property Name="ITEM_NAME" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="ITEM_TYPE" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="SELLING_PRICE" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
-    <NavigationProperty Name="DEAL_ITEM" Relationship="Self.DEAL_ITEM_FK2" FromRole="ITEM" ToRole="DEAL_ITEM" />
-    <NavigationProperty Name="DRINKs" Relationship="Self.DRINK_FK" FromRole="ITEM" ToRole="DRINK" />
-    <NavigationProperty Name="MENU_ITEM" Relationship="Self.MENU_ITEM_FK2" FromRole="ITEM" ToRole="MENU_ITEM" />
-    <NavigationProperty Name="ORDER_ITEM" Relationship="Self.ORDER_ITEM_FK" FromRole="ITEM" ToRole="ORDER_ITEM" />
-    <NavigationProperty Name="PIZZAs" Relationship="Self.PIZZA_FK" FromRole="ITEM" ToRole="PIZZA" />
-    <NavigationProperty Name="SIDEs" Relationship="Self.SIDE_FK" FromRole="ITEM" ToRole="SIDE" />
   </EntityType>
   <EntityType Name="MENU">
     <Key>
@@ -398,7 +383,6 @@
     </ReferentialConstraint>
   </Association>
   <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="true">
-    <EntitySet Name="ADDRESSes" EntityType="Self.ADDRESS" />
     <EntitySet Name="ADMINs" EntityType="Self.ADMIN" />
     <EntitySet Name="BRANCHes" EntityType="Self.BRANCH" />
     <EntitySet Name="DEALs" EntityType="Self.DEAL" />
@@ -484,6 +468,31 @@
       <End Role="CUSTOMER" EntitySet="CUSTOMERs" />
       <End Role="ORDER" EntitySet="ORDERS" />
     </AssociationSet>
+    <AssociationSet Name="ADMIN_FK" Association="Model.ADMIN_FK">
+      <End Role="BRANCH" EntitySet="BRANCHes" />
+      <End Role="ADMIN" EntitySet="ADMINs" />
+    </AssociationSet>
+    <AssociationSet Name="DEAL_BRANCH_FK1" Association="Model.DEAL_BRANCH_FK1">
+      <End Role="BRANCH" EntitySet="BRANCHes" />
+      <End Role="DEAL_BRANCH" EntitySet="DEAL_BRANCH" />
+    </AssociationSet>
+    <AssociationSet Name="DEAL_BRANCH_FK" Association="Model.DEAL_BRANCH_FK">
+      <End Role="DEAL" EntitySet="DEALs" />
+      <End Role="DEAL_BRANCH" EntitySet="DEAL_BRANCH" />
+    </AssociationSet>
+    <AssociationSet Name="PIZZA_INGREDIENT_FK2" Association="Model.PIZZA_INGREDIENT_FK2">
+      <End Role="INGREDIENT" EntitySet="INGREDIENTs" />
+      <End Role="PIZZA_INGREDIENT" EntitySet="PIZZA_INGREDIENT" />
+    </AssociationSet>
+    <AssociationSet Name="PIZZA_INGREDIENT_FK" Association="Model.PIZZA_INGREDIENT_FK">
+      <End Role="PIZZA" EntitySet="PIZZAs" />
+      <End Role="PIZZA_INGREDIENT" EntitySet="PIZZA_INGREDIENT" />
+    </AssociationSet>
+    <EntitySet Name="ADDRESSES" EntityType="Model.ADDRESS" />
+    <AssociationSet Name="ADDRESS_FK" Association="Model.ADDRESS_FK">
+      <End Role="ADDRESS" EntitySet="ADDRESSES" />
+      <End Role="CUSTOMER" EntitySet="CUSTOMERs" />
+    </AssociationSet>
   </EntityContainer>
   <EntityType Name="CUSTOMER">
     <Key>
@@ -509,6 +518,88 @@
       </Principal>
       <Dependent Role="ORDER">
         <PropertyRef Name="CUSTOMER_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="ADMIN_FK">
+    <End Type="Model.BRANCH" Role="BRANCH" Multiplicity="1" />
+    <End Type="Model.ADMIN" Role="ADMIN" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="BRANCH">
+        <PropertyRef Name="BRANCH_ID" />
+      </Principal>
+      <Dependent Role="ADMIN">
+        <PropertyRef Name="BRANCH_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="DEAL_BRANCH_FK1">
+    <End Type="Model.BRANCH" Role="BRANCH" Multiplicity="1" />
+    <End Type="Model.DEAL_BRANCH" Role="DEAL_BRANCH" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="BRANCH">
+        <PropertyRef Name="BRANCH_ID" />
+      </Principal>
+      <Dependent Role="DEAL_BRANCH">
+        <PropertyRef Name="BRANCH_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="DEAL_BRANCH_FK">
+    <End Type="Model.DEAL" Role="DEAL" Multiplicity="1" />
+    <End Type="Model.DEAL_BRANCH" Role="DEAL_BRANCH" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DEAL">
+        <PropertyRef Name="DEAL_ID" />
+      </Principal>
+      <Dependent Role="DEAL_BRANCH">
+        <PropertyRef Name="DEAL_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="PIZZA_INGREDIENT_FK2">
+    <End Type="Model.INGREDIENT" Role="INGREDIENT" Multiplicity="1" />
+    <End Type="Model.PIZZA_INGREDIENT" Role="PIZZA_INGREDIENT" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="INGREDIENT">
+        <PropertyRef Name="INGREDIENT_ID" />
+      </Principal>
+      <Dependent Role="PIZZA_INGREDIENT">
+        <PropertyRef Name="INGREDIENT_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="PIZZA_INGREDIENT_FK">
+    <End Type="Model.PIZZA" Role="PIZZA" Multiplicity="1" />
+    <End Type="Model.PIZZA_INGREDIENT" Role="PIZZA_INGREDIENT" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PIZZA">
+        <PropertyRef Name="PIZZA_ID" />
+      </Principal>
+      <Dependent Role="PIZZA_INGREDIENT">
+        <PropertyRef Name="PIZZA_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="ADDRESS">
+    <Key>
+      <PropertyRef Name="ADDRESS_ID" />
+    </Key>
+    <Property Name="ADDRESS_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ADDRESS_LINE_1" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="ADDRESS_LINE_2" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="TOWN" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="POSTCODE" Type="String" Nullable="false" MaxLength="7" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <Association Name="ADDRESS_FK">
+    <End Type="Model.ADDRESS" Role="ADDRESS" Multiplicity="1" />
+    <End Type="Model.CUSTOMER" Role="CUSTOMER" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ADDRESS">
+        <PropertyRef Name="ADDRESS_ID" />
+      </Principal>
+      <Dependent Role="CUSTOMER">
+        <PropertyRef Name="ADDRESS_ID" />
       </Dependent>
     </ReferentialConstraint>
   </Association>

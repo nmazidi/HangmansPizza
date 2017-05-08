@@ -14,33 +14,9 @@ namespace HangmansPizzaAPI
     
     public partial class ITEM
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public ITEM()
-        {
-            this.DEAL_ITEM = new HashSet<DEAL_ITEM>();
-            this.DRINKs = new HashSet<DRINK>();
-            this.MENU_ITEM = new HashSet<MENU_ITEM>();
-            this.ORDER_ITEM = new HashSet<ORDER_ITEM>();
-            this.PIZZAs = new HashSet<PIZZA>();
-            this.SIDEs = new HashSet<SIDE>();
-        }
-    
         public int ITEM_ID { get; set; }
         public string ITEM_NAME { get; set; }
         public string ITEM_TYPE { get; set; }
         public string SELLING_PRICE { get; set; }
-    
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<DEAL_ITEM> DEAL_ITEM { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<DRINK> DRINKs { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<MENU_ITEM> MENU_ITEM { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ORDER_ITEM> ORDER_ITEM { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<PIZZA> PIZZAs { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<SIDE> SIDEs { get; set; }
     }
 }

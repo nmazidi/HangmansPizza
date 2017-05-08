@@ -5,7 +5,6 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="12293044efed4467b5ed26389db31914" Name="Diagram1" ZoomLevel="99">
-        <EntityTypeShape EntityType="Model.ADDRESS" Width="1.5" PointX="10.75" PointY="1.5" IsExpanded="true" />
         <EntityTypeShape EntityType="Model.ADMIN" Width="1.5" PointX="10.75" PointY="4.5" IsExpanded="true" />
         <EntityTypeShape EntityType="Model.BRANCH" Width="1.5" PointX="1.5" PointY="23.375" IsExpanded="true" />
         <EntityTypeShape EntityType="Model.DEAL" Width="1.5" PointX="0.75" PointY="5.375" IsExpanded="true" />
@@ -22,7 +21,7 @@
         <EntityTypeShape EntityType="Model.ORDER_ITEM" Width="1.5" PointX="6" PointY="9.25" IsExpanded="true" />
         <EntityTypeShape EntityType="Model.ORDER" Width="1.5" PointX="3.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="Model.PIZZA" Width="1.5" PointX="3" PointY="18" IsExpanded="true" />
-        <EntityTypeShape EntityType="Model.PIZZA_INGREDIENT" Width="1.5" PointX="10.75" PointY="12.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.PIZZA_INGREDIENT" Width="1.5" PointX="11" PointY="12.625" IsExpanded="true" />
         <EntityTypeShape EntityType="Model.RIDER_ACTIVITY" Width="1.5" PointX="8" PointY="4.625" IsExpanded="true" />
         <EntityTypeShape EntityType="Model.SIDE" Width="1.5" PointX="3" PointY="20.5" IsExpanded="true" />
         <EntityTypeShape EntityType="Model.TRANSACTION" Width="1.5" PointX="6" PointY="12.875" IsExpanded="true" />
@@ -43,6 +42,13 @@
         <AssociationConnector Association="Model.TRANSACTION_FK" ManuallyRouted="false" />
         <EntityTypeShape EntityType="Model.CUSTOMER" Width="1.5" PointX="1.5" PointY="0.875" />
         <AssociationConnector Association="Model.ORDERS_FK" />
+        <AssociationConnector Association="Model.ADMIN_FK" />
+        <AssociationConnector Association="Model.DEAL_BRANCH_FK1" />
+        <AssociationConnector Association="Model.DEAL_BRANCH_FK" />
+        <AssociationConnector Association="Model.PIZZA_INGREDIENT_FK2" />
+        <AssociationConnector Association="Model.PIZZA_INGREDIENT_FK" />
+        <EntityTypeShape EntityType="Model.ADDRESS" Width="1.5" PointX="11.5" PointY="1.375" />
+        <AssociationConnector Association="Model.ADDRESS_FK" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

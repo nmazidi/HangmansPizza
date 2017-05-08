@@ -20,7 +20,6 @@ namespace HangmansPizzaAPI.Controllers
             var hashedPassword = "";
             var saltedPassword = "";
             var salt  = "";
-            var verify = false;
             
             if (saltFromDB != null)
             {
@@ -104,7 +103,6 @@ namespace HangmansPizzaAPI.Controllers
         public IHttpActionResult PostCUSTOMER(CUSTOMER cUSTOMER)
         {
             var hashed = HashFunction(cUSTOMER.CUSTOMER_PASSWORD, cUSTOMER.PASSWORD_SALT);
-            //verifyLogin(cUSTOMER.CUSTOMER_PASSWORD, db.CUSTOMERs., cUSTOMER.CUSTOMER_EMAIL);
             cUSTOMER.CUSTOMER_PASSWORD = hashed[0];
             cUSTOMER.PASSWORD_SALT = hashed[1];
             if (!ModelState.IsValid)
@@ -147,7 +145,7 @@ namespace HangmansPizzaAPI.Controllers
                     }
                     else
                     {
-                        return StatusCode(HttpStatusCode.NotAcceptable);
+                        return StatusCode(HttpStatusCode.Unauthorized);
                     }
                 }
                 catch (Exception e)
@@ -157,7 +155,7 @@ namespace HangmansPizzaAPI.Controllers
                 }
                 catch (Exception e)
                 {
-                    return StatusCode(HttpStatusCode.Unauthorized);
+                    return StatusCode(HttpStatusCode.NotAcceptable);
                 }
             }
             return InternalServerError();

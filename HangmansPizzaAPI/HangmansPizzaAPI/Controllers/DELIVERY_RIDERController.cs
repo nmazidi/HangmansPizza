@@ -15,28 +15,29 @@ namespace HangmansPizzaAPI.Controllers
 {
     public class DELIVERY_RIDERController : ApiController
     {
-        private Entities db = new Entities();
 
-        public static String HashFunction(String unhashedPassword)
+        public static string[] HashFunction(String unhashedPassword, String saltFromDB)
         {
             var hashedPassword = "";
+            var saltedPassword = "";
             var salt = "";
-            var verify = false;
 
-            salt = Crypto.GenerateSalt();
-            unhashedPassword += salt;
-            hashedPassword = Crypto.HashPassword(unhashedPassword);
-
-            verify = Crypto.VerifyHashedPassword(hashedPassword, unhashedPassword);
-            if (verify)
+            if (saltFromDB != null)
             {
-                return hashedPassword;
-            } else
-            {
-                return null;
+                salt = saltFromDB;
             }
-            
+            else
+            {
+                salt = Crypto.GenerateSalt();
+            }
+
+            saltedPassword = unhashedPassword + salt;
+            hashedPassword = Crypto.SHA256(saltedPassword);
+            string[] arrayToReturn = { hashedPassword, salt };
+
+            return arrayToReturn;
         }
+        private Entities db = new Entities();
         // GET: api/DELIVERY_RIDER
         public IQueryable<DELIVERY_RIDER> GetDELIVERY_RIDER()
         {
@@ -60,7 +61,9 @@ namespace HangmansPizzaAPI.Controllers
         [ResponseType(typeof(void))]
         public IHttpActionResult PutDELIVERY_RIDER(int id, DELIVERY_RIDER dELIVERY_RIDER)
         {
-            dELIVERY_RIDER.RIDER_PASSWORD = HashFunction(dELIVERY_RIDER.RIDER_PASSWORD);
+            var hashed = HashFunction(dELIVERY_RIDER.RIDER_PASSWORD, dELIVERY_RIDER.PASSWORD_SALT);
+            dELIVERY_RIDER.RIDER_PASSWORD = hashed[0];
+            dELIVERY_RIDER.PASSWORD_SALT = hashed[1];
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
@@ -73,7 +76,10 @@ namespace HangmansPizzaAPI.Controllers
             if (dELIVERY_RIDER.RIDER_PASSWORD != null)
             {
                 db.Entry(dELIVERY_RIDER).State = EntityState.Modified;
-            }  
+            }  else
+            {
+                return InternalServerError();
+            }
             try
             {
                 db.SaveChanges();
@@ -97,7 +103,9 @@ namespace HangmansPizzaAPI.Controllers
         [ResponseType(typeof(DELIVERY_RIDER))]
         public IHttpActionResult PostDELIVERY_RIDER(DELIVERY_RIDER dELIVERY_RIDER)
         {
-            dELIVERY_RIDER.RIDER_PASSWORD = HashFunction(dELIVERY_RIDER.RIDER_PASSWORD);
+            var hashed = HashFunction(dELIVERY_RIDER.RIDER_PASSWORD, dELIVERY_RIDER.PASSWORD_SALT);
+            dELIVERY_RIDER.RIDER_PASSWORD = hashed[0];
+            dELIVERY_RIDER.PASSWORD_SALT = hashed[1];
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
@@ -111,11 +119,48 @@ namespace HangmansPizzaAPI.Controllers
                 return InternalServerError();
             }
             
-
-
             return CreatedAtRoute("DefaultApi", new { id = dELIVERY_RIDER.RIDER_ID }, dELIVERY_RIDER);
         }
+        // POST: api/DELIVERY_RIDER
+        [ResponseType(typeof(void))]
+        public IHttpActionResult LoginRIDER(string login, LoginDetails loginDetails)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+            if (login.Equals("login"))
+            {
+                try
+                {
+                    DELIVERY_RIDER rider = db.DELIVERY_RIDER.Single(p => p.RIDER_EMAIL == loginDetails.email);
+                    int riderID = rider.RIDER_ID;
+                    var rIDER = db.DELIVERY_RIDER.Find(riderID);
 
+                    try
+                    {
+                        var hashedPassword = HashFunction(loginDetails.password, rIDER.PASSWORD_SALT)[0];
+                        if (hashedPassword == rIDER.RIDER_PASSWORD)
+                        {
+                            return StatusCode(HttpStatusCode.Accepted);
+                        }
+                        else
+                        {
+                            return StatusCode(HttpStatusCode.Unauthorized);
+                        }
+                    }
+                    catch (Exception e)
+                    {
+                        return StatusCode(HttpStatusCode.Forbidden);
+                    }
+                }
+                catch (Exception e)
+                {
+                    return StatusCode(HttpStatusCode.NotAcceptable);
+                }
+            }
+            return InternalServerError();
+        }
         // DELETE: api/DELIVERY_RIDER/5
         [ResponseType(typeof(DELIVERY_RIDER))]
         public IHttpActionResult DeleteDELIVERY_RIDER(int id)

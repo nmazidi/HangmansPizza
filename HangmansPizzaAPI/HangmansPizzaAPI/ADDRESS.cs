@@ -14,7 +14,7 @@ namespace HangmansPizzaAPI
     
     public partial class ADDRESS
     {
-        public short ADDRESS_ID { get; set; }
+        public int ADDRESS_ID { get; set; }
         public string ADDRESS_LINE_1 { get; set; }
         public string ADDRESS_LINE_2 { get; set; }
         public string TOWN { get; set; }

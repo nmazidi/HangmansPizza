@@ -23,5 +23,6 @@ namespace HangmansPizzaAPI
         public string VEHICLE_TYPE { get; set; }
         public System.DateTime RIDER_DOB { get; set; }
         public string RIDER_TITLE { get; set; }
+        public string PASSWORD_SALT { get; set; }
     }
 }

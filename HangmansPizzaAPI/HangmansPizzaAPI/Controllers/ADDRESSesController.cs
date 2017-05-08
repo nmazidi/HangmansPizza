@@ -19,14 +19,14 @@ namespace HangmansPizzaAPI.Controllers
         // GET: api/ADDRESSes
         public IQueryable<ADDRESS> GetADDRESSes()
         {
-            return db.ADDRESSes;
+            return db.ADDRESSES;
         }
 
         // GET: api/ADDRESSes/5
         [ResponseType(typeof(ADDRESS))]
         public IHttpActionResult GetADDRESS(short id)
         {
-            ADDRESS aDDRESS = db.ADDRESSes.Find(id);
+            ADDRESS aDDRESS = db.ADDRESSES.Find(id);
             if (aDDRESS == null)
             {
                 return NotFound();
@@ -79,7 +79,7 @@ namespace HangmansPizzaAPI.Controllers
                 return BadRequest(ModelState);
             }
 
-            db.ADDRESSes.Add(aDDRESS);
+            db.ADDRESSES.Add(aDDRESS);
             db.SaveChanges();
 
             return CreatedAtRoute("DefaultApi", new { id = aDDRESS.ADDRESS_ID }, aDDRESS);
@@ -89,13 +89,13 @@ namespace HangmansPizzaAPI.Controllers
         [ResponseType(typeof(ADDRESS))]
         public IHttpActionResult DeleteADDRESS(short id)
         {
-            ADDRESS aDDRESS = db.ADDRESSes.Find(id);
+            ADDRESS aDDRESS = db.ADDRESSES.Find(id);
             if (aDDRESS == null)
             {
                 return NotFound();
             }
 
-            db.ADDRESSes.Remove(aDDRESS);
+            db.ADDRESSES.Remove(aDDRESS);
             db.SaveChanges();
 
             return Ok(aDDRESS);
@@ -112,7 +112,7 @@ namespace HangmansPizzaAPI.Controllers
 
         private bool ADDRESSExists(short id)
         {
-            return db.ADDRESSes.Count(e => e.ADDRESS_ID == id) > 0;
+            return db.ADDRESSES.Count(e => e.ADDRESS_ID == id) > 0;
         }
     }
 }

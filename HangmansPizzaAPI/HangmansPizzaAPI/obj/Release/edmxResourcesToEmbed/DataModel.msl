@@ -1,17 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
   <EntityContainerMapping StorageEntityContainer="ModelStoreContainer" CdmEntityContainer="Entities">
-    <EntitySetMapping Name="ADDRESSes">
-      <EntityTypeMapping TypeName="Model.ADDRESS">
-        <MappingFragment StoreEntitySet="ADDRESS">
-          <ScalarProperty Name="ADDRESS_ID" ColumnName="ADDRESS_ID" />
-          <ScalarProperty Name="ADDRESS_LINE_1" ColumnName="ADDRESS_LINE_1" />
-          <ScalarProperty Name="ADDRESS_LINE_2" ColumnName="ADDRESS_LINE_2" />
-          <ScalarProperty Name="TOWN" ColumnName="TOWN" />
-          <ScalarProperty Name="POSTCODE" ColumnName="POSTCODE" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="ADMINs">
       <EntityTypeMapping TypeName="Model.ADMIN">
         <MappingFragment StoreEntitySet="ADMIN">
@@ -76,6 +65,7 @@
     <EntitySetMapping Name="DELIVERY_RIDER">
       <EntityTypeMapping TypeName="Model.DELIVERY_RIDER">
         <MappingFragment StoreEntitySet="DELIVERY_RIDER">
+          <ScalarProperty Name="PASSWORD_SALT" ColumnName="PASSWORD_SALT" />
           <ScalarProperty Name="RIDER_ID" ColumnName="RIDER_ID" />
           <ScalarProperty Name="RIDER_FORENAME" ColumnName="RIDER_FORENAME" />
           <ScalarProperty Name="RIDER_SURNAME" ColumnName="RIDER_SURNAME" />
@@ -241,6 +231,17 @@
           <ScalarProperty Name="CUSTOMER_FORENAME" ColumnName="CUSTOMER_FORENAME" />
           <ScalarProperty Name="CUSTOMER_TITLE" ColumnName="CUSTOMER_TITLE" />
           <ScalarProperty Name="CUSTOMER_ID" ColumnName="CUSTOMER_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ADDRESSES">
+      <EntityTypeMapping TypeName="Model.ADDRESS">
+        <MappingFragment StoreEntitySet="ADDRESSES">
+          <ScalarProperty Name="POSTCODE" ColumnName="POSTCODE" />
+          <ScalarProperty Name="TOWN" ColumnName="TOWN" />
+          <ScalarProperty Name="ADDRESS_LINE_2" ColumnName="ADDRESS_LINE_2" />
+          <ScalarProperty Name="ADDRESS_LINE_1" ColumnName="ADDRESS_LINE_1" />
+          <ScalarProperty Name="ADDRESS_ID" ColumnName="ADDRESS_ID" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

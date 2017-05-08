@@ -25,7 +25,6 @@ namespace HangmansPizzaAPI
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<ADDRESS> ADDRESSes { get; set; }
         public virtual DbSet<ADMIN> ADMINs { get; set; }
         public virtual DbSet<BRANCH> BRANCHes { get; set; }
         public virtual DbSet<DEAL> DEALs { get; set; }
@@ -47,5 +46,6 @@ namespace HangmansPizzaAPI
         public virtual DbSet<SIDE> SIDEs { get; set; }
         public virtual DbSet<TRANSACTION> TRANSACTIONs { get; set; }
         public virtual DbSet<CUSTOMER> CUSTOMERs { get; set; }
+        public virtual DbSet<ADDRESS> ADDRESSES { get; set; }
     }
 }
