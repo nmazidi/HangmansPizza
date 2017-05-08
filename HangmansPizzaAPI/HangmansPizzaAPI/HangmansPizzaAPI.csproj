@@ -338,6 +338,7 @@
     <Content Include="DataModel.edmx.diagram">
       <DependentUpon>DataModel.edmx</DependentUpon>
     </Content>
+    <None Include="Properties\PublishProfiles\alex.pubxml" />
     <None Include="Properties\PublishProfiles\Najim.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />

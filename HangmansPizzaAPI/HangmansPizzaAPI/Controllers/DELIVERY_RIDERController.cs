@@ -122,7 +122,7 @@ namespace HangmansPizzaAPI.Controllers
             return CreatedAtRoute("DefaultApi", new { id = dELIVERY_RIDER.RIDER_ID }, dELIVERY_RIDER);
         }
         // POST: api/DELIVERY_RIDER
-        [ResponseType(typeof(void))]
+        [ResponseType(typeof(DELIVERY_RIDER))]
         public IHttpActionResult LoginRIDER(string login, LoginDetails loginDetails)
         {
             if (!ModelState.IsValid)
@@ -142,7 +142,7 @@ namespace HangmansPizzaAPI.Controllers
                         var hashedPassword = HashFunction(loginDetails.password, rIDER.PASSWORD_SALT)[0];
                         if (hashedPassword == rIDER.RIDER_PASSWORD)
                         {
-                            return Ok(rIDER);
+                            return Content(HttpStatusCode.Accepted, rIDER);
                         }
                         else
                         {

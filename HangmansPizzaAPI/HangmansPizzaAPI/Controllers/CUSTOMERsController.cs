@@ -10,6 +10,8 @@ using System.Web.Http;
 using System.Web.Http.Description;
 using HangmansPizzaAPI;
 using System.Web.Helpers;
+using System.Web.Http.Results;
+using System.Web.Mvc;
 
 namespace HangmansPizzaAPI.Controllers
 {
@@ -33,6 +35,16 @@ namespace HangmansPizzaAPI.Controllers
             string[] arrayToReturn = { hashedPassword, salt };
 
             return arrayToReturn;
+        }
+        public JsonResult jsonReturn(CUSTOMER cust)
+        {
+            var result = new JsonResult();
+            result.Data = new
+            {
+                cust
+            };
+            result.JsonRequestBehavior = JsonRequestBehavior.AllowGet;
+            return result;
         }
         private Entities db = new Entities();
 
@@ -121,7 +133,7 @@ namespace HangmansPizzaAPI.Controllers
             return CreatedAtRoute("DefaultApi", new { id = cUSTOMER.CUSTOMER_ID }, cUSTOMER);
         }
         // POST: api/CUSTOMERs
-        [ResponseType(typeof(void))]
+        [ResponseType(typeof(CUSTOMER))]
         public IHttpActionResult LoginCUSTOMER(string login, LoginDetails loginDetails)
         {
             if (!ModelState.IsValid)
@@ -139,14 +151,14 @@ namespace HangmansPizzaAPI.Controllers
                 try
                 {
                     var hashedPassword = HashFunction(loginDetails.password, cUSTOMER.PASSWORD_SALT)[0];
-                    if (hashedPassword == cUSTOMER.CUSTOMER_PASSWORD)
-                    {
-                            return Ok(cUSTOMER);
+                        if (hashedPassword == cUSTOMER.CUSTOMER_PASSWORD)
+                        {
+                            return Content(HttpStatusCode.Accepted, cUSTOMER);
                         }
-                    else
-                    {
-                        return StatusCode(HttpStatusCode.Unauthorized);
-                    }
+                        else
+                        {
+                            return StatusCode(HttpStatusCode.Unauthorized);
+                        }
                 }
                 catch (Exception e)
                 {
