@@ -82,7 +82,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>05/08/2017 18:17:53</publishTime>
     </File>
     <File Include="bin/HangmansPizzaAPI.dll">
-      <publishTime>05/08/2017 21:49:42</publishTime>
+      <publishTime>05/09/2017 00:24:44</publishTime>
     </File>
     <File Include="bin/Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll">
       <publishTime>05/08/2017 18:17:53</publishTime>
@@ -250,7 +250,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>05/08/2017 18:17:52</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>05/08/2017 20:23:54</publishTime>
+      <publishTime>05/08/2017 22:41:26</publishTime>
     </File>
   </ItemGroup>
 </Project>

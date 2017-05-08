@@ -71,9 +71,17 @@ namespace HangmansPizzaAPI.Controllers
         [ResponseType(typeof(void))]
         public IHttpActionResult PutCUSTOMER(int id, CUSTOMER cUSTOMER)
         {
-            var hashed = HashFunction(cUSTOMER.CUSTOMER_PASSWORD, cUSTOMER.PASSWORD_SALT);
-            cUSTOMER.CUSTOMER_PASSWORD = hashed[0];
-            cUSTOMER.PASSWORD_SALT = hashed[1];
+            if (cUSTOMER.CUSTOMER_PASSWORD != "HASHED")
+            {
+                var hashed = HashFunction(cUSTOMER.CUSTOMER_PASSWORD, cUSTOMER.PASSWORD_SALT);
+                cUSTOMER.CUSTOMER_PASSWORD = hashed[0];
+                cUSTOMER.PASSWORD_SALT = hashed[1];
+            }
+            else {
+                var temp = db.CUSTOMERs.Find(id);
+                cUSTOMER.CUSTOMER_PASSWORD = temp.CUSTOMER_PASSWORD;
+            }
+            
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);

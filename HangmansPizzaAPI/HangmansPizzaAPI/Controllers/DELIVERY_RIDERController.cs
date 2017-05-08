@@ -61,9 +61,17 @@ namespace HangmansPizzaAPI.Controllers
         [ResponseType(typeof(void))]
         public IHttpActionResult PutDELIVERY_RIDER(int id, DELIVERY_RIDER dELIVERY_RIDER)
         {
-            var hashed = HashFunction(dELIVERY_RIDER.RIDER_PASSWORD, dELIVERY_RIDER.PASSWORD_SALT);
-            dELIVERY_RIDER.RIDER_PASSWORD = hashed[0];
-            dELIVERY_RIDER.PASSWORD_SALT = hashed[1];
+            if (dELIVERY_RIDER.RIDER_PASSWORD != "HASHED")
+            {
+                var hashed = HashFunction(dELIVERY_RIDER.RIDER_PASSWORD, dELIVERY_RIDER.PASSWORD_SALT);
+                dELIVERY_RIDER.RIDER_PASSWORD = hashed[0];
+                dELIVERY_RIDER.PASSWORD_SALT = hashed[1];
+            } else {
+                var temp = db.DELIVERY_RIDER.Find(id);
+                dELIVERY_RIDER.RIDER_PASSWORD = temp.RIDER_PASSWORD;
+            }
+            
+            
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
