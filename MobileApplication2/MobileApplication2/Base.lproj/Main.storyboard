@@ -714,15 +714,31 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="D7l-d1-1He">
-                                <rect key="frame" x="0.0" y="132" width="375" height="535"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="geG-8B-nN1">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="530"/>
                             </mapView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No delivery jobs available. Please stand by...." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9fI-OD-L0f">
+                                <rect key="frame" x="49" y="574" width="276" height="56"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="geG-8B-nN1" firstAttribute="top" secondItem="2hV-EQ-6y5" secondAttribute="top" id="Fx8-zK-Z7a"/>
+                            <constraint firstItem="geG-8B-nN1" firstAttribute="bottom" secondItem="TDg-Tv-i7t" secondAttribute="top" constant="-137" id="h4P-DD-Qdm"/>
+                            <constraint firstItem="9fI-OD-L0f" firstAttribute="top" secondItem="geG-8B-nN1" secondAttribute="bottom" constant="44" id="iNc-kZ-Z4L"/>
+                            <constraint firstItem="TDg-Tv-i7t" firstAttribute="top" secondItem="9fI-OD-L0f" secondAttribute="bottom" constant="37" id="l4o-8Z-ywu"/>
+                            <constraint firstItem="geG-8B-nN1" firstAttribute="leading" secondItem="2hV-EQ-6y5" secondAttribute="leading" id="sSk-Zp-nF9"/>
+                            <constraint firstItem="9fI-OD-L0f" firstAttribute="leading" secondItem="2hV-EQ-6y5" secondAttribute="leadingMargin" constant="33" id="txU-nH-nPa"/>
+                            <constraint firstAttribute="trailing" secondItem="geG-8B-nN1" secondAttribute="trailing" id="wak-Qq-s4I"/>
+                            <constraint firstItem="9fI-OD-L0f" firstAttribute="centerX" secondItem="geG-8B-nN1" secondAttribute="centerX" id="yvy-66-luJ"/>
+                        </constraints>
                     </view>
+                    <nil key="simulatedTopBarMetrics"/>
                     <connections>
-                        <outlet property="mapView" destination="D7l-d1-1He" id="FtS-Xm-Guw"/>
+                        <outlet property="map" destination="geG-8B-nN1" id="4oq-fT-KH4"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YUG-xl-g5f" userLabel="First Responder" sceneMemberID="firstResponder"/>

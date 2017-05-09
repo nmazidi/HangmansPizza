@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		752368A21EBE849A00E368CA /* Shift.swift in Sources */ = {isa = PBXBuildFile; fileRef = 752368A11EBE849A00E368CA /* Shift.swift */; };
+		7598458C1EC168B2006E2948 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7598458B1EC168B2006E2948 /* CoreLocation.framework */; };
 		75DAEA371EB8F90B0031C703 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75DAEA361EB8F90B0031C703 /* AppDelegate.swift */; };
 		75DAEA391EB8F90B0031C703 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75DAEA381EB8F90B0031C703 /* LoginViewController.swift */; };
 		75DAEA3C1EB8F90B0031C703 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 75DAEA3A1EB8F90B0031C703 /* Main.storyboard */; };
@@ -19,7 +20,6 @@
 		75DAEA5B1EB8FCA10031C703 /* Person.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75DAEA581EB8FCA10031C703 /* Person.swift */; };
 		75DAEA5D1EB906800031C703 /* UtilityFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75DAEA5C1EB906800031C703 /* UtilityFunctions.swift */; };
 		75DAEA5F1EB9194F0031C703 /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75DAEA5E1EB9194F0031C703 /* WelcomeViewController.swift */; };
-		75DAEA641EB9213D0031C703 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75DAEA631EB9213D0031C703 /* CardView.swift */; };
 		75E1DF651EBEC1E800CA79C4 /* LiveViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75E1DF641EBEC1E800CA79C4 /* LiveViewController.swift */; };
 		75E516841EBA45AA00CB0BD4 /* AccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75E516831EBA45AA00CB0BD4 /* AccountViewController.swift */; };
 /* End PBXBuildFile section */
@@ -36,6 +36,7 @@
 
 /* Begin PBXFileReference section */
 		752368A11EBE849A00E368CA /* Shift.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Shift.swift; sourceTree = "<group>"; };
+		7598458B1EC168B2006E2948 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		75DAEA331EB8F90B0031C703 /* MobileApplication2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MobileApplication2.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		75DAEA361EB8F90B0031C703 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		75DAEA381EB8F90B0031C703 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -51,7 +52,6 @@
 		75DAEA581EB8FCA10031C703 /* Person.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Person.swift; sourceTree = "<group>"; };
 		75DAEA5C1EB906800031C703 /* UtilityFunctions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UtilityFunctions.swift; sourceTree = "<group>"; };
 		75DAEA5E1EB9194F0031C703 /* WelcomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WelcomeViewController.swift; sourceTree = "<group>"; };
-		75DAEA631EB9213D0031C703 /* CardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
 		75E1DF641EBEC1E800CA79C4 /* LiveViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LiveViewController.swift; sourceTree = "<group>"; };
 		75E516831EBA45AA00CB0BD4 /* AccountViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -61,6 +61,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7598458C1EC168B2006E2948 /* CoreLocation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -74,12 +75,21 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		7598458A1EC168B2006E2948 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				7598458B1EC168B2006E2948 /* CoreLocation.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		75DAEA2A1EB8F90B0031C703 = {
 			isa = PBXGroup;
 			children = (
 				75DAEA351EB8F90B0031C703 /* MobileApplication2 */,
 				75DAEA4A1EB8F90B0031C703 /* MobileApplication2Tests */,
 				75DAEA341EB8F90B0031C703 /* Products */,
+				7598458A1EC168B2006E2948 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -98,15 +108,14 @@
 				75DAEA601EB919570031C703 /* Controllers */,
 				75DAEA361EB8F90B0031C703 /* AppDelegate.swift */,
 				75DAEA3A1EB8F90B0031C703 /* Main.storyboard */,
-				75DAEA631EB9213D0031C703 /* CardView.swift */,
 				75DAEA3D1EB8F90B0031C703 /* Assets.xcassets */,
 				75DAEA3F1EB8F90B0031C703 /* LaunchScreen.storyboard */,
-				75DAEA421EB8F90B0031C703 /* Info.plist */,
 				75DAEA561EB8FCA10031C703 /* APICommunication.swift */,
 				752368A11EBE849A00E368CA /* Shift.swift */,
 				75DAEA571EB8FCA10031C703 /* DeliveryRider.swift */,
 				75DAEA581EB8FCA10031C703 /* Person.swift */,
 				75DAEA5C1EB906800031C703 /* UtilityFunctions.swift */,
+				75DAEA421EB8F90B0031C703 /* Info.plist */,
 			);
 			path = MobileApplication2;
 			sourceTree = "<group>";
@@ -237,7 +246,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				75DAEA5D1EB906800031C703 /* UtilityFunctions.swift in Sources */,
-				75DAEA641EB9213D0031C703 /* CardView.swift in Sources */,
 				75DAEA5B1EB8FCA10031C703 /* Person.swift in Sources */,
 				75DAEA5A1EB8FCA10031C703 /* DeliveryRider.swift in Sources */,
 				752368A21EBE849A00E368CA /* Shift.swift in Sources */,
