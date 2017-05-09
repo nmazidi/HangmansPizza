@@ -15,9 +15,9 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        print(OrderType.COLLECTION)
         txtPassword?.delegate = self
         txtEmailAddress?.delegate = self
-        
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(LoginViewController.dismissKeyboard))
         view.addGestureRecognizer(tap)
     }

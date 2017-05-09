@@ -66,6 +66,7 @@ class LiveViewController: UIViewController, CLLocationManagerDelegate  {
         let lat: Float = Float(location.coordinate.latitude)
         let long: Float = Float(location.coordinate.longitude)
         print("Location: \(lat), \(long)")
+        
     }
     func getNewJob() {
         

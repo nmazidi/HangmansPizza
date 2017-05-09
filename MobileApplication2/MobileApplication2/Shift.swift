@@ -14,7 +14,8 @@ class Shift {
     var shiftStart : Date
     var shiftEnd : Date
     var shiftLength : Int
-    var riderLocation : String
+    var latitude : Float
+    var longitude : Float
     var deliveriesMade : Int
     var status : String
     var totalEarned : Double
@@ -26,7 +27,8 @@ class Shift {
         self.shiftStart = Date()
         self.shiftEnd = Date()
         self.shiftLength = 0
-        self.riderLocation = "UNKNOWN"
+        self.latitude = 0
+        self.longitude = 0
         self.deliveriesMade = 0
         self.status = "UNKNOWN"
         self.totalEarned = 0
@@ -37,17 +39,19 @@ class Shift {
     ///   - shiftID: Shift ID
     ///   - riderID: Rider's ID
     ///   - shiftStart: Shift's start date time
-    ///   - riderLocation: coordinated of the rider
+    ///   - latitude = Rider's latitude coordinate
+    ///   - longitude = Rider's longitude coordinate
     ///   - deliveriesMade: number of deliveries made
     ///   - status: status of rider
     ///   - totalEarned: total amount of money earned in shift
-    init(shiftID : Int, riderID : Int, shiftStart : Date, riderLocation : String, deliveriesMade : Int, status : String, totalEarned: Double) {
+    init(shiftID : Int, riderID : Int, shiftStart : Date, latitude : Float, longitude: Float, deliveriesMade : Int, status : String, totalEarned: Double) {
         self.shiftID = shiftID
         self.riderID = riderID
         self.shiftStart = shiftStart
         self.shiftEnd = Date()
         self.shiftLength = 0
-        self.riderLocation = riderLocation
+        self.latitude = latitude
+        self.longitude = longitude
         self.deliveriesMade = deliveriesMade
         self.status = status
         self.totalEarned = totalEarned
@@ -73,11 +77,17 @@ class Shift {
     func getShiftLength() -> Int {
         return self.shiftLength
     }
-    func getRiderLocation() -> String{
-        return self.riderLocation
+    func getLatitude() -> Float{
+        return self.latitude
     }
-    func setRiderLocation(newRiderLocation: String) {
-        self.riderLocation = newRiderLocation
+    func getLongitude() -> Float{
+        return self.longitude
+    }
+    func setLatitude(newLatitude: Float) {
+        self.latitude = newLatitude
+    }
+    func setLongitude(newLongitude: Float) {
+        self.longitude = newLongitude
     }
     func getDeliveriesMade() -> Int{
         return self.shiftID

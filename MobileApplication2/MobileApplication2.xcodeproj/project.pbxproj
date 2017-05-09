@@ -8,6 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		752368A21EBE849A00E368CA /* Shift.swift in Sources */ = {isa = PBXBuildFile; fileRef = 752368A11EBE849A00E368CA /* Shift.swift */; };
+		756366551EC250B600B1F9EB /* OrderType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 756366541EC250B600B1F9EB /* OrderType.swift */; };
+		756366581EC2511B00B1F9EB /* OrderStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 756366571EC2511B00B1F9EB /* OrderStatus.swift */; };
+		7563665A1EC2590000B1F9EB /* DeliveryStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 756366591EC2590000B1F9EB /* DeliveryStatus.swift */; };
+		7563665C1EC25B5500B1F9EB /* ShiftStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7563665B1EC25B5500B1F9EB /* ShiftStatus.swift */; };
 		7598458C1EC168B2006E2948 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7598458B1EC168B2006E2948 /* CoreLocation.framework */; };
 		75DAEA371EB8F90B0031C703 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75DAEA361EB8F90B0031C703 /* AppDelegate.swift */; };
 		75DAEA391EB8F90B0031C703 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75DAEA381EB8F90B0031C703 /* LoginViewController.swift */; };
@@ -20,6 +24,7 @@
 		75DAEA5B1EB8FCA10031C703 /* Person.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75DAEA581EB8FCA10031C703 /* Person.swift */; };
 		75DAEA5D1EB906800031C703 /* UtilityFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75DAEA5C1EB906800031C703 /* UtilityFunctions.swift */; };
 		75DAEA5F1EB9194F0031C703 /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75DAEA5E1EB9194F0031C703 /* WelcomeViewController.swift */; };
+		75E02AEB1EC23F3E00E28007 /* Order.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75E02AEA1EC23F3E00E28007 /* Order.swift */; };
 		75E1DF651EBEC1E800CA79C4 /* LiveViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75E1DF641EBEC1E800CA79C4 /* LiveViewController.swift */; };
 		75E516841EBA45AA00CB0BD4 /* AccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75E516831EBA45AA00CB0BD4 /* AccountViewController.swift */; };
 /* End PBXBuildFile section */
@@ -36,6 +41,10 @@
 
 /* Begin PBXFileReference section */
 		752368A11EBE849A00E368CA /* Shift.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Shift.swift; sourceTree = "<group>"; };
+		756366541EC250B600B1F9EB /* OrderType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderType.swift; sourceTree = "<group>"; };
+		756366571EC2511B00B1F9EB /* OrderStatus.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderStatus.swift; sourceTree = "<group>"; };
+		756366591EC2590000B1F9EB /* DeliveryStatus.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeliveryStatus.swift; sourceTree = "<group>"; };
+		7563665B1EC25B5500B1F9EB /* ShiftStatus.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShiftStatus.swift; sourceTree = "<group>"; };
 		7598458B1EC168B2006E2948 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		75DAEA331EB8F90B0031C703 /* MobileApplication2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MobileApplication2.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		75DAEA361EB8F90B0031C703 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -52,6 +61,7 @@
 		75DAEA581EB8FCA10031C703 /* Person.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Person.swift; sourceTree = "<group>"; };
 		75DAEA5C1EB906800031C703 /* UtilityFunctions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UtilityFunctions.swift; sourceTree = "<group>"; };
 		75DAEA5E1EB9194F0031C703 /* WelcomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WelcomeViewController.swift; sourceTree = "<group>"; };
+		75E02AEA1EC23F3E00E28007 /* Order.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Order.swift; sourceTree = "<group>"; };
 		75E1DF641EBEC1E800CA79C4 /* LiveViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LiveViewController.swift; sourceTree = "<group>"; };
 		75E516831EBA45AA00CB0BD4 /* AccountViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -75,6 +85,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		756366561EC2510200B1F9EB /* Enumerations */ = {
+			isa = PBXGroup;
+			children = (
+				756366541EC250B600B1F9EB /* OrderType.swift */,
+				756366571EC2511B00B1F9EB /* OrderStatus.swift */,
+				756366591EC2590000B1F9EB /* DeliveryStatus.swift */,
+				7563665B1EC25B5500B1F9EB /* ShiftStatus.swift */,
+			);
+			name = Enumerations;
+			sourceTree = "<group>";
+		};
 		7598458A1EC168B2006E2948 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -114,7 +135,9 @@
 				752368A11EBE849A00E368CA /* Shift.swift */,
 				75DAEA571EB8FCA10031C703 /* DeliveryRider.swift */,
 				75DAEA581EB8FCA10031C703 /* Person.swift */,
+				75E02AEA1EC23F3E00E28007 /* Order.swift */,
 				75DAEA5C1EB906800031C703 /* UtilityFunctions.swift */,
+				756366561EC2510200B1F9EB /* Enumerations */,
 				75DAEA421EB8F90B0031C703 /* Info.plist */,
 			);
 			path = MobileApplication2;
@@ -245,15 +268,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				756366551EC250B600B1F9EB /* OrderType.swift in Sources */,
 				75DAEA5D1EB906800031C703 /* UtilityFunctions.swift in Sources */,
 				75DAEA5B1EB8FCA10031C703 /* Person.swift in Sources */,
 				75DAEA5A1EB8FCA10031C703 /* DeliveryRider.swift in Sources */,
 				752368A21EBE849A00E368CA /* Shift.swift in Sources */,
+				75E02AEB1EC23F3E00E28007 /* Order.swift in Sources */,
 				75DAEA391EB8F90B0031C703 /* LoginViewController.swift in Sources */,
+				7563665C1EC25B5500B1F9EB /* ShiftStatus.swift in Sources */,
+				7563665A1EC2590000B1F9EB /* DeliveryStatus.swift in Sources */,
 				75DAEA591EB8FCA10031C703 /* APICommunication.swift in Sources */,
 				75DAEA371EB8F90B0031C703 /* AppDelegate.swift in Sources */,
 				75DAEA5F1EB9194F0031C703 /* WelcomeViewController.swift in Sources */,
 				75E516841EBA45AA00CB0BD4 /* AccountViewController.swift in Sources */,
+				756366581EC2511B00B1F9EB /* OrderStatus.swift in Sources */,
 				75E1DF651EBEC1E800CA79C4 /* LiveViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
