@@ -16,7 +16,7 @@ import java.util.TimerTask;
  */
 public class HomeScreen extends javax.swing.JFrame {
 
-    private APIConnection getR;
+    private APIConnection test;
     
     /**
      * Creates new form HomeScreen
@@ -24,6 +24,25 @@ public class HomeScreen extends javax.swing.JFrame {
     public HomeScreen() {    
         initComponents();
         loadTimer();             
+        
+        String response;
+        String urlAdmin; 
+        int index=0;
+        
+        urlAdmin = "http://Xserve.uopnet.plymouth.ac.uk/modules/INTPROJ/PRCS251Q/API/order_item?ORDER_ID=21";
+        
+        try {
+            test = new APIConnection();        
+            response = test.getRequest(urlAdmin);
+            index++;
+        //    String [] allAdmin = response.split("},{");
+            
+            
+            
+        } catch (Exception e) {
+            System.out.println("Exception");
+        }
+        
         
     }
 

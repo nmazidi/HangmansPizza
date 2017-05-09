@@ -5,8 +5,11 @@
  */
 package desktopapp.gui;
 
+import desktopapp.datamodel.APIConnection;
+import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Locale;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -16,12 +19,20 @@ import java.util.TimerTask;
  */
 public class AdminPage extends javax.swing.JFrame {
 
+    private APIConnection adminCon;
     /**
      * Creates new form AdminPage
      */
     public AdminPage() {
         initComponents();
+        loadTimer();
+        fillClasses();
+        loadTables();
         
+        
+    }
+
+    private void loadTimer() {
         Timer timer = new Timer();
         timer.scheduleAtFixedRate(new TimerTask() {
             @Override
@@ -31,7 +42,126 @@ public class AdminPage extends javax.swing.JFrame {
             }
         }, 0, 1000);
     }
-
+    
+    private void fillClasses() 
+    {
+        fillAdminClass();
+        fillCustomerClass();
+        fillMenuClass();
+        fillMenuItemClass();
+        fillRiderClass();        
+    }
+    
+    private void loadTables()
+    {
+        loadAdminTable();
+        loadCustomerTable();
+        loadMenuItemTable();
+        loadRiderTable();
+    }
+    
+    private void fillAdminClass()
+    {
+        String response;
+        String urlAdmin = "http://Xserve.uopnet.plymouth.ac.uk/modules/INTPROJ/PRCS251Q/API/orders";
+        String adminIDField = "ADMIN_ID";
+        String branchIDField = "BRANCH_ID";
+        String forenameField = "FORENAME";
+        String surnameField = "SURNAME";
+        String usernameField = "USERNAME";
+        String adminIDValue;
+        int adminIDIntValue;
+        String branchIDValue;
+        int branchIDIntValue;
+        String forenameValue;
+        String surnameValue;
+        String usernameValue;
+        int adminIDFieldLocation;
+        int brachIDFieldLocation;
+        int forenameFieldLocation;
+        int surnameFieldLocation;
+        int usernameFieldLocation;
+        
+        
+        
+        try {
+            //Create instance of API Connection
+            adminCon = new APIConnection();
+            //Set get json response to a string variable
+            response = adminCon.getRequest(urlAdmin);            
+            
+            String [] allAdmins = response.split("},{");
+            
+            for (int i = 0; i < allAdmins.length; i++) 
+            {
+                String tempAdmin = allAdmins[i];
+                int commaIndex = tempAdmin.indexOf(",");
+                int commas [] = new int[4];
+                int j = 0;
+                DateFormat format = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss", Locale.ENGLISH);
+                
+                adminIDFieldLocation = tempAdmin.lastIndexOf(adminIDField);
+                brachIDFieldLocation = tempAdmin.lastIndexOf(branchIDField);
+                forenameFieldLocation = tempAdmin.lastIndexOf(forenameField);
+                surnameFieldLocation = tempAdmin.lastIndexOf(surnameField);
+                usernameFieldLocation = tempAdmin.lastIndexOf(usernameField);
+                
+                while (commaIndex >= 0) {
+                    commas[j] = commaIndex;
+                    commaIndex = tempAdmin.indexOf(",", commaIndex + 1); 
+                    j++;
+                }
+                
+                
+            }
+            
+            
+        } catch (Exception e) {
+            System.out.println("Exception");
+        }
+        
+    }
+    
+    private void fillCustomerClass()
+    {
+        
+    }
+    
+    private void fillMenuClass()
+    {
+        
+    }
+    
+    private void fillMenuItemClass()
+    {
+        
+    }
+    
+    private void fillRiderClass()
+    {
+        
+    }
+    
+    private void loadAdminTable() 
+    {
+        
+    }
+    
+    private void loadCustomerTable() 
+    {
+        
+    }
+    
+    private void loadMenuItemTable()
+    {
+        
+    }
+    
+    private void loadRiderTable()
+    {
+        
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -67,6 +197,7 @@ public class AdminPage extends javax.swing.JFrame {
         txtSearchStock = new javax.swing.JTextField();
         jScrollPane4 = new javax.swing.JScrollPane();
         jTable4 = new javax.swing.JTable();
+        pnlMenu = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -276,6 +407,19 @@ public class AdminPage extends javax.swing.JFrame {
 
         tabAdminDashboard.addTab("Stock", pnlStock);
 
+        javax.swing.GroupLayout pnlMenuLayout = new javax.swing.GroupLayout(pnlMenu);
+        pnlMenu.setLayout(pnlMenuLayout);
+        pnlMenuLayout.setHorizontalGroup(
+            pnlMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 775, Short.MAX_VALUE)
+        );
+        pnlMenuLayout.setVerticalGroup(
+            pnlMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 507, Short.MAX_VALUE)
+        );
+
+        tabAdminDashboard.addTab("Menu", pnlMenu);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -300,9 +444,9 @@ public class AdminPage extends javax.swing.JFrame {
                     .addComponent(btnSignOut))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(tabAdminDashboard)
-                .addContainerGap())
+                .addGap(6, 6, 6))
         );
 
         pack();
@@ -361,6 +505,7 @@ public class AdminPage extends javax.swing.JFrame {
     private javax.swing.JLabel lblSearchStock;
     private javax.swing.JPanel pnlAdmins;
     private javax.swing.JPanel pnlCustomers;
+    private javax.swing.JPanel pnlMenu;
     private javax.swing.JPanel pnlOrders;
     private javax.swing.JPanel pnlRiders;
     private javax.swing.JPanel pnlSales;

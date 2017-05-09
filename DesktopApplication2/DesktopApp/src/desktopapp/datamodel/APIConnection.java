@@ -31,7 +31,7 @@ public class APIConnection {
                          
             try {             
                                 
-                URL obj = new URL(url);
+                URL obj = new URL(uri);
                 HttpURLConnection con = (HttpURLConnection)obj.openConnection();
             
                 //set request method and request header

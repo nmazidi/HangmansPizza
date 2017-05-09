@@ -6,12 +6,13 @@
 package desktopapp.gui;
 
 import desktopapp.datamodel.APIConnection;
-import java.io.IOException;
+import desktopapp.datamodel.Orders;
+import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Locale;
 import java.util.Timer;
 import java.util.TimerTask;
-import java.util.regex.Matcher;
 
 /**
  *
@@ -25,7 +26,7 @@ public class KitchenPage extends javax.swing.JFrame {
      */
     public KitchenPage() {
         initComponents();
-        loadTimer();                              
+        loadTimer();
         fillOrders();
     }
 
@@ -45,33 +46,89 @@ public class KitchenPage extends javax.swing.JFrame {
         String urlOrder;
         String urlOrderItem;
         String orderIDField = "ORDER_ID";
+        String customerIDField = "CUSTOMER_ID";
         String datePlacedField = "DATE_PLACED";
-        String dateRequestedField = "DATE_REQUESTED";
+        String totalCostField = "TOTAL_COST";
+        String orderTypeField = "ORDER_TYPE";
         String notesField = "NOTES";
         String orderStatusField = "ORDER_STATUS";
+        String orderIDValue;
+        int orderIDIntValue;
+        String customerIDValue;
+        int customerIDIntValue;
+        String datePlacedValue;
+        Date datePlacedDateValue;
+        String totalCostValue;
+        double totalCostDoubleValue;
+        String orderTypeValue;
+        String notesValue;
+        String orderStatusValue;                
         int orderIDFieldLocation;
+        int customerIDFieldLocation;
         int datePlacedFieldLocation;
-        int dateRequestedFieldLocation;
+        int totalCostFieldLocation;
+        int orderTypeFieldLocation;
         int notesFieldLocation;
         int orderStatusFieldLocation;
         
         
-        
+        //Set URL values for 
         urlOrder = "http://Xserve.uopnet.plymouth.ac.uk/modules/INTPROJ/PRCS251Q/API/orders";
         urlOrderItem = "http://Xserve.uopnet.plymouth.ac.uk/modules/INTPROJ/PRCS251Q/API/order_item";
         
         try {
-            
-            kitchen = new APIConnection();        
+            //Create instance of APIConnection
+            kitchen = new APIConnection();
+            //Set get json response to a string variable
             response = kitchen.getRequest(urlOrder);
             
-            orderIDFieldLocation = response.lastIndexOf(orderIDField);
-            datePlacedFieldLocation = response.lastIndexOf(datePlacedField);;
-            dateRequestedFieldLocation = response.lastIndexOf(dateRequestedField);;
-            notesFieldLocation = response.lastIndexOf(notesField);;
-            orderStatusFieldLocation = response.lastIndexOf(orderStatusField);;
+            String [] allOrders = response.split("},{");
             
             
+            
+            for (int i = 0; i < allOrders.length; i++)
+            {
+                String tempOrder = allOrders[i];
+                int commaIndex = tempOrder.indexOf(",");
+                int [] commas = new int[6];
+                int j = 0;
+                DateFormat format = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss", Locale.ENGLISH);
+                
+                orderIDFieldLocation = tempOrder.lastIndexOf(orderIDField);
+                customerIDFieldLocation = tempOrder.lastIndexOf(customerIDField);
+                datePlacedFieldLocation = tempOrder.lastIndexOf(datePlacedField);
+                totalCostFieldLocation = tempOrder.lastIndexOf(totalCostField);
+                orderTypeFieldLocation = tempOrder.lastIndexOf(orderTypeField);
+                notesFieldLocation = tempOrder.lastIndexOf(notesField);
+                orderStatusFieldLocation = tempOrder.lastIndexOf(orderStatusField);               
+                
+                while (commaIndex >= 0) {
+                    commas[j] = commaIndex;
+                    commaIndex = tempOrder.indexOf(",", commaIndex + 1); 
+                    j++;
+                }                
+                
+                orderIDValue = tempOrder.substring(orderIDFieldLocation + 3, commas[0]);
+                orderIDIntValue = Integer.parseInt(orderIDValue);
+                customerIDValue = tempOrder.substring(customerIDFieldLocation + 4, commas[1] - 1);
+                customerIDIntValue = Integer.parseInt(customerIDValue);
+                datePlacedValue = tempOrder.substring(datePlacedFieldLocation + 4, commas[2] - 1);
+                datePlacedDateValue = format.parse(datePlacedValue);
+                totalCostValue = tempOrder.substring(totalCostFieldLocation + 4, commas[3] - 1);
+                totalCostDoubleValue = Double.parseDouble(totalCostValue);
+                orderTypeValue = tempOrder.substring(orderTypeFieldLocation + 4, commas[4] - 1);
+                notesValue = tempOrder.substring(notesFieldLocation + 4, commas[5] - 1);
+                orderStatusValue = tempOrder.substring(orderStatusFieldLocation + 4, tempOrder.length());
+                
+                Orders orderToAdd = null;
+                orderToAdd = new Orders(orderIDIntValue, customerIDIntValue,
+                        datePlacedDateValue, totalCostDoubleValue,
+                        orderTypeValue, notesValue, orderStatusValue);                                     
+                
+                lblOrderNumber1.setText("orderIDValue");
+                lblOrderNumber1.setText("datePlacedValue");
+                
+            }
             
             
             
@@ -83,7 +140,7 @@ public class KitchenPage extends javax.swing.JFrame {
             
             txtOrderDetails1.setText(response);
             
-        } catch (IOException e3) {
+        } catch (Exception e3) {
             System.out.println("IOException");
         }
     }

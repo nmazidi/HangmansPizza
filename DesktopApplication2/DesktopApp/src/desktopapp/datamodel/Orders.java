@@ -10,16 +10,15 @@ import java.util.Date;
  * @author Nathan
  */
 public class Orders {
-    private Integer orderID;
-    private Integer customerID;
+    private int orderID;
+    private int customerID;
     private Date datePlaced = new Date();
-    private Date dateRequested = new Date();
     private Double totalCost;
     private String orderType;
     private String notes;
     private String orderStatus;
 
-    public Integer getOrderID() {
+    public int getOrderID() {
         return orderID;
     }
 
@@ -27,7 +26,7 @@ public class Orders {
         this.orderID = orderID;
     }
 
-    public Integer getCustomerID() {
+    public int getCustomerID() {
         return customerID;
     }
 
@@ -41,15 +40,7 @@ public class Orders {
 
     public void setDatePlaced(Date datePlaced) {
         this.datePlaced = datePlaced;
-    }
-
-    public Date getDateRequested() {
-        return dateRequested;
-    }
-
-    public void setDateRequested(Date dateRequested) {
-        this.dateRequested = dateRequested;
-    }
+    }    
 
     public Double getTotalCost() {
         return totalCost;
@@ -86,12 +77,11 @@ public class Orders {
     public Orders(){
     }
     
-    public Orders(Integer ordID, Integer custID, Date datePlace, Date dateRequest, Double cost,
+    public Orders(int ordID, int custID, Date datePlace, Double cost,
             String ordType, String note, String ordStatus){
         this.orderID = ordID;
         this.customerID = custID;
         this.datePlaced = datePlace;
-        this.dateRequested = dateRequest;
         this.totalCost = cost;
         this.orderType = ordType;
         this.notes = note;
@@ -102,9 +92,8 @@ public class Orders {
     public String toString()
     {
         return "Orders [orderID=" + orderID + ", customerID=" + customerID + ", "
-                + "datePlaced=" + datePlaced + ", dateRequested=" + dateRequested + ", "
-                + "totalCost=" + totalCost + ", orderType=" + orderType + ", "
-                + "notes=" + notes + ", orderStatus=" + orderStatus + "]";                
+                + "datePlaced=" + datePlaced + "totalCost=" + totalCost + ", "
+                + "orderType=" + orderType + ", notes=" + notes + ", orderStatus=" + orderStatus + "]";                
     }
     
 }
