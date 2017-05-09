@@ -10,10 +10,18 @@ import UIKit
 
 class WelcomeViewController: UIViewController {
     var riderLoggedIn = DeliveryRider()
+    var newShift = Shift()
     @IBOutlet weak var lblWelcome: UILabel!
     
+    @IBOutlet weak var lblDeliveriesToday: UILabel!
+    @IBOutlet weak var lblTotalToday: UILabel!
+    @IBOutlet weak var lblHoursToday: UILabel!
+    @IBOutlet weak var lblHoursWeek: UILabel!
+    @IBOutlet weak var lblTotalWeek: UILabel!
+    @IBOutlet weak var lblDeliveriesWeek: UILabel!
+    
     @IBAction func btnGoLive(_ sender: Any) {
-        let newShift = Shift(shiftID: 1, riderID: riderLoggedIn.getRiderID(), shiftStart: Date(), riderLocation: "", deliveriesMade: 0, status: "Available", totalEarned: 0)
+        newShift = Shift(shiftID: 1, riderID: riderLoggedIn.getRiderID(), shiftStart: Date(), riderLocation: "", deliveriesMade: 0, status: "Available", totalEarned: 0)
         
         let alert = UIAlertController(title: nil, message: "Please wait, going online...", preferredStyle: .alert)
         let loadingIndicator = UIActivityIndicatorView(frame: CGRect(x: 10, y: 5, width: 50, height: 50))
@@ -44,7 +52,6 @@ class WelcomeViewController: UIViewController {
                     }
                 }
             }
-
         }
     }
     @IBAction func btnSignOut(_ sender: Any) {
@@ -57,6 +64,7 @@ class WelcomeViewController: UIViewController {
         DispatchQueue.main.async {
             self.lblWelcome.text = "Welcome \(self.riderLoggedIn.getForename())!"
         }
+        initStats()
     }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -70,6 +78,38 @@ class WelcomeViewController: UIViewController {
         super.viewWillDisappear(animated)
         self.navigationController?.setNavigationBarHidden(false, animated: animated)
     }
+    func initStats() {
+        var shiftData = [[String:AnyObject]]()
+        APICommunication.GETRequest(path: "RIDER_ACTIVITY") { success in
+            if success.0 == true {
+                print("GET successful")
+                shiftData = success.1
+                for item in shiftData {
+                    if (item["RIDER_ID"]?.isEqual(self.riderLoggedIn.getRiderID()))!  {
+                        print(true)
+                        if let shiftStart: Date = item["SHIFT_START"] as? Date {
+                            print(shiftStart)
+                            let calendar = NSCalendar.current
+                            let shiftDate = calendar.startOfDay(for: shiftStart)
+                            let todayDate = calendar.startOfDay(for: Date())
+                            let components = calendar.dateComponents([.day], from: todayDate, to: shiftDate)
+                            print("days between: \(components.day)")
+                            if components.day == 0 {
+                                
+                            }
+                        } else {
+                            
+                        }
+
+                    } else {
+                        
+                    }
+                }
+            } else {
+                print("GET not successful")
+            }
+        }
+    }
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "SignedOutSegue" {
             if let destination = segue.destination as? LoginViewController {
@@ -81,7 +121,12 @@ class WelcomeViewController: UIViewController {
                 //Pass rider object to WelcomeViewController
                 destination.riderLoggedIn = self.riderLoggedIn
             }
+        } else if segue.identifier == "GoLiveSegue" {
+            if let destination = segue.destination as? LiveViewController {
+                destination.riderLoggedIn = self.riderLoggedIn
+                destination.currentShift = self.newShift
+            }
         }
     }
-
+    
 }

@@ -63,16 +63,16 @@ class AccountViewController: UIViewController, UITextFieldDelegate {
 
     @IBAction func btnSave(_ sender: Any) {
         var passwordVerified: Bool = false
-        let alert = UIAlertController(title: nil, message: "Please wait...", preferredStyle: .alert)
+        let firstAlert = UIAlertController(title: nil, message: "Please wait...", preferredStyle: .alert)
         let loadingIndicator = UIActivityIndicatorView(frame: CGRect(x: 10, y: 5, width: 50, height: 50))
         
         loadingIndicator.hidesWhenStopped = true
         loadingIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.gray
         loadingIndicator.startAnimating()
         
-        alert.view.addSubview(loadingIndicator)
+        firstAlert.view.addSubview(loadingIndicator)
         DispatchQueue.main.async {
-            self.present(alert, animated: true, completion: nil)
+            self.present(firstAlert, animated: true, completion: nil)
         }
         riderLoggedIn.verifyPassword(pass: (txtCurrentPassword?.text)!) { success in
             passwordVerified = success
@@ -101,7 +101,9 @@ class AccountViewController: UIViewController, UITextFieldDelegate {
                             let okAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.default)
                             errorAlert.addAction(okAction)
                             DispatchQueue.main.async {
-                                self.present(errorAlert, animated: true, completion: nil)
+                                firstAlert.dismiss(animated: true) {
+                                    self.present(errorAlert, animated: true, completion: nil)
+                                }
                             }
                             self.txtCurrentPassword?.text = ""
                             self.txtPassword?.text = ""
@@ -112,7 +114,9 @@ class AccountViewController: UIViewController, UITextFieldDelegate {
                         let okAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.default)
                         errorAlert.addAction(okAction)
                         DispatchQueue.main.async {
-                            self.present(errorAlert, animated: true, completion: nil)
+                            firstAlert.dismiss(animated: true) {
+                                self.present(errorAlert, animated: true, completion: nil)
+                            }
                         }
                         self.txtCurrentPassword?.text = ""
                         self.txtPassword?.text = ""
@@ -128,7 +132,9 @@ class AccountViewController: UIViewController, UITextFieldDelegate {
                 
                 alert.view.addSubview(loadingIndicator)
                 DispatchQueue.main.async {
-                    self.present(alert, animated: true, completion: nil)
+                    firstAlert.dismiss(animated: true) {
+                        self.present(alert, animated: true, completion: nil)
+                    }
                 }
                 //Update user details on database
                 APICommunication.PUTRequest(path: "delivery_rider", id: self.riderLoggedIn.getRiderID(), params: UtilityFunctions.getStringDictionaryFromObject(obj: self.riderLoggedIn)) { success in
@@ -155,7 +161,9 @@ class AccountViewController: UIViewController, UITextFieldDelegate {
                 let okAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.default)
                 errorAlert.addAction(okAction)
                 DispatchQueue.main.async {
-                    self.present(errorAlert, animated: true)
+                    firstAlert.dismiss(animated: true) {
+                        self.present(errorAlert, animated: true)
+                    }
                 }
                 self.txtCurrentPassword?.text = ""
                 self.txtPassword?.text = ""
@@ -167,6 +175,7 @@ class AccountViewController: UIViewController, UITextFieldDelegate {
         if segue.identifier == "AccountSaveSegue" {
             if let destination = segue.destination as? WelcomeViewController {
                 //Pass rider object to WelcomeViewController
+                riderLoggedIn.setPassword(newPassword: "HASHED")
                 destination.riderLoggedIn = riderLoggedIn
             }
         }

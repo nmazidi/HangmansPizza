@@ -101,7 +101,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                 riderLoggedIn.setSurname(newSurname: item["RIDER_SURNAME"] as! String)
                 riderLoggedIn.setEmailAddress(newEmailAddress: item["RIDER_EMAIL"] as! String)
                 riderLoggedIn.setPhoneNumber(newPhoneNumber: item["RIDER_PHONE"] as! String)
-                riderLoggedIn.setPassword(newPassword: item["RIDER_PASSWORD"] as! String)
+                riderLoggedIn.setPassword(newPassword: "HASHED")
                 riderLoggedIn.setVehicleType(newVehicleType: item["VEHICLE_TYPE"] as! String)
                 riderLoggedIn.setDOB(newDOB: UtilityFunctions.formatDateForStorage(dateStr: item["RIDER_DOB"] as! String))
                 print("Rider instance successfully created")
