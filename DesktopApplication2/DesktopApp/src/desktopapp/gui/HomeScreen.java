@@ -6,6 +6,10 @@
 package desktopapp.gui;
 import desktopapp.datamodel.APIConnection;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Timer;
+import java.util.TimerTask;
 /**
  *
  * @author Nathan
@@ -17,22 +21,22 @@ public class HomeScreen extends javax.swing.JFrame {
     /**
      * Creates new form HomeScreen
      */
-    public HomeScreen() {
+    public HomeScreen() {    
+        initComponents();
+        loadTimer();             
         
-        try {
-            
-            initComponents();
-        
-        
-            getR = new APIConnection();
-        
-            getR.deleteRequest();
-        } catch (IOException e3) {
-            
-        }
-            
     }
 
+    private void loadTimer() {
+        Timer timer = new Timer();
+        timer.scheduleAtFixedRate(new TimerTask() {
+            @Override
+            public void run() {
+                String string = new SimpleDateFormat("HH:mm:ss").format(new Date());
+                lblCurrentTime.setText(string);
+            }
+        }, 0, 1000);
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -44,8 +48,8 @@ public class HomeScreen extends javax.swing.JFrame {
 
         btnAdmin = new javax.swing.JButton();
         btnKitchen = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        lblCurrentTime = new javax.swing.JLabel();
+        btnExit = new javax.swing.JButton();
         jSeparator1 = new javax.swing.JSeparator();
         lblUsername = new javax.swing.JLabel();
         txtUsername = new javax.swing.JTextField();
@@ -72,13 +76,13 @@ public class HomeScreen extends javax.swing.JFrame {
             }
         });
 
-        jLabel1.setText("jLabel1");
+        lblCurrentTime.setText("04:23");
 
-        jButton1.setText("jButton1");
+        btnExit.setText("Exit");
 
         lblUsername.setText("Username:");
 
-        lblPassword.setText("jLabel3");
+        lblPassword.setText("Password:");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -86,9 +90,9 @@ public class HomeScreen extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1)
+                .addComponent(lblCurrentTime)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton1)
+                .addComponent(btnExit)
                 .addContainerGap())
             .addComponent(jSeparator1)
             .addGroup(layout.createSequentialGroup()
@@ -111,8 +115,8 @@ public class HomeScreen extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(jButton1))
+                    .addComponent(lblCurrentTime)
+                    .addComponent(btnExit))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(89, 89, 89)
@@ -135,15 +139,15 @@ public class HomeScreen extends javax.swing.JFrame {
 
     private void btnAdminMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAdminMouseClicked
         // TODO add your handling code here:
-        this.setVisible(false);
-        new AdminDashboard().setVisible(true);
+        new AdminPage().setVisible(true);
+        this.dispose();
         
     }//GEN-LAST:event_btnAdminMouseClicked
 
     private void btnKitchenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnKitchenActionPerformed
         // TODO add your handling code here:
-        this.setVisible(false);
-        new KitchenScreen().setVisible(true);
+        new KitchenPage().setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_btnKitchenActionPerformed
 
     /**
@@ -183,10 +187,10 @@ public class HomeScreen extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAdmin;
+    private javax.swing.JButton btnExit;
     private javax.swing.JButton btnKitchen;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JLabel lblCurrentTime;
     private javax.swing.JLabel lblPassword;
     private javax.swing.JLabel lblUsername;
     private javax.swing.JTextField txtPassword;

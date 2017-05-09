@@ -5,6 +5,7 @@
  */
 package desktopapp.datamodel;
 
+import com.google.gson.Gson;
 import java.io.BufferedReader;
 import java.io.DataOutputStream;
 import java.io.IOException;
@@ -14,7 +15,6 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.ProtocolException;
 import java.net.URL;
-
 /**
  *
  * @author Nathan
@@ -22,24 +22,28 @@ import java.net.URL;
 public class APIConnection {
     
     public static final String USER_AGENT = "Mozilla/5.0";          
-    public static String url = 
-             "http://xserve.uopnet.plymouth.ac.uk/modules/intproj/prcs251q/API/customers/41";
+    public static String url;
     
     //HTTP GET request
-    public void getRequest() throws IOException {
-                        
-            try {
-                
+    public String getRequest(String uri) throws IOException {
+        String output = "";
+        url = "http://Xserve.uopnet.plymouth.ac.uk/modules/INTPROJ/PRCS251Q/API/orders";
+                         
+            try {             
+                                
                 URL obj = new URL(url);
                 HttpURLConnection con = (HttpURLConnection)obj.openConnection();
             
                 //set request method and request header
                 con.setRequestMethod("GET");
                 con.setRequestProperty("User-Agent", USER_AGENT);
-            
+                con.setRequestProperty("Content-Type", "application/json" );
+                con.setRequestProperty("Accept", "application/json" );
+                
                 int responseCode = con.getResponseCode();
                 System.out.println("\nSending 'GET' request to URL : " + url);
                 System.out.println("Response Code : " + responseCode);
+                
             
                 BufferedReader in = new BufferedReader(
                         new InputStreamReader(con.getInputStream()));
@@ -51,13 +55,18 @@ public class APIConnection {
                 }
                 in.close();
             
-                String output = response.toString();
+                output = response.toString();
             
-                System.out.println(output);
-                  
+                System.out.println(output);                                                  
+                
+                
+                
             } catch (IOException e1) {
                 System.out.println("IOException");
-            }                   
+                
+            }     
+            
+            return output;
     }
     
     //HTTP POST request
@@ -70,8 +79,10 @@ public class APIConnection {
 	con.setRequestMethod("POST");
 	con.setRequestProperty("User-Agent", USER_AGENT);
 	con.setRequestProperty("Accept-Language", "en-US,en;q=0.5");
+        con.setRequestProperty("Content-Type", "application/x-www-form-urlencoded" );
+        con.setRequestProperty("Accept", "application/json" );
 
-            String urlParameters = "CUSTOMER_ID=3&CUSTOMER_TITLE=Mr&CUSTOMER_FORENAME=Nathan&CUSTOMER_SURNAME=Scarfi&CUSTOMER_EMAIL=natsca@gmail.com&CUSTOMER_PHONE=07555666777&CUSTOMER_PASSWORD=password&CUSTOMER_DOB=30-MAR-97";
+        String urlParameters = "INGREDIENT_TYPE_ID=1&INGREDIENT_TYPE1=Topping&DESCRIPTION=Goes on top of the pizzas";
 
 	// Send post request
 	con.setDoOutput(true);
@@ -105,17 +116,19 @@ public class APIConnection {
             URL obj = new URL(url);
             HttpURLConnection con = (HttpURLConnection) obj.openConnection();
         
-            con.setRequestMethod("PUT");
-            con.setRequestProperty("Content-Type", "application/x-www-form-urlencoded" );
             con.setDoOutput(true);
+            con.setRequestMethod("PUT");
+            con.setRequestProperty("Content-Type", "application/x-www-form-urlencoded" );            
         
-            String payload = "CUSTOMER_ID=41&CUSTOMER_TITLE=Mrs&CUSTOMER_FORENAME=Nathan&CUSTOMER_SURNAME=Scarfi&CUSTOMER_EMAIL=natsca@gmail.com&CUSTOMER_PHONE=07555666777&CUSTOMER_PASSWORD=password&CUSTOMER_DOB=30-MAR-97";
-
+            String payload = "INGREDIENT_TYPE_ID=1&INGREDIENT_TYPE1=Topping&DESCRIPTION=Goes on top of the pizzas";
 
             OutputStreamWriter osw = new OutputStreamWriter(con.getOutputStream());
             osw.write(payload);
             osw.close();
-            con.getInputStream();
+            con.getInputStream();            
+            
+            int responseCode = con.getResponseCode();
+            System.out.println("Response Code : " + responseCode);
         } catch (MalformedURLException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
@@ -134,6 +147,9 @@ public class APIConnection {
         con.setRequestProperty("Content-Type", "application/x-www-form-urlencoded" );
         con.setDoOutput(true);
         con.connect();
+        
+        int responseCode = con.getResponseCode();
+        System.out.println("Response Code : " + responseCode);
     }
     
 }

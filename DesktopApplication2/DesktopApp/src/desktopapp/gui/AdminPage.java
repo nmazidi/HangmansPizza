@@ -5,18 +5,31 @@
  */
 package desktopapp.gui;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Timer;
+import java.util.TimerTask;
+
 /**
  *
  * @author Nathan
  */
-public class AdminDashboard extends javax.swing.JPanel {
+public class AdminPage extends javax.swing.JFrame {
 
     /**
-     * Creates new form AdminDashboard
+     * Creates new form AdminPage
      */
-    public AdminDashboard() {
+    public AdminPage() {
         initComponents();
         
+        Timer timer = new Timer();
+        timer.scheduleAtFixedRate(new TimerTask() {
+            @Override
+            public void run() {
+                String string = new SimpleDateFormat("HH:mm:ss").format(new Date());
+                lblCurrentTime.setText(string);
+            }
+        }, 0, 1000);
     }
 
     /**
@@ -31,43 +44,39 @@ public class AdminDashboard extends javax.swing.JPanel {
         lblCurrentTime = new javax.swing.JLabel();
         btnSignOut = new javax.swing.JButton();
         jSeparator1 = new javax.swing.JSeparator();
-        tabDashboard = new javax.swing.JTabbedPane();
-        pnlAdmin = new javax.swing.JPanel();
+        tabAdminDashboard = new javax.swing.JTabbedPane();
+        pnlAdmins = new javax.swing.JPanel();
         lblSearchAdmin = new javax.swing.JLabel();
         txtSearchAdmin = new javax.swing.JTextField();
-        jScrollPane6 = new javax.swing.JScrollPane();
-        tblAdmins = new javax.swing.JTable();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
         pnlCustomers = new javax.swing.JPanel();
         lblSearchCustomers = new javax.swing.JLabel();
         txtSearchCustomers = new javax.swing.JTextField();
-        jScrollPane5 = new javax.swing.JScrollPane();
-        tblCustomers = new javax.swing.JTable();
-        pnlOrders = new javax.swing.JPanel();
-        lblSearchOrders = new javax.swing.JLabel();
-        txtSearchOrders = new javax.swing.JTextField();
-        pnlSales = new javax.swing.JPanel();
-        lblSearchSales = new javax.swing.JLabel();
-        txtSearchSales = new javax.swing.JTextField();
-        pnlStaff = new javax.swing.JPanel();
-        lblSearchStaff = new javax.swing.JLabel();
-        txtSearchStaff = new javax.swing.JTextField();
         jScrollPane2 = new javax.swing.JScrollPane();
-        tblStaff = new javax.swing.JTable();
+        jTable2 = new javax.swing.JTable();
+        pnlRiders = new javax.swing.JPanel();
+        lblSearchRiders = new javax.swing.JLabel();
+        txtSearchRiders = new javax.swing.JTextField();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        jTable3 = new javax.swing.JTable();
+        pnlOrders = new javax.swing.JPanel();
+        pnlSales = new javax.swing.JPanel();
         pnlStock = new javax.swing.JPanel();
         lblSearchStock = new javax.swing.JLabel();
         txtSearchStock = new javax.swing.JTextField();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        tblStock = new javax.swing.JTable();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        jTable4 = new javax.swing.JTable();
 
-        lblCurrentTime.setText("13:47");
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        lblCurrentTime.setText("00:00:00");
 
         btnSignOut.setText("Sign Out");
 
-        pnlAdmin.setName(""); // NOI18N
-
         lblSearchAdmin.setText("Search:");
 
-        tblAdmins.setModel(new javax.swing.table.DefaultTableModel(
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -78,40 +87,40 @@ public class AdminDashboard extends javax.swing.JPanel {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane6.setViewportView(tblAdmins);
+        jScrollPane1.setViewportView(jTable1);
 
-        javax.swing.GroupLayout pnlAdminLayout = new javax.swing.GroupLayout(pnlAdmin);
-        pnlAdmin.setLayout(pnlAdminLayout);
-        pnlAdminLayout.setHorizontalGroup(
-            pnlAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlAdminLayout.createSequentialGroup()
+        javax.swing.GroupLayout pnlAdminsLayout = new javax.swing.GroupLayout(pnlAdmins);
+        pnlAdmins.setLayout(pnlAdminsLayout);
+        pnlAdminsLayout.setHorizontalGroup(
+            pnlAdminsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlAdminsLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(pnlAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 755, Short.MAX_VALUE)
-                    .addGroup(pnlAdminLayout.createSequentialGroup()
+                .addGroup(pnlAdminsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 755, Short.MAX_VALUE)
+                    .addGroup(pnlAdminsLayout.createSequentialGroup()
                         .addComponent(lblSearchAdmin)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(txtSearchAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
-        pnlAdminLayout.setVerticalGroup(
-            pnlAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlAdminLayout.createSequentialGroup()
+        pnlAdminsLayout.setVerticalGroup(
+            pnlAdminsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlAdminsLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(pnlAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(pnlAdminsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblSearchAdmin)
                     .addComponent(txtSearchAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(24, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(210, Short.MAX_VALUE))
         );
 
-        tabDashboard.addTab("Admin", pnlAdmin);
+        tabAdminDashboard.addTab("Admin", pnlAdmins);
 
         lblSearchCustomers.setText("Search:");
 
-        tblCustomers.setModel(new javax.swing.table.DefaultTableModel(
+        jTable2.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -122,7 +131,7 @@ public class AdminDashboard extends javax.swing.JPanel {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane5.setViewportView(tblCustomers);
+        jScrollPane2.setViewportView(jTable2);
 
         javax.swing.GroupLayout pnlCustomersLayout = new javax.swing.GroupLayout(pnlCustomers);
         pnlCustomers.setLayout(pnlCustomersLayout);
@@ -131,7 +140,7 @@ public class AdminDashboard extends javax.swing.JPanel {
             .addGroup(pnlCustomersLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(pnlCustomersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 755, Short.MAX_VALUE)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 755, Short.MAX_VALUE)
                     .addGroup(pnlCustomersLayout.createSequentialGroup()
                         .addComponent(lblSearchCustomers)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -147,109 +156,85 @@ public class AdminDashboard extends javax.swing.JPanel {
                     .addComponent(lblSearchCustomers)
                     .addComponent(txtSearchCustomers, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(75, Short.MAX_VALUE))
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(210, Short.MAX_VALUE))
         );
 
-        tabDashboard.addTab("Customers", pnlCustomers);
+        tabAdminDashboard.addTab("Customers", pnlCustomers);
 
-        lblSearchOrders.setText("Search:");
+        lblSearchRiders.setText("Search:");
+
+        jTable3.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane3.setViewportView(jTable3);
+
+        javax.swing.GroupLayout pnlRidersLayout = new javax.swing.GroupLayout(pnlRiders);
+        pnlRiders.setLayout(pnlRidersLayout);
+        pnlRidersLayout.setHorizontalGroup(
+            pnlRidersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlRidersLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(pnlRidersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 755, Short.MAX_VALUE)
+                    .addGroup(pnlRidersLayout.createSequentialGroup()
+                        .addComponent(lblSearchRiders)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtSearchRiders, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
+        );
+        pnlRidersLayout.setVerticalGroup(
+            pnlRidersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlRidersLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(pnlRidersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblSearchRiders)
+                    .addComponent(txtSearchRiders, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(210, Short.MAX_VALUE))
+        );
+
+        tabAdminDashboard.addTab("Riders", pnlRiders);
 
         javax.swing.GroupLayout pnlOrdersLayout = new javax.swing.GroupLayout(pnlOrders);
         pnlOrders.setLayout(pnlOrdersLayout);
         pnlOrdersLayout.setHorizontalGroup(
             pnlOrdersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlOrdersLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(lblSearchOrders)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtSearchOrders, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(574, Short.MAX_VALUE))
+            .addGap(0, 775, Short.MAX_VALUE)
         );
         pnlOrdersLayout.setVerticalGroup(
             pnlOrdersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlOrdersLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(pnlOrdersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblSearchOrders)
-                    .addComponent(txtSearchOrders, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(441, Short.MAX_VALUE))
+            .addGap(0, 507, Short.MAX_VALUE)
         );
 
-        tabDashboard.addTab("Orders", pnlOrders);
-
-        lblSearchSales.setText("Search:");
+        tabAdminDashboard.addTab("Orders", pnlOrders);
 
         javax.swing.GroupLayout pnlSalesLayout = new javax.swing.GroupLayout(pnlSales);
         pnlSales.setLayout(pnlSalesLayout);
         pnlSalesLayout.setHorizontalGroup(
             pnlSalesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlSalesLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(lblSearchSales)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtSearchSales, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(574, Short.MAX_VALUE))
+            .addGap(0, 775, Short.MAX_VALUE)
         );
         pnlSalesLayout.setVerticalGroup(
             pnlSalesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlSalesLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(pnlSalesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblSearchSales)
-                    .addComponent(txtSearchSales, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(441, Short.MAX_VALUE))
+            .addGap(0, 507, Short.MAX_VALUE)
         );
 
-        tabDashboard.addTab("Sales", pnlSales);
-
-        lblSearchStaff.setText("Search:");
-
-        tblStaff.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
-            }
-        ));
-        jScrollPane2.setViewportView(tblStaff);
-
-        javax.swing.GroupLayout pnlStaffLayout = new javax.swing.GroupLayout(pnlStaff);
-        pnlStaff.setLayout(pnlStaffLayout);
-        pnlStaffLayout.setHorizontalGroup(
-            pnlStaffLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlStaffLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(pnlStaffLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(pnlStaffLayout.createSequentialGroup()
-                        .addComponent(lblSearchStaff)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtSearchStaff, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 755, Short.MAX_VALUE))
-                .addContainerGap())
-        );
-        pnlStaffLayout.setVerticalGroup(
-            pnlStaffLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlStaffLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(pnlStaffLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblSearchStaff)
-                    .addComponent(txtSearchStaff, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(75, Short.MAX_VALUE))
-        );
-
-        tabDashboard.addTab("Staff", pnlStaff);
+        tabAdminDashboard.addTab("Sales", pnlSales);
 
         lblSearchStock.setText("Search:");
 
-        tblStock.setModel(new javax.swing.table.DefaultTableModel(
+        jTable4.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -260,7 +245,7 @@ public class AdminDashboard extends javax.swing.JPanel {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane1.setViewportView(tblStock);
+        jScrollPane4.setViewportView(jTable4);
 
         javax.swing.GroupLayout pnlStockLayout = new javax.swing.GroupLayout(pnlStock);
         pnlStock.setLayout(pnlStockLayout);
@@ -269,7 +254,7 @@ public class AdminDashboard extends javax.swing.JPanel {
             .addGroup(pnlStockLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(pnlStockLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 755, Short.MAX_VALUE)
+                    .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 755, Short.MAX_VALUE)
                     .addGroup(pnlStockLayout.createSequentialGroup()
                         .addComponent(lblSearchStock)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -285,21 +270,21 @@ public class AdminDashboard extends javax.swing.JPanel {
                     .addComponent(lblSearchStock)
                     .addComponent(txtSearchStock, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(75, Short.MAX_VALUE))
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(210, Short.MAX_VALUE))
         );
 
-        tabDashboard.addTab("Stock", pnlStock);
+        tabAdminDashboard.addTab("Stock", pnlStock);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jSeparator1)
+            .addComponent(jSeparator1, javax.swing.GroupLayout.Alignment.TRAILING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(tabDashboard)
+                    .addComponent(tabAdminDashboard)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(lblCurrentTime)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -316,42 +301,74 @@ public class AdminDashboard extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(tabDashboard, javax.swing.GroupLayout.PREFERRED_SIZE, 500, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(tabAdminDashboard)
+                .addContainerGap())
         );
+
+        pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String args[]) {
+        /* Set the Nimbus look and feel */
+        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         */
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(AdminPage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(AdminPage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(AdminPage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(AdminPage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+        //</editor-fold>
+
+        /* Create and display the form */
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new AdminPage().setVisible(true);
+            }
+        });
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnSignOut;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JScrollPane jScrollPane5;
-    private javax.swing.JScrollPane jScrollPane6;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JTable jTable1;
+    private javax.swing.JTable jTable2;
+    private javax.swing.JTable jTable3;
+    private javax.swing.JTable jTable4;
     private javax.swing.JLabel lblCurrentTime;
     private javax.swing.JLabel lblSearchAdmin;
     private javax.swing.JLabel lblSearchCustomers;
-    private javax.swing.JLabel lblSearchOrders;
-    private javax.swing.JLabel lblSearchSales;
-    private javax.swing.JLabel lblSearchStaff;
+    private javax.swing.JLabel lblSearchRiders;
     private javax.swing.JLabel lblSearchStock;
-    private javax.swing.JPanel pnlAdmin;
+    private javax.swing.JPanel pnlAdmins;
     private javax.swing.JPanel pnlCustomers;
     private javax.swing.JPanel pnlOrders;
+    private javax.swing.JPanel pnlRiders;
     private javax.swing.JPanel pnlSales;
-    private javax.swing.JPanel pnlStaff;
     private javax.swing.JPanel pnlStock;
-    private javax.swing.JTabbedPane tabDashboard;
-    private javax.swing.JTable tblAdmins;
-    private javax.swing.JTable tblCustomers;
-    private javax.swing.JTable tblStaff;
-    private javax.swing.JTable tblStock;
+    private javax.swing.JTabbedPane tabAdminDashboard;
     private javax.swing.JTextField txtSearchAdmin;
     private javax.swing.JTextField txtSearchCustomers;
-    private javax.swing.JTextField txtSearchOrders;
-    private javax.swing.JTextField txtSearchSales;
-    private javax.swing.JTextField txtSearchStaff;
+    private javax.swing.JTextField txtSearchRiders;
     private javax.swing.JTextField txtSearchStock;
     // End of variables declaration//GEN-END:variables
 }
