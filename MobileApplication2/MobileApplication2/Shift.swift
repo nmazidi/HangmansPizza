@@ -107,4 +107,13 @@ class Shift {
     func addEarning(newEarning: Double) {
         self.totalEarned += newEarning
     }
+    func setAvailable() {
+        self.status = ShiftStatus.AVAILABLE.rawValue
+    }
+    func setUnavailable() {
+        self.status = ShiftStatus.UNAVAILABLE.rawValue
+    }
+    func setOffline() {
+        self.status = ShiftStatus.OFFLINE.rawValue
+    }
 }

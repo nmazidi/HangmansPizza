@@ -20,12 +20,13 @@ class LiveViewController: UIViewController, CLLocationManagerDelegate  {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        print(self.currentShift.getShiftID())
         manager.delegate = self
         manager.desiredAccuracy = kCLLocationAccuracyBest
         manager.requestWhenInUseAuthorization()
         manager.startUpdatingLocation()
-        
+        scheduledTimerWithTimeIntervalForLocation()
+        scheduledTimerWithTimeIntervalForNewJob()
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -51,25 +52,41 @@ class LiveViewController: UIViewController, CLLocationManagerDelegate  {
         map.addAnnotation(annotation)
         
         self.map.showsUserLocation = true
-        scheduledTimerWithTimeIntervalForLocation(location: location)
         
     }
-    func scheduledTimerWithTimeIntervalForLocation(location: CLLocation){
-        timer = Timer.scheduledTimer(timeInterval: 60, target: self, selector: #selector(self.storeRiderLocation), userInfo: location, repeats: true)
+    func scheduledTimerWithTimeIntervalForLocation(){
+        timer = Timer.scheduledTimer(timeInterval: 40, target: self, selector: #selector(self.storeRiderLocation), userInfo: nil, repeats: true)
     }
-    func scheduledTimerWithTimeIntervalForNewJob(location: CLLocation){
-        timer = Timer.scheduledTimer(timeInterval: 60, target: self, selector: #selector(self.getNewJob), userInfo: nil, repeats: true)
+    func scheduledTimerWithTimeIntervalForNewJob(){
+        timer = Timer.scheduledTimer(timeInterval: 20, target: self, selector: #selector(self.getNewJob), userInfo: nil, repeats: true)
     }
     
-    func storeRiderLocation(timer: Timer) {
-        let location = timer.userInfo as! CLLocation
-        let lat: Float = Float(location.coordinate.latitude)
-        let long: Float = Float(location.coordinate.longitude)
+    func storeRiderLocation() {
+        manager.stopUpdatingLocation()
+        let lat = Float((manager.location?.coordinate.latitude)!)
+        let long = Float((manager.location?.coordinate.longitude)!)
+
         print("Location: \(lat), \(long)")
+        self.currentShift.setLatitude(newLatitude: lat)
+        self.currentShift.setLongitude(newLongitude: long)
+        APICommunication.PUTRequest(path: "rider_activity", id: self.currentShift.getShiftID(), params: UtilityFunctions.getStringDictionaryFromObject(obj: self.currentShift)) { success in
+            self.manager.startUpdatingLocation()
+        }
         
     }
-    func getNewJob() {
-        
+    func getNewJob(){
+        APICommunication.GETRequest(path: "orders") { success in
+            if success.0 {
+                print("GET request successful? \(success.0)")
+                for item in success.1 {
+                    if item["ORDER_STATUS"] as! String == OrderStatus.READY.rawValue {
+                        
+                    }
+                }
+            } else {
+                print("there was an error getting orders")
+            }
+        }
     }
 
 }

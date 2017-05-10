@@ -75,7 +75,8 @@ class UtilityFunctions {
         updatedDict.updateKey(from: "shiftStart", to: "SHIFT_START")
         updatedDict.updateKey(from: "shiftEnd", to: "SHIFT_END")
         updatedDict.updateKey(from: "shiftLength", to: "SHIFT_LENGTH")
-        updatedDict.updateKey(from: "riderLocation", to: "LOCATION")
+        updatedDict.updateKey(from: "latitude", to: "LATITUDE")
+        updatedDict.updateKey(from: "longitude", to: "LONGITUDE")
         updatedDict.updateKey(from: "deliveriesMade", to: "DELIVERIES_MADE")
         updatedDict.updateKey(from: "status", to: "STATUS")
         updatedDict.updateKey(from: "totalEarned", to: "TOTAL_EARNED")
@@ -94,6 +95,9 @@ extension Mirror {
                     let propertyVal = "\(attr.value)"
                     dict[propertyName] = propertyVal
                 } else if attr.value is Double {
+                    let propertyVal = "\(attr.value)"
+                    dict[propertyName] = propertyVal
+                } else if attr.value is Float {
                     let propertyVal = "\(attr.value)"
                     dict[propertyName] = propertyVal
                 } else {

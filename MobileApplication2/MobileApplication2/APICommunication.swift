@@ -23,7 +23,7 @@ class APICommunication {
                 completionHandler(false, getData)
             } else {
                 do{
-                    getData = try JSONSerialization.jsonObject(with: data!, options: .allowFragments) as! [[String: AnyObject]]
+                    getData = [try JSONSerialization.jsonObject(with: data!, options: .allowFragments) as! Dictionary<String,AnyObject>]
                     completionHandler(true, getData)
                 } catch let error as NSError {
                     print(error)
@@ -82,7 +82,8 @@ class APICommunication {
         task.resume()
     }
     
-    static func POSTRequest(path: String, params: [String: String], completionHandler: @escaping (Bool,Int) -> ()) {
+    static func POSTRequest(path: String, params: [String: String], completionHandler: @escaping (Bool,Int,[[String: AnyObject]]) -> ()) {
+        var dataResponse = [[String: AnyObject]]()
         let url = URL(string: "http://xserve.uopnet.plymouth.ac.uk/Modules/INTPROJ/PRCS251Q/api/\(path)")
         var request = URLRequest(url: url! as URL)
         request.httpMethod = "POST"
@@ -96,11 +97,17 @@ class APICommunication {
                 print(error.debugDescription)
             } else {
                 let httpresponse = response as? HTTPURLResponse
+                do {
+                    dataResponse = [try JSONSerialization.jsonObject(with: data!, options: .allowFragments) as! Dictionary<String,AnyObject>]
+                } catch let error as NSError {
+                    print("json serialization error: \(error)")
+                }
                 print(httpresponse as Any)
+                
                 if (httpresponse?.statusCode)! >= 200 && (httpresponse?.statusCode)! < 300 {
-                    completionHandler(true, (httpresponse?.statusCode)!)
+                    completionHandler(true, (httpresponse?.statusCode)!, dataResponse)
                 } else {
-                    completionHandler(false, (httpresponse?.statusCode)!)
+                    completionHandler(false, (httpresponse?.statusCode)!, dataResponse)
                 }
             }
         }

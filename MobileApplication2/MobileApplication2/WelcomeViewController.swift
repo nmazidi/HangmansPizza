@@ -21,7 +21,7 @@ class WelcomeViewController: UIViewController {
     @IBOutlet weak var lblDeliveriesWeek: UILabel!
     
     @IBAction func btnGoLive(_ sender: Any) {
-        newShift = Shift(shiftID: 1, riderID: riderLoggedIn.getRiderID(), shiftStart: Date(), latitude: 0, longitude: 0, deliveriesMade: 0, status: "Available", totalEarned: 0)
+        newShift = Shift(shiftID: 1, riderID: riderLoggedIn.getRiderID(), shiftStart: Date(), latitude: 0, longitude: 0, deliveriesMade: 0, status: ShiftStatus.AVAILABLE.rawValue, totalEarned: 0)
         
         let alert = UIAlertController(title: nil, message: "Please wait, going online...", preferredStyle: .alert)
         let loadingIndicator = UIActivityIndicatorView(frame: CGRect(x: 10, y: 5, width: 50, height: 50))
@@ -37,6 +37,7 @@ class WelcomeViewController: UIViewController {
         APICommunication.POSTRequest(path: "rider_activity", params: UtilityFunctions.getStringDictionaryFromObject(obj: newShift)) { success in
             print("POST successful? \(success.0) with code: \(success.1)")
             if success.0 {
+                self.createShiftInstanceFromData(jsonData: success.2)
                 DispatchQueue.main.async {
                     alert.dismiss(animated: true) {
                         self.performSegue(withIdentifier: "GoLiveSegue", sender: self)
@@ -54,6 +55,15 @@ class WelcomeViewController: UIViewController {
             }
         }
     }
+    func createShiftInstanceFromData(jsonData: [[String: AnyObject]]) {
+        print(jsonData)
+        for item in jsonData {
+            
+            newShift = Shift(shiftID: item["SHIFT_ID"] as! Int, riderID: item["RIDER_ID"] as! Int, shiftStart: Date(), latitude: 0.0, longitude: 0.0, deliveriesMade: item["DELIVERIES_MADE"] as! Int, status: item["STATUS"] as! String, totalEarned: 0)
+            
+            print("Shift instance successfully created")
+        }
+    }
     @IBAction func btnSignOut(_ sender: Any) {
         DispatchQueue.main.async {
             self.performSegue(withIdentifier: "SignedOutSegue", sender: self)
@@ -64,7 +74,7 @@ class WelcomeViewController: UIViewController {
         DispatchQueue.main.async {
             self.lblWelcome.text = "Welcome \(self.riderLoggedIn.getForename())!"
         }
-        initStats()
+        //initStats()
     }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -113,7 +123,6 @@ class WelcomeViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "SignedOutSegue" {
             if let destination = segue.destination as? LoginViewController {
-                //Pass rider object to WelcomeViewController
                 destination.riderLoggedIn.resetRider()
             }
         } else if segue.identifier == "AccountSegue" {
