@@ -25,13 +25,13 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "MobileApplication2/APICommunication.swift"
-            timestampString = "516066464.020556"
+            filePath = "MobileApplication2/LiveViewController.swift"
+            timestampString = "516092338.02791"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "26"
-            endingLineNumber = "26"
-            landmarkName = "GETRequest(path:completionHandler:)"
+            startingLineNumber = "107"
+            endingLineNumber = "107"
+            landmarkName = "getNewJob()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

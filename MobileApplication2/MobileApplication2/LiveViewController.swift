@@ -13,6 +13,8 @@ import CoreLocation
 class LiveViewController: UIViewController, CLLocationManagerDelegate  {
     var riderLoggedIn = DeliveryRider()
     var currentShift = Shift()
+    var currentDelivery = Delivery()
+    var orderBeingDelivered = Order()
     var timer = Timer()
     
     @IBOutlet var map: MKMapView!
@@ -62,31 +64,82 @@ class LiveViewController: UIViewController, CLLocationManagerDelegate  {
     }
     
     func storeRiderLocation() {
-        manager.stopUpdatingLocation()
-        let lat = Float((manager.location?.coordinate.latitude)!)
-        let long = Float((manager.location?.coordinate.longitude)!)
-
-        print("Location: \(lat), \(long)")
-        self.currentShift.setLatitude(newLatitude: lat)
-        self.currentShift.setLongitude(newLongitude: long)
-        APICommunication.PUTRequest(path: "rider_activity", id: self.currentShift.getShiftID(), params: UtilityFunctions.getStringDictionaryFromObject(obj: self.currentShift)) { success in
-            self.manager.startUpdatingLocation()
-        }
-        
-    }
-    func getNewJob(){
-        APICommunication.GETRequest(path: "orders") { success in
-            if success.0 {
-                print("GET request successful? \(success.0)")
-                for item in success.1 {
-                    if item["ORDER_STATUS"] as! String == OrderStatus.READY.rawValue {
-                        
-                    }
-                }
-            } else {
-                print("there was an error getting orders")
+        DispatchQueue.global(qos: .background).async {
+            self.manager.stopUpdatingLocation()
+            let lat = Float((self.manager.location?.coordinate.latitude)!)
+            let long = Float((self.manager.location?.coordinate.longitude)!)
+            
+            print("Location: \(lat), \(long)")
+            self.currentShift.setLatitude(newLatitude: lat)
+            self.currentShift.setLongitude(newLongitude: long)
+            APICommunication.PUTRequest(path: "rider_activity", id: self.currentShift.getShiftID(), params: UtilityFunctions.getStringDictionaryFromObject(obj: self.currentShift)) { success in
+                self.manager.startUpdatingLocation()
             }
         }
+    }
+    func getNewJob(){
+        DispatchQueue.global(qos: .background).async {
+            APICommunication.GETRequest(path: "orders") { success in
+                if success.0 {
+                    print("GET request successful? \(success.0)")
+                    for item in success.1 {
+                        if item["ORDER_STATUS"] as! String == OrderStatus.READY.rawValue {
+                            let newJobAlert = UIAlertController(title: "New Job Available", message: "Do you want to take this delivery?", preferredStyle: .alert)
+                            let yesAction = UIAlertAction(title: "Yes", style: UIAlertActionStyle.default, handler: { action in
+                                let alert = UIAlertController(title: nil, message: "Accepting job. Please wait...", preferredStyle: .alert)
+                                let loadingIndicator = UIActivityIndicatorView(frame: CGRect(x: 10, y: 5, width: 50, height: 50))
+                                
+                                loadingIndicator.hidesWhenStopped = true
+                                loadingIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.gray
+                                loadingIndicator.startAnimating()
+                                
+                                alert.view.addSubview(loadingIndicator)
+                                DispatchQueue.main.async {
+                                    self.present(alert, animated: true, completion: nil)
+                                }
+                                self.currentDelivery = Delivery(deliveryID: 1, orderID: item["ORDER_ID"] as! Int, dateDelivered: Date(), deliveryNotes: "none", riderID: self.riderLoggedIn.getRiderID())
+                                APICommunication.POSTRequest(path: "deliveries", params: UtilityFunctions.getStringDictionaryFromObject(obj: self.currentDelivery)) { success in
+                                    if success.0 {
+                                        print("created new delivery. Code: \(success.1)")
+                                        for delivery in success.2 {
+                                            self.currentDelivery.setDeliveryID(newDeliveryID: delivery["DELIVERY_ID"] as! Int)
+                                        }
+                                        var addressID: Int
+                                        // TODO: ADD ADDRESS CLASS
+                                        APICommunication.GETRequestByID(path: "customers", id: item["CUSTOMER_ID"] as! Int) { success in
+                                            if success.0 {
+                                                print("read addresses successfully")
+                                                for cust in success.1 {
+                                                    addressID = cust["ADDRESS_ID"] as! Int
+                                                }
+                                                APICommunication.GETRequestByID(path: "addresses", id: addressID) { success in
+                                                    
+                                                }
+                                            } else {
+                                                print("Error getting customer")
+                                            }
+                                        }
+                                        orderBeingDelivered = Order(orderID: item["ORDER_ID"] as! Int, customerID: item["CUSTOMER_ID"] as! Int, datePlaced: item["DATE_PLACED"] as! Date, totalCost: item["TOTAL_COST"] as! Double, orderType: item["ORDER_TYPE"] as! String, notes: item["NOTES"] as! String, orderStatus: item["ORDER_STATUS"] as! String, addressLine1: customer[], addressLine2: <#T##String#>, postcode: <#T##String#>)
+                                        alert.dismiss(animated: true)
+                                    } else {
+                                        print("Error creating delivery. Code: \(success.1)")
+                                    }
+                                }
+                            })
+                            let noAction = UIAlertAction(title: "No", style: UIAlertActionStyle.default)
+                            newJobAlert.addAction(yesAction)
+                            newJobAlert.addAction(noAction)
+                            DispatchQueue.main.async {
+                                self.present(newJobAlert, animated: true, completion: nil)
+                            }
+                        }
+                    }
+                } else {
+                    print("there was an error getting orders")
+                }
+            }
+        }
+        
     }
 
 }

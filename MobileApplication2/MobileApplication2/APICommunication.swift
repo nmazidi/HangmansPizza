@@ -23,7 +23,7 @@ class APICommunication {
                 completionHandler(false, getData)
             } else {
                 do{
-                    getData = [try JSONSerialization.jsonObject(with: data!, options: .allowFragments) as! Dictionary<String,AnyObject>]
+                    getData = try JSONSerialization.jsonObject(with: data!, options: .allowFragments) as! [[String: AnyObject]]
                     completionHandler(true, getData)
                 } catch let error as NSError {
                     print(error)
