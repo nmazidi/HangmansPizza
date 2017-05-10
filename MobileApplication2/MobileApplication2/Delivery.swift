@@ -15,6 +15,7 @@ class Delivery {
     var deliveryNotes: String
     var riderID : Int
     
+    /// Default constructor of Delivery
     init() {
         self.deliveryID = 0
         self.orderID = 0
@@ -22,6 +23,14 @@ class Delivery {
         self.deliveryNotes = ""
         self.riderID = 0
     }
+    /// Constructor of a delivery
+    ///
+    /// - Parameters:
+    ///   - deliveryID: Delivery's ID
+    ///   - orderID: order's ID
+    ///   - dateDelivered: date that the delivery was completed
+    ///   - deliveryNotes: any notes that have been added by the customer or chefs
+    ///   - riderID: rider that is completing the delivery
     init(deliveryID: Int, orderID: Int, dateDelivered: Date, deliveryNotes: String, riderID : Int) {
         self.deliveryID = deliveryID
         self.orderID = orderID

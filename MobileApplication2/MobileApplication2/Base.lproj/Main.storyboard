@@ -738,6 +738,7 @@
                     </view>
                     <nil key="simulatedTopBarMetrics"/>
                     <connections>
+                        <outlet property="lblNoJobs" destination="9fI-OD-L0f" id="TVP-4d-LZI"/>
                         <outlet property="map" destination="geG-8B-nN1" id="4oq-fT-KH4"/>
                     </connections>
                 </viewController>

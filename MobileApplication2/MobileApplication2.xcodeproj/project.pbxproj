@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		752368A21EBE849A00E368CA /* Shift.swift in Sources */ = {isa = PBXBuildFile; fileRef = 752368A11EBE849A00E368CA /* Shift.swift */; };
+		7539B6201EC3647B0024A768 /* Address.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7539B61F1EC3647B0024A768 /* Address.swift */; };
 		755FFB0B1EC2D2580077B0B0 /* Delivery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 755FFB0A1EC2D2580077B0B0 /* Delivery.swift */; };
 		756366551EC250B600B1F9EB /* OrderType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 756366541EC250B600B1F9EB /* OrderType.swift */; };
 		756366581EC2511B00B1F9EB /* OrderStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 756366571EC2511B00B1F9EB /* OrderStatus.swift */; };
@@ -42,6 +43,7 @@
 
 /* Begin PBXFileReference section */
 		752368A11EBE849A00E368CA /* Shift.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Shift.swift; sourceTree = "<group>"; };
+		7539B61F1EC3647B0024A768 /* Address.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Address.swift; sourceTree = "<group>"; };
 		755FFB0A1EC2D2580077B0B0 /* Delivery.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Delivery.swift; sourceTree = "<group>"; };
 		756366541EC250B600B1F9EB /* OrderType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderType.swift; sourceTree = "<group>"; };
 		756366571EC2511B00B1F9EB /* OrderStatus.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderStatus.swift; sourceTree = "<group>"; };
@@ -139,6 +141,7 @@
 				75DAEA581EB8FCA10031C703 /* Person.swift */,
 				75E02AEA1EC23F3E00E28007 /* Order.swift */,
 				755FFB0A1EC2D2580077B0B0 /* Delivery.swift */,
+				7539B61F1EC3647B0024A768 /* Address.swift */,
 				75DAEA5C1EB906800031C703 /* UtilityFunctions.swift */,
 				756366561EC2510200B1F9EB /* Enumerations */,
 				75DAEA421EB8F90B0031C703 /* Info.plist */,
@@ -283,6 +286,7 @@
 				75DAEA591EB8FCA10031C703 /* APICommunication.swift in Sources */,
 				75DAEA371EB8F90B0031C703 /* AppDelegate.swift in Sources */,
 				75DAEA5F1EB9194F0031C703 /* WelcomeViewController.swift in Sources */,
+				7539B6201EC3647B0024A768 /* Address.swift in Sources */,
 				75E516841EBA45AA00CB0BD4 /* AccountViewController.swift in Sources */,
 				755FFB0B1EC2D2580077B0B0 /* Delivery.swift in Sources */,
 				756366581EC2511B00B1F9EB /* OrderStatus.swift in Sources */,

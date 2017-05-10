@@ -15,8 +15,11 @@ class LiveViewController: UIViewController, CLLocationManagerDelegate  {
     var currentShift = Shift()
     var currentDelivery = Delivery()
     var orderBeingDelivered = Order()
+    var addressToBeDeliveredTo = Address()
     var timer = Timer()
+    var distanceFromRestaurant: CLLocationDistance = 0;
     
+    @IBOutlet weak var lblNoJobs: UILabel!
     @IBOutlet var map: MKMapView!
     let manager = CLLocationManager()
 
@@ -70,6 +73,11 @@ class LiveViewController: UIViewController, CLLocationManagerDelegate  {
             let long = Float((self.manager.location?.coordinate.longitude)!)
             
             print("Location: \(lat), \(long)")
+            let restaurantLocation = CLLocation(latitude: 50.3075360, longitude: -4.140813)
+            let riderLocation = CLLocation(latitude: CLLocationDegrees(lat), longitude: CLLocationDegrees(long))
+            self.distanceFromRestaurant = riderLocation.distance(from: restaurantLocation)
+            print("Distance from restaurant: \(self.distanceFromRestaurant)")
+            
             self.currentShift.setLatitude(newLatitude: lat)
             self.currentShift.setLongitude(newLongitude: long)
             APICommunication.PUTRequest(path: "rider_activity", id: self.currentShift.getShiftID(), params: UtilityFunctions.getStringDictionaryFromObject(obj: self.currentShift)) { success in
@@ -79,7 +87,8 @@ class LiveViewController: UIViewController, CLLocationManagerDelegate  {
     }
     func getNewJob(){
         DispatchQueue.global(qos: .background).async {
-            APICommunication.GETRequest(path: "orders") { success in
+            if self.distanceFromRestaurant <= 1606 {
+                APICommunication.GETRequest(path: "orders") { success in
                 if success.0 {
                     print("GET request successful? \(success.0)")
                     for item in success.1 {
@@ -104,8 +113,7 @@ class LiveViewController: UIViewController, CLLocationManagerDelegate  {
                                         for delivery in success.2 {
                                             self.currentDelivery.setDeliveryID(newDeliveryID: delivery["DELIVERY_ID"] as! Int)
                                         }
-                                        var addressID: Int
-                                        // TODO: ADD ADDRESS CLASS
+                                        var addressID: Int = 0
                                         APICommunication.GETRequestByID(path: "customers", id: item["CUSTOMER_ID"] as! Int) { success in
                                             if success.0 {
                                                 print("read addresses successfully")
@@ -113,13 +121,20 @@ class LiveViewController: UIViewController, CLLocationManagerDelegate  {
                                                     addressID = cust["ADDRESS_ID"] as! Int
                                                 }
                                                 APICommunication.GETRequestByID(path: "addresses", id: addressID) { success in
-                                                    
+                                                    if success.0 {
+                                                        print("Getting address successful")
+                                                        for item in success.1 {
+                                                            self.addressToBeDeliveredTo = Address(addressID: addressID, addressLine1: item["ADDRESS_LINE_1"] as! String, addressLine2: item["ADDRESS_LINE_2"] as! String, town: item["TOWN"] as! String, postcode: item["POSTCODE"] as! String)
+                                                        }
+                                                    } else {
+                                                        print(" error getting address.")
+                                                    }
                                                 }
                                             } else {
                                                 print("Error getting customer")
                                             }
                                         }
-                                        orderBeingDelivered = Order(orderID: item["ORDER_ID"] as! Int, customerID: item["CUSTOMER_ID"] as! Int, datePlaced: item["DATE_PLACED"] as! Date, totalCost: item["TOTAL_COST"] as! Double, orderType: item["ORDER_TYPE"] as! String, notes: item["NOTES"] as! String, orderStatus: item["ORDER_STATUS"] as! String, addressLine1: customer[], addressLine2: <#T##String#>, postcode: <#T##String#>)
+                                        self.orderBeingDelivered = Order(orderID: item["ORDER_ID"] as! Int, customerID: item["CUSTOMER_ID"] as! Int, datePlaced: item["DATE_PLACED"] as! Date, totalCost: item["TOTAL_COST"] as! Double, orderType: item["ORDER_TYPE"] as! String, notes: item["NOTES"] as! String, orderStatus: item["ORDER_STATUS"] as! String, addressLine1: self.addressToBeDeliveredTo.getAddressLine1(), addressLine2: self.addressToBeDeliveredTo.getAddressLine2(), postcode: self.addressToBeDeliveredTo.getPostcode())
                                         alert.dismiss(animated: true)
                                     } else {
                                         print("Error creating delivery. Code: \(success.1)")
@@ -138,6 +153,8 @@ class LiveViewController: UIViewController, CLLocationManagerDelegate  {
                     print("there was an error getting orders")
                 }
             }
+            }
+            
         }
         
     }
