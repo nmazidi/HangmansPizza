@@ -22,7 +22,5 @@ namespace HangmansPizzaAPI
         public string DETAIL_3 { get; set; }
         public string DETAIL_4 { get; set; }
         public decimal TRANSACTION_VALUE { get; set; }
-    
-        public virtual ORDER ORDER { get; set; }
     }
 }

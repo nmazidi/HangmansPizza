@@ -20,7 +20,5 @@ namespace HangmansPizzaAPI
         public string UNIT_PRICE { get; set; }
         public string ITEM_SIZE { get; set; }
         public string ITEM_CRUSTTYPE { get; set; }
-    
-        public virtual ORDER ORDER { get; set; }
     }
 }

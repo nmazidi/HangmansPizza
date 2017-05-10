@@ -58,7 +58,6 @@
     <Property Name="DELIVERY_NOTES" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="RIDER_ID" Type="Int32" Nullable="false" />
     <Property Name="DELIVERY_STATUS" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
-    <NavigationProperty Name="ORDER" Relationship="Model.DELIVERY_FK" FromRole="DELIVERY" ToRole="ORDER" />
   </EntityType>
   <EntityType Name="DELIVERY_RIDER">
     <Key>
@@ -141,7 +140,6 @@
     <Property Name="UNIT_PRICE" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="ITEM_SIZE" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
     <Property Name="ITEM_CRUSTTYPE" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
-    <NavigationProperty Name="ORDER" Relationship="Model.ORDER_ITEM_FK2" FromRole="ORDER_ITEM" ToRole="ORDER" />
   </EntityType>
   <EntityType Name="PIZZA">
     <Key>
@@ -196,7 +194,6 @@
     <Property Name="DETAIL_3" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
     <Property Name="DETAIL_4" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
     <Property Name="TRANSACTION_VALUE" Type="Decimal" Precision="10" Scale="3" Nullable="false" />
-    <NavigationProperty Name="ORDER" Relationship="Model.TRANSACTION_FK" FromRole="TRANSACTION" ToRole="ORDER" />
   </EntityType>
   <Association Name="MENU_FK">
     <End Role="BRANCH" Type="Self.BRANCH" Multiplicity="1" />
@@ -538,7 +535,6 @@
     <Property Name="CUSTOMER_DOB" Type="DateTime" Nullable="false" />
     <Property Name="ADDRESS_ID" Type="Int32" Nullable="false" />
     <Property Name="PASSWORD_SALT" Type="String" MaxLength="64" FixedLength="false" Unicode="false" />
-    <NavigationProperty Name="ORDERS" Relationship="Model.ORDERS_FK" FromRole="CUSTOMER" ToRole="ORDER" />
   </EntityType>
   <Association Name="ADDRESS_FK">
     <End Type="Model.ADDRESS" Role="ADDRESS" Multiplicity="1" />
@@ -563,10 +559,6 @@
     <Property Name="ORDER_TYPE" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
     <Property Name="NOTES" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
     <Property Name="ORDER_STATUS" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
-    <NavigationProperty Name="CUSTOMER" Relationship="Model.ORDERS_FK" FromRole="ORDER" ToRole="CUSTOMER" />
-    <NavigationProperty Name="DELIVERies" Relationship="Model.DELIVERY_FK" FromRole="ORDER" ToRole="DELIVERY" />
-    <NavigationProperty Name="ORDER_ITEM" Relationship="Model.ORDER_ITEM_FK2" FromRole="ORDER" ToRole="ORDER_ITEM" />
-    <NavigationProperty Name="TRANSACTIONs" Relationship="Model.TRANSACTION_FK" FromRole="ORDER" ToRole="TRANSACTION" />
   </EntityType>
   <Association Name="ORDERS_FK">
     <End Type="Model.CUSTOMER" Role="CUSTOMER" Multiplicity="1" />
