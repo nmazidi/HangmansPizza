@@ -70,7 +70,7 @@
     <Property Name="VEHICLE_TYPE" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="RIDER_DOB" Type="DateTime" Nullable="false" />
     <Property Name="RIDER_TITLE" Type="String" MaxLength="5" FixedLength="false" Unicode="false" Nullable="false" />
-    <Property Name="PASSWORD_SALT" Type="String" MaxLength="64" FixedLength="false" Unicode="false" />
+    <Property Name="PASSWORD_SALT" Type="String" MaxLength="64" FixedLength="false" Unicode="false" Nullable="true" />
   </EntityType>
   <EntityType Name="DRINK">
     <Key>
@@ -144,10 +144,10 @@
     <Property Name="ORDER_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="CUSTOMER_ID" Type="Int32" Nullable="false" />
     <Property Name="DATE_PLACED" Type="DateTime" Nullable="false" />
-    <Property Name="DATE_REQUESTED" Type="DateTime" Nullable="false" />
     <Property Name="TOTAL_COST" Type="Decimal" Precision="10" Scale="3" Nullable="false" />
     <Property Name="ORDER_TYPE" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="NOTES" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="ORDER_STATUS" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
   </EntityType>
   <EntityType Name="PIZZA">
     <Key>
@@ -175,10 +175,11 @@
     <Property Name="SHIFT_START" Type="DateTime" />
     <Property Name="SHIFT_END" Type="DateTime" />
     <Property Name="SHIFT_LENGTH" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
-    <Property Name="LOCATION" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
     <Property Name="DELIVERIES_MADE" Type="Int16" />
     <Property Name="STATUS" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
     <Property Name="TOTAL_EARNED" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="LATITUDE" Type="Decimal" Precision="9" Scale="6" />
+    <Property Name="LONGITUDE" Type="Decimal" Precision="9" Scale="6" />
   </EntityType>
   <EntityType Name="SIDE">
     <Key>
@@ -463,11 +464,6 @@
       <End Role="ORDERS" EntitySet="ORDERS" />
       <End Role="TRANSACTION" EntitySet="TRANSACTIONs" />
     </AssociationSet>
-    <EntitySet Name="CUSTOMERs" EntityType="Model.CUSTOMER" />
-    <AssociationSet Name="ORDERS_FK" Association="Model.ORDERS_FK">
-      <End Role="CUSTOMER" EntitySet="CUSTOMERs" />
-      <End Role="ORDER" EntitySet="ORDERS" />
-    </AssociationSet>
     <AssociationSet Name="ADMIN_FK" Association="Model.ADMIN_FK">
       <End Role="BRANCH" EntitySet="BRANCHes" />
       <End Role="ADMIN" EntitySet="ADMINs" />
@@ -489,38 +485,16 @@
       <End Role="PIZZA_INGREDIENT" EntitySet="PIZZA_INGREDIENT" />
     </AssociationSet>
     <EntitySet Name="ADDRESSES" EntityType="Model.ADDRESS" />
+    <EntitySet Name="CUSTOMERs" EntityType="Model.CUSTOMER" />
     <AssociationSet Name="ADDRESS_FK" Association="Model.ADDRESS_FK">
       <End Role="ADDRESS" EntitySet="ADDRESSES" />
       <End Role="CUSTOMER" EntitySet="CUSTOMERs" />
     </AssociationSet>
+    <AssociationSet Name="ORDERS_FK" Association="Model.ORDERS_FK">
+      <End Role="CUSTOMER" EntitySet="CUSTOMERs" />
+      <End Role="ORDER" EntitySet="ORDERS" />
+    </AssociationSet>
   </EntityContainer>
-  <EntityType Name="CUSTOMER">
-    <Key>
-      <PropertyRef Name="CUSTOMER_ID" />
-    </Key>
-    <Property Name="CUSTOMER_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="CUSTOMER_TITLE" Type="String" Nullable="false" MaxLength="5" FixedLength="false" Unicode="false" />
-    <Property Name="CUSTOMER_FORENAME" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
-    <Property Name="CUSTOMER_SURNAME" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
-    <Property Name="CUSTOMER_EMAIL" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-    <Property Name="CUSTOMER_PHONE" Type="String" Nullable="false" MaxLength="11" FixedLength="false" Unicode="false" />
-    <Property Name="CUSTOMER_PASSWORD" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="false" />
-    <Property Name="CUSTOMER_DOB" Type="DateTime" Nullable="false" />
-    <Property Name="ADDRESS_ID" Type="Int32" Nullable="false" />
-    <Property Name="PASSWORD_SALT" Type="String" MaxLength="64" FixedLength="false" Unicode="false" />
-  </EntityType>
-  <Association Name="ORDERS_FK">
-    <End Type="Model.CUSTOMER" Role="CUSTOMER" Multiplicity="1" />
-    <End Type="Model.ORDER" Role="ORDER" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="CUSTOMER">
-        <PropertyRef Name="CUSTOMER_ID" />
-      </Principal>
-      <Dependent Role="ORDER">
-        <PropertyRef Name="CUSTOMER_ID" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Association Name="ADMIN_FK">
     <End Type="Model.BRANCH" Role="BRANCH" Multiplicity="1" />
     <End Type="Model.ADMIN" Role="ADMIN" Multiplicity="*" />
@@ -591,6 +565,21 @@
     <Property Name="TOWN" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
     <Property Name="POSTCODE" Type="String" Nullable="false" MaxLength="7" FixedLength="false" Unicode="false" />
   </EntityType>
+  <EntityType Name="CUSTOMER">
+    <Key>
+      <PropertyRef Name="CUSTOMER_ID" />
+    </Key>
+    <Property Name="CUSTOMER_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CUSTOMER_TITLE" Type="String" Nullable="false" MaxLength="5" FixedLength="false" Unicode="false" />
+    <Property Name="CUSTOMER_FORENAME" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="CUSTOMER_SURNAME" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="CUSTOMER_EMAIL" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="CUSTOMER_PHONE" Type="String" Nullable="false" MaxLength="11" FixedLength="false" Unicode="false" />
+    <Property Name="CUSTOMER_PASSWORD" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="false" />
+    <Property Name="CUSTOMER_DOB" Type="DateTime" Nullable="false" />
+    <Property Name="ADDRESS_ID" Type="Int32" Nullable="false" />
+    <Property Name="PASSWORD_SALT" Type="String" MaxLength="64" FixedLength="false" Unicode="false" />
+  </EntityType>
   <Association Name="ADDRESS_FK">
     <End Type="Model.ADDRESS" Role="ADDRESS" Multiplicity="1" />
     <End Type="Model.CUSTOMER" Role="CUSTOMER" Multiplicity="*" />
@@ -600,6 +589,18 @@
       </Principal>
       <Dependent Role="CUSTOMER">
         <PropertyRef Name="ADDRESS_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="ORDERS_FK">
+    <End Type="Model.CUSTOMER" Role="CUSTOMER" Multiplicity="1" />
+    <End Type="Model.ORDER" Role="ORDER" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CUSTOMER">
+        <PropertyRef Name="CUSTOMER_ID" />
+      </Principal>
+      <Dependent Role="ORDER">
+        <PropertyRef Name="CUSTOMER_ID" />
       </Dependent>
     </ReferentialConstraint>
   </Association>

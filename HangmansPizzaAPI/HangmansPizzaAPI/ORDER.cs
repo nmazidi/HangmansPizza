@@ -17,9 +17,9 @@ namespace HangmansPizzaAPI
         public int ORDER_ID { get; set; }
         public int CUSTOMER_ID { get; set; }
         public System.DateTime DATE_PLACED { get; set; }
-        public System.DateTime DATE_REQUESTED { get; set; }
         public decimal TOTAL_COST { get; set; }
         public string ORDER_TYPE { get; set; }
         public string NOTES { get; set; }
+        public string ORDER_STATUS { get; set; }
     }
 }

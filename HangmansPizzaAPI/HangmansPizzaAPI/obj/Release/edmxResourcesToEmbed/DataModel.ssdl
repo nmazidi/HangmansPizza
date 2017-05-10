@@ -169,10 +169,10 @@
     <Property Name="ORDER_ID" Type="number" Precision="10" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="CUSTOMER_ID" Type="number" Precision="10" Scale="0" Nullable="false" />
     <Property Name="DATE_PLACED" Type="date" Nullable="false" />
-    <Property Name="DATE_REQUESTED" Type="date" Nullable="false" />
     <Property Name="TOTAL_COST" Type="number" Precision="10" Scale="3" Nullable="false" />
     <Property Name="ORDER_TYPE" Type="varchar2" MaxLength="20" Nullable="false" />
     <Property Name="NOTES" Type="varchar2" MaxLength="100" />
+    <Property Name="ORDER_STATUS" Type="varchar2" MaxLength="20" />
   </EntityType>
   <EntityType Name="PIZZA">
     <Key>
@@ -200,10 +200,11 @@
     <Property Name="SHIFT_START" Type="date" />
     <Property Name="SHIFT_END" Type="date" />
     <Property Name="SHIFT_LENGTH" Type="varchar2" MaxLength="20" />
-    <Property Name="LOCATION" Type="varchar2" MaxLength="100" />
+    <Property Name="LATITUDE" Type="number" Precision="9" Scale="6" />
     <Property Name="DELIVERIES_MADE" Type="number" Precision="4" Scale="0" />
     <Property Name="STATUS" Type="varchar2" MaxLength="100" />
     <Property Name="TOTAL_EARNED" Type="varchar2" MaxLength="10" Nullable="false" />
+    <Property Name="LONGITUDE" Type="number" Precision="9" Scale="6" />
   </EntityType>
   <EntityType Name="SIDE">
     <Key>

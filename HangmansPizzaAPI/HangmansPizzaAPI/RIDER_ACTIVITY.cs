@@ -19,9 +19,10 @@ namespace HangmansPizzaAPI
         public Nullable<System.DateTime> SHIFT_START { get; set; }
         public Nullable<System.DateTime> SHIFT_END { get; set; }
         public string SHIFT_LENGTH { get; set; }
-        public string LOCATION { get; set; }
         public Nullable<short> DELIVERIES_MADE { get; set; }
         public string STATUS { get; set; }
         public string TOTAL_EARNED { get; set; }
+        public Nullable<decimal> LATITUDE { get; set; }
+        public Nullable<decimal> LONGITUDE { get; set; }
     }
 }

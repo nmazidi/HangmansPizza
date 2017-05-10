@@ -151,10 +151,10 @@
     <EntitySetMapping Name="ORDERS">
       <EntityTypeMapping TypeName="Model.ORDER">
         <MappingFragment StoreEntitySet="ORDERS">
+          <ScalarProperty Name="ORDER_STATUS" ColumnName="ORDER_STATUS" />
           <ScalarProperty Name="ORDER_ID" ColumnName="ORDER_ID" />
           <ScalarProperty Name="CUSTOMER_ID" ColumnName="CUSTOMER_ID" />
           <ScalarProperty Name="DATE_PLACED" ColumnName="DATE_PLACED" />
-          <ScalarProperty Name="DATE_REQUESTED" ColumnName="DATE_REQUESTED" />
           <ScalarProperty Name="TOTAL_COST" ColumnName="TOTAL_COST" />
           <ScalarProperty Name="ORDER_TYPE" ColumnName="ORDER_TYPE" />
           <ScalarProperty Name="NOTES" ColumnName="NOTES" />
@@ -182,12 +182,13 @@
     <EntitySetMapping Name="RIDER_ACTIVITY">
       <EntityTypeMapping TypeName="Model.RIDER_ACTIVITY">
         <MappingFragment StoreEntitySet="RIDER_ACTIVITY">
+          <ScalarProperty Name="LONGITUDE" ColumnName="LONGITUDE" />
+          <ScalarProperty Name="LATITUDE" ColumnName="LATITUDE" />
           <ScalarProperty Name="SHIFT_ID" ColumnName="SHIFT_ID" />
           <ScalarProperty Name="RIDER_ID" ColumnName="RIDER_ID" />
           <ScalarProperty Name="SHIFT_START" ColumnName="SHIFT_START" />
           <ScalarProperty Name="SHIFT_END" ColumnName="SHIFT_END" />
           <ScalarProperty Name="SHIFT_LENGTH" ColumnName="SHIFT_LENGTH" />
-          <ScalarProperty Name="LOCATION" ColumnName="LOCATION" />
           <ScalarProperty Name="DELIVERIES_MADE" ColumnName="DELIVERIES_MADE" />
           <ScalarProperty Name="STATUS" ColumnName="STATUS" />
           <ScalarProperty Name="TOTAL_EARNED" ColumnName="TOTAL_EARNED" />
@@ -218,6 +219,17 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="ADDRESSES">
+      <EntityTypeMapping TypeName="Model.ADDRESS">
+        <MappingFragment StoreEntitySet="ADDRESSES">
+          <ScalarProperty Name="POSTCODE" ColumnName="POSTCODE" />
+          <ScalarProperty Name="TOWN" ColumnName="TOWN" />
+          <ScalarProperty Name="ADDRESS_LINE_2" ColumnName="ADDRESS_LINE_2" />
+          <ScalarProperty Name="ADDRESS_LINE_1" ColumnName="ADDRESS_LINE_1" />
+          <ScalarProperty Name="ADDRESS_ID" ColumnName="ADDRESS_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <EntitySetMapping Name="CUSTOMERs">
       <EntityTypeMapping TypeName="Model.CUSTOMER">
         <MappingFragment StoreEntitySet="CUSTOMER">
@@ -231,17 +243,6 @@
           <ScalarProperty Name="CUSTOMER_FORENAME" ColumnName="CUSTOMER_FORENAME" />
           <ScalarProperty Name="CUSTOMER_TITLE" ColumnName="CUSTOMER_TITLE" />
           <ScalarProperty Name="CUSTOMER_ID" ColumnName="CUSTOMER_ID" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="ADDRESSES">
-      <EntityTypeMapping TypeName="Model.ADDRESS">
-        <MappingFragment StoreEntitySet="ADDRESSES">
-          <ScalarProperty Name="POSTCODE" ColumnName="POSTCODE" />
-          <ScalarProperty Name="TOWN" ColumnName="TOWN" />
-          <ScalarProperty Name="ADDRESS_LINE_2" ColumnName="ADDRESS_LINE_2" />
-          <ScalarProperty Name="ADDRESS_LINE_1" ColumnName="ADDRESS_LINE_1" />
-          <ScalarProperty Name="ADDRESS_ID" ColumnName="ADDRESS_ID" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

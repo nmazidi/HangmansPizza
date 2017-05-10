@@ -21,15 +21,17 @@ namespace HangmansPizzaAPI.Controllers
         {
             var hashedPassword = "";
             var saltedPassword = "";
-            var salt  = "";
-            
-            if (saltFromDB != null)
+            var salt = "";
+
+            if (saltFromDB != "test")
             {
                 salt = saltFromDB;
-            } else {
+            }
+            else
+            {
                 salt = Crypto.GenerateSalt();
             }
-            
+
             saltedPassword = unhashedPassword + salt;
             hashedPassword = Crypto.SHA256(saltedPassword);
             string[] arrayToReturn = { hashedPassword, salt };
@@ -80,6 +82,7 @@ namespace HangmansPizzaAPI.Controllers
             else {
                 var temp = db.CUSTOMERs.Find(id);
                 cUSTOMER.CUSTOMER_PASSWORD = temp.CUSTOMER_PASSWORD;
+                cUSTOMER.PASSWORD_SALT = temp.PASSWORD_SALT;
             }
             
             if (!ModelState.IsValid)

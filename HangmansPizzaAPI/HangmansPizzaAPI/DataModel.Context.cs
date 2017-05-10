@@ -45,7 +45,7 @@ namespace HangmansPizzaAPI
         public virtual DbSet<RIDER_ACTIVITY> RIDER_ACTIVITY { get; set; }
         public virtual DbSet<SIDE> SIDEs { get; set; }
         public virtual DbSet<TRANSACTION> TRANSACTIONs { get; set; }
-        public virtual DbSet<CUSTOMER> CUSTOMERs { get; set; }
         public virtual DbSet<ADDRESS> ADDRESSES { get; set; }
+        public virtual DbSet<CUSTOMER> CUSTOMERs { get; set; }
     }
 }
