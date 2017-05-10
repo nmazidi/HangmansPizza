@@ -14,6 +14,12 @@ namespace HangmansPizzaAPI
     
     public partial class CUSTOMER
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public CUSTOMER()
+        {
+            this.ORDERS = new HashSet<ORDER>();
+        }
+    
         public int CUSTOMER_ID { get; set; }
         public string CUSTOMER_TITLE { get; set; }
         public string CUSTOMER_FORENAME { get; set; }
@@ -24,5 +30,8 @@ namespace HangmansPizzaAPI
         public System.DateTime CUSTOMER_DOB { get; set; }
         public int ADDRESS_ID { get; set; }
         public string PASSWORD_SALT { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<ORDER> ORDERS { get; set; }
     }
 }

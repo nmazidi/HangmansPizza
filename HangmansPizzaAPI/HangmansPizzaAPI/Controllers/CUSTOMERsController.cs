@@ -38,16 +38,7 @@ namespace HangmansPizzaAPI.Controllers
 
             return arrayToReturn;
         }
-        public JsonResult jsonReturn(CUSTOMER cust)
-        {
-            var result = new JsonResult();
-            result.Data = new
-            {
-                cust
-            };
-            result.JsonRequestBehavior = JsonRequestBehavior.AllowGet;
-            return result;
-        }
+
         private Entities db = new Entities();
 
         // GET: api/CUSTOMERs
@@ -143,6 +134,7 @@ namespace HangmansPizzaAPI.Controllers
  
             return CreatedAtRoute("DefaultApi", new { id = cUSTOMER.CUSTOMER_ID }, cUSTOMER);
         }
+        
         // POST: api/CUSTOMERs
         [ResponseType(typeof(CUSTOMER))]
         public IHttpActionResult LoginCUSTOMER(string login, LoginDetails loginDetails)
@@ -155,13 +147,13 @@ namespace HangmansPizzaAPI.Controllers
             {
                 try
                 {
-                    CUSTOMER customer = db.CUSTOMERs.Single(p => p.CUSTOMER_EMAIL == loginDetails.email); 
+                    CUSTOMER customer = db.CUSTOMERs.Single(p => p.CUSTOMER_EMAIL == loginDetails.email);
                     int custID = customer.CUSTOMER_ID;
                     var cUSTOMER = db.CUSTOMERs.Find(custID);
-                
-                try
-                {
-                    var hashedPassword = HashFunction(loginDetails.password, cUSTOMER.PASSWORD_SALT)[0];
+
+                    try
+                    {
+                        var hashedPassword = HashFunction(loginDetails.password, cUSTOMER.PASSWORD_SALT)[0];
                         if (hashedPassword == cUSTOMER.CUSTOMER_PASSWORD)
                         {
                             return Content(HttpStatusCode.Accepted, cUSTOMER);
@@ -170,19 +162,20 @@ namespace HangmansPizzaAPI.Controllers
                         {
                             return StatusCode(HttpStatusCode.Unauthorized);
                         }
+                    }
+                    catch (Exception e)
+                    {
+                        return StatusCode(HttpStatusCode.Forbidden);
+                    }
                 }
                 catch (Exception e)
                 {
                     return StatusCode(HttpStatusCode.Forbidden);
                 }
-                }
-                catch (Exception e)
-                {
-                    return StatusCode(HttpStatusCode.NotAcceptable);
-                }
             }
             return InternalServerError();
         }
+        
         // DELETE: api/CUSTOMERs/5
         [ResponseType(typeof(CUSTOMER))]
         public IHttpActionResult DeleteCUSTOMER(int id)

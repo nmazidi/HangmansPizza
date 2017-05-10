@@ -19,5 +19,8 @@ namespace HangmansPizzaAPI
         public System.DateTime DATE_DELIVERED { get; set; }
         public string DELIVERY_NOTES { get; set; }
         public int RIDER_ID { get; set; }
+        public string DELIVERY_STATUS { get; set; }
+    
+        public virtual ORDER ORDER { get; set; }
     }
 }

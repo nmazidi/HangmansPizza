@@ -19,7 +19,8 @@
     <Property Name="FORENAME" Type="varchar2" MaxLength="50" Nullable="false" />
     <Property Name="SURNAME" Type="varchar2" MaxLength="50" Nullable="false" />
     <Property Name="USERNAME" Type="varchar2" MaxLength="50" Nullable="false" />
-    <Property Name="PASSWORD" Type="varchar2" MaxLength="50" Nullable="false" />
+    <Property Name="PASSWORD" Type="varchar2" MaxLength="256" Nullable="false" />
+    <Property Name="PASSWORD_SALT" Type="varchar2" MaxLength="64" />
   </EntityType>
   <EntityType Name="BRANCH">
     <Key>
@@ -81,6 +82,7 @@
     <Property Name="DATE_DELIVERED" Type="date" Nullable="false" />
     <Property Name="DELIVERY_NOTES" Type="varchar2" MaxLength="100" Nullable="false" />
     <Property Name="RIDER_ID" Type="number" Precision="10" Scale="0" Nullable="false" />
+    <Property Name="DELIVERY_STATUS" Type="varchar2" MaxLength="20" Nullable="false" />
   </EntityType>
   <EntityType Name="DELIVERY_RIDER">
     <Key>
@@ -161,6 +163,8 @@
     <Property Name="ORDER_ID" Type="number" Precision="10" Scale="0" Nullable="false" />
     <Property Name="QUANTITY" Type="number" Precision="10" Scale="0" Nullable="false" />
     <Property Name="UNIT_PRICE" Type="varchar2" MaxLength="20" Nullable="false" />
+    <Property Name="ITEM_SIZE" Type="varchar2" MaxLength="20" />
+    <Property Name="ITEM_CRUSTTYPE" Type="varchar2" MaxLength="20" />
   </EntityType>
   <EntityType Name="ORDERS">
     <Key>
@@ -171,8 +175,8 @@
     <Property Name="DATE_PLACED" Type="date" Nullable="false" />
     <Property Name="TOTAL_COST" Type="number" Precision="10" Scale="3" Nullable="false" />
     <Property Name="ORDER_TYPE" Type="varchar2" MaxLength="20" Nullable="false" />
-    <Property Name="NOTES" Type="varchar2" MaxLength="100" />
-    <Property Name="ORDER_STATUS" Type="varchar2" MaxLength="20" />
+    <Property Name="NOTES" Type="varchar2" MaxLength="100" Nullable="false" />
+    <Property Name="ORDER_STATUS" Type="varchar2" MaxLength="20" Nullable="false" />
   </EntityType>
   <EntityType Name="PIZZA">
     <Key>

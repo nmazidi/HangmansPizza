@@ -10,6 +10,7 @@
     <Property Name="SURNAME" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="USERNAME" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="PASSWORD" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="PASSWORD_SALT" Type="String" MaxLength="64" FixedLength="false" Unicode="false" />
   </EntityType>
   <EntityType Name="BRANCH">
     <Key>
@@ -56,6 +57,8 @@
     <Property Name="DATE_DELIVERED" Type="DateTime" Nullable="false" />
     <Property Name="DELIVERY_NOTES" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="RIDER_ID" Type="Int32" Nullable="false" />
+    <Property Name="DELIVERY_STATUS" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="ORDER" Relationship="Model.DELIVERY_FK" FromRole="DELIVERY" ToRole="ORDER" />
   </EntityType>
   <EntityType Name="DELIVERY_RIDER">
     <Key>
@@ -136,18 +139,9 @@
     <Property Name="ORDER_ID" Type="Int32" Nullable="false" />
     <Property Name="QUANTITY" Type="Int32" Nullable="false" />
     <Property Name="UNIT_PRICE" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
-  </EntityType>
-  <EntityType Name="ORDER">
-    <Key>
-      <PropertyRef Name="ORDER_ID" />
-    </Key>
-    <Property Name="ORDER_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="CUSTOMER_ID" Type="Int32" Nullable="false" />
-    <Property Name="DATE_PLACED" Type="DateTime" Nullable="false" />
-    <Property Name="TOTAL_COST" Type="Decimal" Precision="10" Scale="3" Nullable="false" />
-    <Property Name="ORDER_TYPE" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
-    <Property Name="NOTES" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-    <Property Name="ORDER_STATUS" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="ITEM_SIZE" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="ITEM_CRUSTTYPE" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="ORDER" Relationship="Model.ORDER_ITEM_FK2" FromRole="ORDER_ITEM" ToRole="ORDER" />
   </EntityType>
   <EntityType Name="PIZZA">
     <Key>
@@ -202,6 +196,7 @@
     <Property Name="DETAIL_3" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
     <Property Name="DETAIL_4" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
     <Property Name="TRANSACTION_VALUE" Type="Decimal" Precision="10" Scale="3" Nullable="false" />
+    <NavigationProperty Name="ORDER" Relationship="Model.TRANSACTION_FK" FromRole="TRANSACTION" ToRole="ORDER" />
   </EntityType>
   <Association Name="MENU_FK">
     <End Role="BRANCH" Type="Self.BRANCH" Multiplicity="1" />
@@ -236,18 +231,6 @@
       </Principal>
       <Dependent Role="DEAL_ITEM">
         <PropertyRef Name="ITEM_ID" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="DELIVERY_FK">
-    <End Role="ORDERS" Type="Self.ORDER" Multiplicity="1" />
-    <End Role="DELIVERY" Type="Self.DELIVERY" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="ORDERS">
-        <PropertyRef Name="ORDER_ID" />
-      </Principal>
-      <Dependent Role="DELIVERY">
-        <PropertyRef Name="ORDER_ID" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -359,30 +342,6 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="ORDER_ITEM_FK2">
-    <End Role="ORDERS" Type="Self.ORDER" Multiplicity="1" />
-    <End Role="ORDER_ITEM" Type="Self.ORDER_ITEM" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="ORDERS">
-        <PropertyRef Name="ORDER_ID" />
-      </Principal>
-      <Dependent Role="ORDER_ITEM">
-        <PropertyRef Name="ORDER_ID" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="TRANSACTION_FK">
-    <End Role="ORDERS" Type="Self.ORDER" Multiplicity="1" />
-    <End Role="TRANSACTION" Type="Self.TRANSACTION" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="ORDERS">
-        <PropertyRef Name="ORDER_ID" />
-      </Principal>
-      <Dependent Role="TRANSACTION">
-        <PropertyRef Name="ORDER_ID" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="true">
     <EntitySet Name="ADMINs" EntityType="Self.ADMIN" />
     <EntitySet Name="BRANCHes" EntityType="Self.BRANCH" />
@@ -398,7 +357,6 @@
     <EntitySet Name="MENUs" EntityType="Self.MENU" />
     <EntitySet Name="MENU_ITEM" EntityType="Self.MENU_ITEM" />
     <EntitySet Name="ORDER_ITEM" EntityType="Self.ORDER_ITEM" />
-    <EntitySet Name="ORDERS" EntityType="Self.ORDER" />
     <EntitySet Name="PIZZAs" EntityType="Self.PIZZA" />
     <EntitySet Name="PIZZA_INGREDIENT" EntityType="Self.PIZZA_INGREDIENT" />
     <EntitySet Name="RIDER_ACTIVITY" EntityType="Self.RIDER_ACTIVITY" />
@@ -415,10 +373,6 @@
     <AssociationSet Name="DEAL_ITEM_FK2" Association="Self.DEAL_ITEM_FK2">
       <End Role="ITEM" EntitySet="ITEMs" />
       <End Role="DEAL_ITEM" EntitySet="DEAL_ITEM" />
-    </AssociationSet>
-    <AssociationSet Name="DELIVERY_FK" Association="Self.DELIVERY_FK">
-      <End Role="ORDERS" EntitySet="ORDERS" />
-      <End Role="DELIVERY" EntitySet="DELIVERies" />
     </AssociationSet>
     <AssociationSet Name="DELIVERY_RIDER_FK" Association="Self.DELIVERY_RIDER_FK">
       <End Role="DELIVERY_RIDER" EntitySet="DELIVERY_RIDER" />
@@ -456,14 +410,6 @@
       <End Role="MENU" EntitySet="MENUs" />
       <End Role="MENU_ITEM" EntitySet="MENU_ITEM" />
     </AssociationSet>
-    <AssociationSet Name="ORDER_ITEM_FK2" Association="Self.ORDER_ITEM_FK2">
-      <End Role="ORDERS" EntitySet="ORDERS" />
-      <End Role="ORDER_ITEM" EntitySet="ORDER_ITEM" />
-    </AssociationSet>
-    <AssociationSet Name="TRANSACTION_FK" Association="Self.TRANSACTION_FK">
-      <End Role="ORDERS" EntitySet="ORDERS" />
-      <End Role="TRANSACTION" EntitySet="TRANSACTIONs" />
-    </AssociationSet>
     <AssociationSet Name="ADMIN_FK" Association="Model.ADMIN_FK">
       <End Role="BRANCH" EntitySet="BRANCHes" />
       <End Role="ADMIN" EntitySet="ADMINs" />
@@ -490,9 +436,22 @@
       <End Role="ADDRESS" EntitySet="ADDRESSES" />
       <End Role="CUSTOMER" EntitySet="CUSTOMERs" />
     </AssociationSet>
+    <EntitySet Name="ORDERS" EntityType="Model.ORDER" />
     <AssociationSet Name="ORDERS_FK" Association="Model.ORDERS_FK">
       <End Role="CUSTOMER" EntitySet="CUSTOMERs" />
       <End Role="ORDER" EntitySet="ORDERS" />
+    </AssociationSet>
+    <AssociationSet Name="DELIVERY_FK" Association="Model.DELIVERY_FK">
+      <End Role="ORDER" EntitySet="ORDERS" />
+      <End Role="DELIVERY" EntitySet="DELIVERies" />
+    </AssociationSet>
+    <AssociationSet Name="ORDER_ITEM_FK2" Association="Model.ORDER_ITEM_FK2">
+      <End Role="ORDER" EntitySet="ORDERS" />
+      <End Role="ORDER_ITEM" EntitySet="ORDER_ITEM" />
+    </AssociationSet>
+    <AssociationSet Name="TRANSACTION_FK" Association="Model.TRANSACTION_FK">
+      <End Role="ORDER" EntitySet="ORDERS" />
+      <End Role="TRANSACTION" EntitySet="TRANSACTIONs" />
     </AssociationSet>
   </EntityContainer>
   <Association Name="ADMIN_FK">
@@ -579,6 +538,7 @@
     <Property Name="CUSTOMER_DOB" Type="DateTime" Nullable="false" />
     <Property Name="ADDRESS_ID" Type="Int32" Nullable="false" />
     <Property Name="PASSWORD_SALT" Type="String" MaxLength="64" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="ORDERS" Relationship="Model.ORDERS_FK" FromRole="CUSTOMER" ToRole="ORDER" />
   </EntityType>
   <Association Name="ADDRESS_FK">
     <End Type="Model.ADDRESS" Role="ADDRESS" Multiplicity="1" />
@@ -592,6 +552,22 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <EntityType Name="ORDER">
+    <Key>
+      <PropertyRef Name="ORDER_ID" />
+    </Key>
+    <Property Name="ORDER_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CUSTOMER_ID" Type="Int32" Nullable="false" />
+    <Property Name="DATE_PLACED" Type="DateTime" Nullable="false" />
+    <Property Name="TOTAL_COST" Type="Decimal" Nullable="false" Precision="10" Scale="3" />
+    <Property Name="ORDER_TYPE" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="NOTES" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="ORDER_STATUS" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="CUSTOMER" Relationship="Model.ORDERS_FK" FromRole="ORDER" ToRole="CUSTOMER" />
+    <NavigationProperty Name="DELIVERies" Relationship="Model.DELIVERY_FK" FromRole="ORDER" ToRole="DELIVERY" />
+    <NavigationProperty Name="ORDER_ITEM" Relationship="Model.ORDER_ITEM_FK2" FromRole="ORDER" ToRole="ORDER_ITEM" />
+    <NavigationProperty Name="TRANSACTIONs" Relationship="Model.TRANSACTION_FK" FromRole="ORDER" ToRole="TRANSACTION" />
+  </EntityType>
   <Association Name="ORDERS_FK">
     <End Type="Model.CUSTOMER" Role="CUSTOMER" Multiplicity="1" />
     <End Type="Model.ORDER" Role="ORDER" Multiplicity="*" />
@@ -601,6 +577,42 @@
       </Principal>
       <Dependent Role="ORDER">
         <PropertyRef Name="CUSTOMER_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="DELIVERY_FK">
+    <End Type="Model.ORDER" Role="ORDER" Multiplicity="1" />
+    <End Type="Model.DELIVERY" Role="DELIVERY" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ORDER">
+        <PropertyRef Name="ORDER_ID" />
+      </Principal>
+      <Dependent Role="DELIVERY">
+        <PropertyRef Name="ORDER_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="ORDER_ITEM_FK2">
+    <End Type="Model.ORDER" Role="ORDER" Multiplicity="1" />
+    <End Type="Model.ORDER_ITEM" Role="ORDER_ITEM" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ORDER">
+        <PropertyRef Name="ORDER_ID" />
+      </Principal>
+      <Dependent Role="ORDER_ITEM">
+        <PropertyRef Name="ORDER_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="TRANSACTION_FK">
+    <End Type="Model.ORDER" Role="ORDER" Multiplicity="1" />
+    <End Type="Model.TRANSACTION" Role="TRANSACTION" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ORDER">
+        <PropertyRef Name="ORDER_ID" />
+      </Principal>
+      <Dependent Role="TRANSACTION">
+        <PropertyRef Name="ORDER_ID" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
