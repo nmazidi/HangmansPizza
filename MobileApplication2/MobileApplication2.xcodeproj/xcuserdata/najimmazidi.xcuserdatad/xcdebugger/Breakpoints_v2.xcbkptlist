@@ -42,11 +42,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MobileApplication2/LiveViewController.swift"
-            timestampString = "516185268.688375"
+            timestampString = "516185433.276796"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "94"
-            endingLineNumber = "94"
+            startingLineNumber = "96"
+            endingLineNumber = "96"
             landmarkName = "geocode(completionHandler:)"
             landmarkType = "7">
          </BreakpointContent>
