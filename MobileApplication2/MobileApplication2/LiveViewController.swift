@@ -74,8 +74,10 @@ class LiveViewController: UIViewController, CLLocationManagerDelegate  {
                                 self.btnNavigate.isHidden = true
                                 self.btnCallCustomer.isHidden = true
                                 self.imgCall.isHidden = true
+                                self.btnDelivered.isHidden = true
                                 self.jobTimer.fire()
                                 self.scheduledTimerWithTimeIntervalForNewJob()
+                                
                             }
                             
                         } else {
