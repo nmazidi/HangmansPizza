@@ -18,7 +18,6 @@ public class Rider {
     private String surname;
     private String email;
     private String phoneNumber;
-    private String password;
     private String vehicleType;
     private Date dateOfBirth;
     
@@ -68,15 +67,7 @@ public class Rider {
 
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
-    }
-
-    public String password() {
-        return phoneNumber;
-    }
-
-    public void password(String phoneNumber) {
-        this.phoneNumber = phoneNumber;
-    }
+    }   
     
     public String getVehicleType() {
         return vehicleType;

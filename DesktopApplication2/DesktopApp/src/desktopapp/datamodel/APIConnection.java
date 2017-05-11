@@ -27,11 +27,11 @@ public class APIConnection {
     //HTTP GET request
     public String getRequest(String uri) throws IOException {
         String output = "";
-        url = "http://Xserve.uopnet.plymouth.ac.uk/modules/INTPROJ/PRCS251Q/API/orders";
+        url = uri;
                          
             try {             
                                 
-                URL obj = new URL(uri);
+                URL obj = new URL(url);
                 HttpURLConnection con = (HttpURLConnection)obj.openConnection();
             
                 //set request method and request header
@@ -68,11 +68,55 @@ public class APIConnection {
             
             return output;
     }
-    
+    public String getRequestByID(String uri) throws IOException {
+        String output = "";
+        url = uri;
+                         
+            try {             
+                                
+                URL obj = new URL(url);
+                HttpURLConnection con = (HttpURLConnection)obj.openConnection();
+            
+                //set request method and request header
+                con.setRequestMethod("GET");
+                con.setRequestProperty("User-Agent", USER_AGENT);
+                con.setRequestProperty("Content-Type", "application/json" );
+                con.setRequestProperty("Accept", "application/json" );
+                
+                int responseCode = con.getResponseCode();
+                System.out.println("\nSending 'GET' request to URL : " + url);
+                System.out.println("Response Code : " + responseCode);
+                
+            
+                BufferedReader in = new BufferedReader(
+                        new InputStreamReader(con.getInputStream()));
+                String inputLine;
+                StringBuffer response = new StringBuffer();
+            
+                while ((inputLine = in.readLine()) != null) {
+                response.append(inputLine);            
+                }
+                in.close();
+            
+                output = response.toString();
+            
+                System.out.println(output);                                                  
+                
+                
+                
+            } catch (IOException e1) {
+                System.out.println("IOException");
+                
+            }     
+            
+            return output;
+    }
     //HTTP POST request
-    public void postRequest() throws IOException, MalformedURLException, ProtocolException {
+    public void postRequest(String uri) throws IOException, MalformedURLException, ProtocolException {
                 	
-	URL obj = new URL(url);
+	url = uri;
+        
+        URL obj = new URL(url);
 	HttpURLConnection con = (HttpURLConnection) obj.openConnection();
 
 	//add reuqest header
@@ -111,7 +155,9 @@ public class APIConnection {
     }
     
     
-    public void putRequest() throws IOException, MalformedURLException, ProtocolException {        
+    public void putRequest(String uri, String payload) throws IOException, MalformedURLException, ProtocolException {        
+        
+        url = uri;
         try {
             URL obj = new URL(url);
             HttpURLConnection con = (HttpURLConnection) obj.openConnection();
@@ -120,7 +166,7 @@ public class APIConnection {
             con.setRequestMethod("PUT");
             con.setRequestProperty("Content-Type", "application/x-www-form-urlencoded" );            
         
-            String payload = "INGREDIENT_TYPE_ID=1&INGREDIENT_TYPE1=Topping&DESCRIPTION=Goes on top of the pizzas";
+            
 
             OutputStreamWriter osw = new OutputStreamWriter(con.getOutputStream());
             osw.write(payload);
@@ -138,8 +184,8 @@ public class APIConnection {
         }   
     }
     
-    public void deleteRequest() throws IOException, MalformedURLException, ProtocolException { 
-        
+    public void deleteRequest(String uri) throws IOException, MalformedURLException, ProtocolException { 
+        url = uri;
         URL obj = new URL(url);
         HttpURLConnection con = (HttpURLConnection) obj.openConnection();
         
