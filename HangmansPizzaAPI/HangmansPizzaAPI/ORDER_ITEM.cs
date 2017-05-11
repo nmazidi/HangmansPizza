@@ -18,5 +18,7 @@ namespace HangmansPizzaAPI
         public int ORDER_ID { get; set; }
         public int QUANTITY { get; set; }
         public string UNIT_PRICE { get; set; }
+        public string ITEM_SIZE { get; set; }
+        public string ITEM_CRUSTTYPE { get; set; }
     }
 }

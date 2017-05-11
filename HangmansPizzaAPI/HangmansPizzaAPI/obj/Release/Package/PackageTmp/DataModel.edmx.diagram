@@ -19,7 +19,6 @@
         <EntityTypeShape EntityType="Model.MENU" Width="1.5" PointX="0.75" PointY="13.375" IsExpanded="true" />
         <EntityTypeShape EntityType="Model.MENU_ITEM" Width="1.5" PointX="3" PointY="12.25" IsExpanded="true" />
         <EntityTypeShape EntityType="Model.ORDER_ITEM" Width="1.5" PointX="6" PointY="9.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="Model.ORDER" Width="1.5" PointX="3.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="Model.PIZZA" Width="1.5" PointX="3" PointY="18" IsExpanded="true" />
         <EntityTypeShape EntityType="Model.PIZZA_INGREDIENT" Width="1.5" PointX="11" PointY="12.625" IsExpanded="true" />
         <EntityTypeShape EntityType="Model.RIDER_ACTIVITY" Width="1.5" PointX="8" PointY="4.625" IsExpanded="true" />
@@ -28,7 +27,6 @@
         <AssociationConnector Association="Model.MENU_FK" ManuallyRouted="false" />
         <AssociationConnector Association="Model.DEAL_ITEM_FK" ManuallyRouted="false" />
         <AssociationConnector Association="Model.DEAL_ITEM_FK2" ManuallyRouted="false" />
-        <AssociationConnector Association="Model.DELIVERY_FK" ManuallyRouted="false" />
         <AssociationConnector Association="Model.DELIVERY_RIDER_FK" ManuallyRouted="false" />
         <AssociationConnector Association="Model.RIDER_ACTIVITY_FK" ManuallyRouted="false" />
         <AssociationConnector Association="Model.DRINK_FK" ManuallyRouted="false" />
@@ -38,8 +36,6 @@
         <AssociationConnector Association="Model.PIZZA_FK" ManuallyRouted="false" />
         <AssociationConnector Association="Model.SIDE_FK" ManuallyRouted="false" />
         <AssociationConnector Association="Model.MENU_ITEM_FK" ManuallyRouted="false" />
-        <AssociationConnector Association="Model.ORDER_ITEM_FK2" ManuallyRouted="false" />
-        <AssociationConnector Association="Model.TRANSACTION_FK" ManuallyRouted="false" />
         <AssociationConnector Association="Model.ADMIN_FK" />
         <AssociationConnector Association="Model.DEAL_BRANCH_FK1" />
         <AssociationConnector Association="Model.DEAL_BRANCH_FK" />
@@ -48,7 +44,11 @@
         <EntityTypeShape EntityType="Model.ADDRESS" Width="1.5" PointX="11.5" PointY="1.375" />
         <EntityTypeShape EntityType="Model.CUSTOMER" Width="1.5" PointX="13.75" PointY="0.75" />
         <AssociationConnector Association="Model.ADDRESS_FK" />
+        <EntityTypeShape EntityType="Model.ORDER" Width="1.5" PointX="16" PointY="0.75" />
         <AssociationConnector Association="Model.ORDERS_FK" />
+        <AssociationConnector Association="Model.DELIVERY_FK" />
+        <AssociationConnector Association="Model.ORDER_ITEM_FK2" />
+        <AssociationConnector Association="Model.TRANSACTION_FK" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

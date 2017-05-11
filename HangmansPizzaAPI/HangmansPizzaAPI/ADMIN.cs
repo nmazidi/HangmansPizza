@@ -20,5 +20,6 @@ namespace HangmansPizzaAPI
         public string SURNAME { get; set; }
         public string USERNAME { get; set; }
         public string PASSWORD { get; set; }
+        public string PASSWORD_SALT { get; set; }
     }
 }

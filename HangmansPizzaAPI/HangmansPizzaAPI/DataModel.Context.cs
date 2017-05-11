@@ -39,7 +39,6 @@ namespace HangmansPizzaAPI
         public virtual DbSet<MENU> MENUs { get; set; }
         public virtual DbSet<MENU_ITEM> MENU_ITEM { get; set; }
         public virtual DbSet<ORDER_ITEM> ORDER_ITEM { get; set; }
-        public virtual DbSet<ORDER> ORDERS { get; set; }
         public virtual DbSet<PIZZA> PIZZAs { get; set; }
         public virtual DbSet<PIZZA_INGREDIENT> PIZZA_INGREDIENT { get; set; }
         public virtual DbSet<RIDER_ACTIVITY> RIDER_ACTIVITY { get; set; }
@@ -47,5 +46,6 @@ namespace HangmansPizzaAPI
         public virtual DbSet<TRANSACTION> TRANSACTIONs { get; set; }
         public virtual DbSet<ADDRESS> ADDRESSES { get; set; }
         public virtual DbSet<CUSTOMER> CUSTOMERs { get; set; }
+        public virtual DbSet<ORDER> ORDERS { get; set; }
     }
 }

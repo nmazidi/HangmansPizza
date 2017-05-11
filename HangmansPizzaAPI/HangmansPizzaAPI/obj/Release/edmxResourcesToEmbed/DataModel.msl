@@ -4,6 +4,7 @@
     <EntitySetMapping Name="ADMINs">
       <EntityTypeMapping TypeName="Model.ADMIN">
         <MappingFragment StoreEntitySet="ADMIN">
+          <ScalarProperty Name="PASSWORD_SALT" ColumnName="PASSWORD_SALT" />
           <ScalarProperty Name="ADMIN_ID" ColumnName="ADMIN_ID" />
           <ScalarProperty Name="BRANCH_ID" ColumnName="BRANCH_ID" />
           <ScalarProperty Name="FORENAME" ColumnName="FORENAME" />
@@ -54,6 +55,7 @@
     <EntitySetMapping Name="DELIVERies">
       <EntityTypeMapping TypeName="Model.DELIVERY">
         <MappingFragment StoreEntitySet="DELIVERY">
+          <ScalarProperty Name="DELIVERY_STATUS" ColumnName="DELIVERY_STATUS" />
           <ScalarProperty Name="DELIVERY_ID" ColumnName="DELIVERY_ID" />
           <ScalarProperty Name="ORDER_ID" ColumnName="ORDER_ID" />
           <ScalarProperty Name="DATE_DELIVERED" ColumnName="DATE_DELIVERED" />
@@ -141,23 +143,12 @@
     <EntitySetMapping Name="ORDER_ITEM">
       <EntityTypeMapping TypeName="Model.ORDER_ITEM">
         <MappingFragment StoreEntitySet="ORDER_ITEM">
+          <ScalarProperty Name="ITEM_CRUSTTYPE" ColumnName="ITEM_CRUSTTYPE" />
+          <ScalarProperty Name="ITEM_SIZE" ColumnName="ITEM_SIZE" />
           <ScalarProperty Name="ITEM_ID" ColumnName="ITEM_ID" />
           <ScalarProperty Name="ORDER_ID" ColumnName="ORDER_ID" />
           <ScalarProperty Name="QUANTITY" ColumnName="QUANTITY" />
           <ScalarProperty Name="UNIT_PRICE" ColumnName="UNIT_PRICE" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="ORDERS">
-      <EntityTypeMapping TypeName="Model.ORDER">
-        <MappingFragment StoreEntitySet="ORDERS">
-          <ScalarProperty Name="ORDER_STATUS" ColumnName="ORDER_STATUS" />
-          <ScalarProperty Name="ORDER_ID" ColumnName="ORDER_ID" />
-          <ScalarProperty Name="CUSTOMER_ID" ColumnName="CUSTOMER_ID" />
-          <ScalarProperty Name="DATE_PLACED" ColumnName="DATE_PLACED" />
-          <ScalarProperty Name="TOTAL_COST" ColumnName="TOTAL_COST" />
-          <ScalarProperty Name="ORDER_TYPE" ColumnName="ORDER_TYPE" />
-          <ScalarProperty Name="NOTES" ColumnName="NOTES" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -243,6 +234,19 @@
           <ScalarProperty Name="CUSTOMER_FORENAME" ColumnName="CUSTOMER_FORENAME" />
           <ScalarProperty Name="CUSTOMER_TITLE" ColumnName="CUSTOMER_TITLE" />
           <ScalarProperty Name="CUSTOMER_ID" ColumnName="CUSTOMER_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ORDERS">
+      <EntityTypeMapping TypeName="Model.ORDER">
+        <MappingFragment StoreEntitySet="ORDERS">
+          <ScalarProperty Name="ORDER_STATUS" ColumnName="ORDER_STATUS" />
+          <ScalarProperty Name="NOTES" ColumnName="NOTES" />
+          <ScalarProperty Name="ORDER_TYPE" ColumnName="ORDER_TYPE" />
+          <ScalarProperty Name="TOTAL_COST" ColumnName="TOTAL_COST" />
+          <ScalarProperty Name="DATE_PLACED" ColumnName="DATE_PLACED" />
+          <ScalarProperty Name="CUSTOMER_ID" ColumnName="CUSTOMER_ID" />
+          <ScalarProperty Name="ORDER_ID" ColumnName="ORDER_ID" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
