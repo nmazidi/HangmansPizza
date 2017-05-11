@@ -87,6 +87,14 @@ class UtilityFunctions {
         updatedDict.updateKey(from: "deliveryStatus", to: "DELIVERY_STATUS")
         updatedDict.updateKey(from: "customerID", to: "CUSTOMER_ID")
         updatedDict.updateKey(from: "addressID", to: "ADDRESS_ID")
+        updatedDict.updateKey(from: "orderStatus", to: "ORDER_STATUS")
+        updatedDict.updateKey(from: "totalCost", to: "TOTAL_COST")
+        updatedDict.updateKey(from: "datePlaced", to: "DATE_PLACED")
+        updatedDict.updateKey(from: "postcode", to: "POSTCODE")
+        updatedDict.updateKey(from: "addressLine1", to: "ADDRESS_LINE_1")
+        updatedDict.updateKey(from: "addressLine2", to: "ADDRESS_LINE_2")
+        updatedDict.updateKey(from: "orderType", to: "ORDER_TYPE")
+        updatedDict.updateKey(from: "notes", to: "NOTES")
         return updatedDict
     }
 }

@@ -22,11 +22,108 @@ class LiveViewController: UIViewController, CLLocationManagerDelegate  {
     var locationTimer = Timer()
     var distanceFromRestaurant: CLLocationDistance = 0;
     
+    lazy var geocoder = CLGeocoder()
+    
+    
     let systemSoundID: SystemSoundID = 1022
     
+    
+    @IBOutlet weak var btnCallCustomer: UIButton!
     @IBOutlet weak var lblNoJobs: UILabel!
+    @IBOutlet weak var btnNavigate: UIButton!
+    @IBOutlet weak var btnDelivered: UIButton!
+    @IBOutlet weak var lblDeliverTo: UILabel!
+    @IBOutlet weak var lblName: UILabel!
+    @IBOutlet weak var lblLine1: UILabel!
+    @IBOutlet weak var lblLine2: UILabel!
+    @IBOutlet weak var lblPostCode: UILabel!
+    @IBOutlet weak var imgCall: UIImageView!
     @IBOutlet var map: MKMapView!
+    
     let manager = CLLocationManager()
+
+    @IBAction func btnCallCustomer(_ sender: Any) {
+        guard let numberURL = URL(string: "telprompt://" + customerToDeliverTo.getPhoneNumber())
+            else {
+                return
+        }
+        UIApplication.shared.open(numberURL, options: [:], completionHandler: nil)
+    }
+    @IBAction func btnDelivered(_ sender: Any) {
+        DispatchQueue.global(qos: .background).async {
+            self.currentShift.setAvailable()
+            self.orderBeingDelivered.setStatusAsDelivered()
+            
+            APICommunication.PUTRequest(path: "rider_activity", id: self.currentShift.getShiftID(), params: UtilityFunctions.getStringDictionaryFromObject(obj: self.currentShift)) { success in
+                if success.0 {
+                    print("Shift PUT successful. Code: \(success.1)")
+                    APICommunication.PUTRequest(path: "orders", id: self.orderBeingDelivered.getOrderID(), params: UtilityFunctions.getStringDictionaryFromObject(obj: self.orderBeingDelivered)) { success in
+                        if success.0 {
+                            print("Orders PUT successful. Code: \(success.1)")
+                            self.currentDelivery = Delivery()
+                            self.orderBeingDelivered = Order()
+                            self.addressToBeDeliveredTo = Address()
+                            self.customerToDeliverTo = Customer()
+                            DispatchQueue.main.async {
+                                self.lblNoJobs.isHidden = false
+                                self.lblDeliverTo.isHidden = true
+                                self.lblName.isHidden = true
+                                self.lblLine1.isHidden = true
+                                self.lblLine2.isHidden = true
+                                self.lblPostCode.isHidden = true
+                                self.btnNavigate.isHidden = true
+                                self.btnCallCustomer.isHidden = true
+                                self.imgCall.isHidden = true
+                                self.jobTimer.fire()
+                                self.scheduledTimerWithTimeIntervalForNewJob()
+                            }
+                            
+                        } else {
+                            print("Orders PUT unsuccessful. Code: \(success.1)")
+                        }
+                    }
+                } else {
+                    print("Shift PUT unsuccessful. Code: \(success.1)")
+                }
+            }
+        }
+    }
+    
+     func geocode(completionHandler: @escaping (CLLocationCoordinate2D, MKPlacemark) -> ()) {
+        let address = "\(addressToBeDeliveredTo.addressLine1), \(addressToBeDeliveredTo.town)"
+        var coordinates = CLLocationCoordinate2D()
+        print(address)
+        let geocoder = CLGeocoder()
+        geocoder.geocodeAddressString(address) { (placemarks, error) in
+            if let placemarks = placemarks {
+                if placemarks.count != 0 {
+                    let annotation = MKPlacemark(placemark: placemarks.first!)
+                    self.map.addAnnotation(annotation)
+                    let span: MKCoordinateSpan = MKCoordinateSpanMake(0.01, 0.01)
+                    let region: MKCoordinateRegion = MKCoordinateRegionMake(coordinates, span)
+                    self.map.setRegion(region, animated: true)
+                }
+            }
+            coordinates = (placemarks?.first?.location?.coordinate)!
+            let placemark = MKPlacemark(coordinate: coordinates)
+            completionHandler(coordinates, placemark)
+        }
+        
+    }
+    
+    @IBAction func btnNavigate(_ sender: Any) {
+        var lat = CLLocationDegrees()
+        var long = CLLocationDegrees()
+        geocode() { success in
+            lat = success.0.latitude
+            long = success.0.longitude
+            let mapItem = MKMapItem(placemark: success.1)
+            let launchOptions = [MKLaunchOptionsDirectionsModeKey : MKLaunchOptionsDirectionsModeDriving]
+            mapItem.openInMaps(launchOptions: launchOptions)
+            self.btnNavigate.isHidden = true
+            self.btnDelivered.isHidden = false
+        }
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,7 +135,6 @@ class LiveViewController: UIViewController, CLLocationManagerDelegate  {
         manager.startUpdatingLocation()
         scheduledTimerWithTimeIntervalForLocation()
         scheduledTimerWithTimeIntervalForNewJob()
-        
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -49,7 +145,6 @@ class LiveViewController: UIViewController, CLLocationManagerDelegate  {
         self.navigationController?.setNavigationBarHidden(false, animated: animated)
         super.viewDidAppear(animated)
     }
-    
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         let location = locations[0]
         let span: MKCoordinateSpan = MKCoordinateSpanMake(0.01, 0.01)
@@ -63,6 +158,7 @@ class LiveViewController: UIViewController, CLLocationManagerDelegate  {
         annotation.title = "Hangman's Pizza"
         map.addAnnotation(annotation)
         
+
         self.map.showsUserLocation = true
         
     }
@@ -94,7 +190,7 @@ class LiveViewController: UIViewController, CLLocationManagerDelegate  {
     }
     func getNewJob(){
         DispatchQueue.global(qos: .background).async {
-            if self.distanceFromRestaurant <= 1606 {
+            if self.distanceFromRestaurant <= 500 {
                 APICommunication.GETRequest(path: "orders") { success in
                 if success.0 {
                     print("GET request successful? \(success.0)")
@@ -125,16 +221,19 @@ class LiveViewController: UIViewController, CLLocationManagerDelegate  {
                                         }
                                         APICommunication.GETRequestByID(path: "customers", id: item["CUSTOMER_ID"] as! Int) { success in
                                             if success.0 {
-                                                print("read addresses successfully")
+                                                print("read customers successfully")
                                                 for cust in success.1 {
                                                     self.customerToDeliverTo = Customer(title: cust["CUSTOMER_TITLE"] as! String, forename: cust["CUSTOMER_FORENAME"] as! String, surname: cust["CUSTOMER_SURNAME"] as! String, phoneNumber: cust["CUSTOMER_PHONE"] as! String, emailAddress: cust["CUSTOMER_EMAIL"] as! String, DOB: UtilityFunctions.formatDateForStorage(dateStr: cust["CUSTOMER_DOB"] as! String), customerID: cust["CUSTOMER_ID"] as! Int, addressID: cust["ADDRESS_ID"] as! Int)
                                                 }
+                                                print(self.customerToDeliverTo.getAddressID())
                                                 APICommunication.GETRequestByID(path: "addresses", id: self.customerToDeliverTo.getAddressID()) { success in
                                                     if success.0 {
                                                         print("Getting address successful")
                                                         for item in success.1 {
                                                             self.addressToBeDeliveredTo = Address(addressID: item["ADDRESS_ID"] as! Int, addressLine1: item["ADDRESS_LINE_1"] as! String, addressLine2: item["ADDRESS_LINE_2"] as! String, town: item["TOWN"] as! String, postcode: item["POSTCODE"] as! String)
-                                                            self.jobAccepted()
+                                                            DispatchQueue.main.async {
+                                                                self.jobAccepted()
+                                                            }
                                                         }
                                                     } else {
                                                         print(" error getting address.")
@@ -169,10 +268,47 @@ class LiveViewController: UIViewController, CLLocationManagerDelegate  {
     }
     func jobAccepted() {
         self.jobTimer.invalidate()
-        lblNoJobs.isHidden = true
+        
         self.currentShift.setUnavailable()
         self.orderBeingDelivered.setStatusAsOutForDelivery()
         
+        DispatchQueue.global(qos: .background).async {
+            APICommunication.PUTRequest(path: "rider_activity", id: self.currentShift.getShiftID(), params: UtilityFunctions.getStringDictionaryFromObject(obj: self.currentShift)) { success in
+                if success.0 {
+                    print("Shift PUT successful. Code: \(success.1)")
+                    APICommunication.PUTRequest(path: "orders", id: self.orderBeingDelivered.getOrderID(), params: UtilityFunctions.getStringDictionaryFromObject(obj: self.orderBeingDelivered)) { success in
+                        if success.0 {
+                            print("Orders PUT successful. Code: \(success.1)")
+                        } else {
+                            print("Orders PUT unsuccessful. Code: \(success.1)")
+                        }
+                        DispatchQueue.main.async {
+                            self.performSegue(withIdentifier: "DeliveredSegue", sender: self)
+                        }
+                        
+                    }
+                    
+                } else {
+                    print("Shift PUT unsuccessful. Code: \(success.1)")
+                }
+            }
+        }
+        lblNoJobs.isHidden = true
+        lblDeliverTo.isHidden = false
+        lblName.isHidden = false
+        lblLine1.isHidden = false
+        lblLine2.isHidden = false
+        lblPostCode.isHidden = false
+        btnNavigate.isHidden = false
+        btnCallCustomer.isHidden = false
+        imgCall.isHidden = false
+        
+        
+        lblName.text = customerToDeliverTo.getForename()
+        print(addressToBeDeliveredTo.getAddressLine1())
+        lblLine1.text = addressToBeDeliveredTo.getAddressLine1()
+        lblLine2.text = addressToBeDeliveredTo.getAddressLine2()
+        lblPostCode.text = addressToBeDeliveredTo.getPostcode()
     }
-
+    
 }

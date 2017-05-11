@@ -54,7 +54,7 @@ class Address {
         self.addressLine2 = newAddressLine2
     }
     func getAddressLine2() -> String {
-        return self.addressLine1
+        return self.addressLine2
     }
     func setAddressLine2(newAddressLine2: String) {
         self.addressLine2 = newAddressLine2

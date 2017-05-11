@@ -30,7 +30,7 @@ class Customer : Person {
         self.customerID = newCustomerID
     }
     func getAddressID() -> Int{
-        return self.customerID
+        return self.addressID
     }
     func setAddressID(newAddressID: Int) {
         self.addressID = newAddressID
