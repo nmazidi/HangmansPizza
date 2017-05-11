@@ -15,6 +15,7 @@
 		7563665A1EC2590000B1F9EB /* DeliveryStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 756366591EC2590000B1F9EB /* DeliveryStatus.swift */; };
 		7563665C1EC25B5500B1F9EB /* ShiftStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7563665B1EC25B5500B1F9EB /* ShiftStatus.swift */; };
 		7598458C1EC168B2006E2948 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7598458B1EC168B2006E2948 /* CoreLocation.framework */; };
+		759F30C11EC3EFB0006F2CDE /* Customer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 759F30C01EC3EFB0006F2CDE /* Customer.swift */; };
 		75DAEA371EB8F90B0031C703 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75DAEA361EB8F90B0031C703 /* AppDelegate.swift */; };
 		75DAEA391EB8F90B0031C703 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75DAEA381EB8F90B0031C703 /* LoginViewController.swift */; };
 		75DAEA3C1EB8F90B0031C703 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 75DAEA3A1EB8F90B0031C703 /* Main.storyboard */; };
@@ -50,6 +51,7 @@
 		756366591EC2590000B1F9EB /* DeliveryStatus.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeliveryStatus.swift; sourceTree = "<group>"; };
 		7563665B1EC25B5500B1F9EB /* ShiftStatus.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShiftStatus.swift; sourceTree = "<group>"; };
 		7598458B1EC168B2006E2948 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		759F30C01EC3EFB0006F2CDE /* Customer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Customer.swift; sourceTree = "<group>"; };
 		75DAEA331EB8F90B0031C703 /* MobileApplication2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MobileApplication2.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		75DAEA361EB8F90B0031C703 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		75DAEA381EB8F90B0031C703 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -137,6 +139,7 @@
 				75DAEA3F1EB8F90B0031C703 /* LaunchScreen.storyboard */,
 				75DAEA561EB8FCA10031C703 /* APICommunication.swift */,
 				752368A11EBE849A00E368CA /* Shift.swift */,
+				759F30C01EC3EFB0006F2CDE /* Customer.swift */,
 				75DAEA571EB8FCA10031C703 /* DeliveryRider.swift */,
 				75DAEA581EB8FCA10031C703 /* Person.swift */,
 				75E02AEA1EC23F3E00E28007 /* Order.swift */,
@@ -289,6 +292,7 @@
 				7539B6201EC3647B0024A768 /* Address.swift in Sources */,
 				75E516841EBA45AA00CB0BD4 /* AccountViewController.swift in Sources */,
 				755FFB0B1EC2D2580077B0B0 /* Delivery.swift in Sources */,
+				759F30C11EC3EFB0006F2CDE /* Customer.swift in Sources */,
 				756366581EC2511B00B1F9EB /* OrderStatus.swift in Sources */,
 				75E1DF651EBEC1E800CA79C4 /* LiveViewController.swift in Sources */,
 			);

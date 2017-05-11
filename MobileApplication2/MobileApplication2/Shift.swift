@@ -98,9 +98,6 @@ class Shift {
     func getStatus() -> String{
         return self.status
     }
-    func setStatus(newStatus: String) {
-        self.status = newStatus
-    }
     func getTotalEarned() -> Double{
         return self.totalEarned
     }

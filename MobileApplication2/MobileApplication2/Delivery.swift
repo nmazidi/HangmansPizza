@@ -14,6 +14,7 @@ class Delivery {
     var dateDelivered: Date
     var deliveryNotes: String
     var riderID : Int
+    var deliveryStatus: String
     
     /// Default constructor of Delivery
     init() {
@@ -22,6 +23,7 @@ class Delivery {
         self.dateDelivered = Date()
         self.deliveryNotes = ""
         self.riderID = 0
+        self.deliveryStatus = ""
     }
     /// Constructor of a delivery
     ///
@@ -31,12 +33,14 @@ class Delivery {
     ///   - dateDelivered: date that the delivery was completed
     ///   - deliveryNotes: any notes that have been added by the customer or chefs
     ///   - riderID: rider that is completing the delivery
-    init(deliveryID: Int, orderID: Int, dateDelivered: Date, deliveryNotes: String, riderID : Int) {
+    ///   - deliveryStatus: current status of the delivery
+    init(deliveryID: Int, orderID: Int, dateDelivered: Date, deliveryNotes: String, riderID : Int, deliveryStatus: String) {
         self.deliveryID = deliveryID
         self.orderID = orderID
         self.dateDelivered = dateDelivered
         self.deliveryNotes = deliveryNotes
         self.riderID = riderID
+        self.deliveryStatus = deliveryStatus
     }
     func getDeliveryID() -> Int {
         return self.deliveryID
@@ -67,5 +71,11 @@ class Delivery {
     }
     func setRiderID(newRiderID: Int) {
         self.riderID = newRiderID
+    }
+    func getDeliveryStatus() -> String {
+        return self.deliveryStatus
+    }
+    func setDeliveryStatus(newDeliveryStatus: String) {
+        self.deliveryStatus = newDeliveryStatus
     }
 }

@@ -84,6 +84,9 @@ class UtilityFunctions {
         updatedDict.updateKey(from: "deliveryID", to: "DELIVERY_ID")
         updatedDict.updateKey(from: "orderID", to: "ORDER_ID")
         updatedDict.updateKey(from: "dateDelivered", to: "DATE_DELIVERED")
+        updatedDict.updateKey(from: "deliveryStatus", to: "DELIVERY_STATUS")
+        updatedDict.updateKey(from: "customerID", to: "CUSTOMER_ID")
+        updatedDict.updateKey(from: "addressID", to: "ADDRESS_ID")
         return updatedDict
     }
 }

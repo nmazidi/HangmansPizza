@@ -27,7 +27,7 @@ class Order {
         self.datePlaced = Date()
         self.totalCost = 0
         self.orderType = "UNKNOWN"
-        self.notes = ""
+        self.notes = "none"
         self.orderStatus = "UNKNOWN"
         self.addressLine1 = "UNKNOWN"
         self.addressLine2 = "UNKNOWN"

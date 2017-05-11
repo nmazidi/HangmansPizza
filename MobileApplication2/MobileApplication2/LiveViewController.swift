@@ -9,6 +9,7 @@
 import UIKit
 import MapKit
 import CoreLocation
+import AVFoundation
 
 class LiveViewController: UIViewController, CLLocationManagerDelegate  {
     var riderLoggedIn = DeliveryRider()
@@ -16,8 +17,12 @@ class LiveViewController: UIViewController, CLLocationManagerDelegate  {
     var currentDelivery = Delivery()
     var orderBeingDelivered = Order()
     var addressToBeDeliveredTo = Address()
-    var timer = Timer()
+    var customerToDeliverTo = Customer()
+    var jobTimer = Timer()
+    var locationTimer = Timer()
     var distanceFromRestaurant: CLLocationDistance = 0;
+    
+    let systemSoundID: SystemSoundID = 1022
     
     @IBOutlet weak var lblNoJobs: UILabel!
     @IBOutlet var map: MKMapView!
@@ -25,6 +30,7 @@ class LiveViewController: UIViewController, CLLocationManagerDelegate  {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         print(self.currentShift.getShiftID())
         manager.delegate = self
         manager.desiredAccuracy = kCLLocationAccuracyBest
@@ -32,8 +38,8 @@ class LiveViewController: UIViewController, CLLocationManagerDelegate  {
         manager.startUpdatingLocation()
         scheduledTimerWithTimeIntervalForLocation()
         scheduledTimerWithTimeIntervalForNewJob()
+        
     }
-
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationController?.setNavigationBarHidden(true, animated: animated)
@@ -41,6 +47,7 @@ class LiveViewController: UIViewController, CLLocationManagerDelegate  {
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         self.navigationController?.setNavigationBarHidden(false, animated: animated)
+        super.viewDidAppear(animated)
     }
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
@@ -60,10 +67,10 @@ class LiveViewController: UIViewController, CLLocationManagerDelegate  {
         
     }
     func scheduledTimerWithTimeIntervalForLocation(){
-        timer = Timer.scheduledTimer(timeInterval: 40, target: self, selector: #selector(self.storeRiderLocation), userInfo: nil, repeats: true)
+        locationTimer = Timer.scheduledTimer(timeInterval: 40, target: self, selector: #selector(self.storeRiderLocation), userInfo: nil, repeats: true)
     }
     func scheduledTimerWithTimeIntervalForNewJob(){
-        timer = Timer.scheduledTimer(timeInterval: 20, target: self, selector: #selector(self.getNewJob), userInfo: nil, repeats: true)
+        jobTimer = Timer.scheduledTimer(timeInterval: 20, target: self, selector: #selector(self.getNewJob), userInfo: nil, repeats: true)
     }
     
     func storeRiderLocation() {
@@ -93,6 +100,9 @@ class LiveViewController: UIViewController, CLLocationManagerDelegate  {
                     print("GET request successful? \(success.0)")
                     for item in success.1 {
                         if item["ORDER_STATUS"] as! String == OrderStatus.READY.rawValue {
+                            
+                            AudioServicesPlayAlertSound(self.systemSoundID)
+                            
                             let newJobAlert = UIAlertController(title: "New Job Available", message: "Do you want to take this delivery?", preferredStyle: .alert)
                             let yesAction = UIAlertAction(title: "Yes", style: UIAlertActionStyle.default, handler: { action in
                                 let alert = UIAlertController(title: nil, message: "Accepting job. Please wait...", preferredStyle: .alert)
@@ -104,27 +114,27 @@ class LiveViewController: UIViewController, CLLocationManagerDelegate  {
                                 
                                 alert.view.addSubview(loadingIndicator)
                                 DispatchQueue.main.async {
-                                    self.present(alert, animated: true, completion: nil)
+                                     self.present(alert, animated: true, completion: nil)
                                 }
-                                self.currentDelivery = Delivery(deliveryID: 1, orderID: item["ORDER_ID"] as! Int, dateDelivered: Date(), deliveryNotes: "none", riderID: self.riderLoggedIn.getRiderID())
+                                self.currentDelivery = Delivery(deliveryID: 1, orderID: item["ORDER_ID"] as! Int, dateDelivered: Date(), deliveryNotes: "none", riderID: self.riderLoggedIn.getRiderID(), deliveryStatus: DeliveryStatus.OUTFORDELIVERY.rawValue)
                                 APICommunication.POSTRequest(path: "deliveries", params: UtilityFunctions.getStringDictionaryFromObject(obj: self.currentDelivery)) { success in
                                     if success.0 {
                                         print("created new delivery. Code: \(success.1)")
                                         for delivery in success.2 {
                                             self.currentDelivery.setDeliveryID(newDeliveryID: delivery["DELIVERY_ID"] as! Int)
                                         }
-                                        var addressID: Int = 0
                                         APICommunication.GETRequestByID(path: "customers", id: item["CUSTOMER_ID"] as! Int) { success in
                                             if success.0 {
                                                 print("read addresses successfully")
                                                 for cust in success.1 {
-                                                    addressID = cust["ADDRESS_ID"] as! Int
+                                                    self.customerToDeliverTo = Customer(title: cust["CUSTOMER_TITLE"] as! String, forename: cust["CUSTOMER_FORENAME"] as! String, surname: cust["CUSTOMER_SURNAME"] as! String, phoneNumber: cust["CUSTOMER_PHONE"] as! String, emailAddress: cust["CUSTOMER_EMAIL"] as! String, DOB: UtilityFunctions.formatDateForStorage(dateStr: cust["CUSTOMER_DOB"] as! String), customerID: cust["CUSTOMER_ID"] as! Int, addressID: cust["ADDRESS_ID"] as! Int)
                                                 }
-                                                APICommunication.GETRequestByID(path: "addresses", id: addressID) { success in
+                                                APICommunication.GETRequestByID(path: "addresses", id: self.customerToDeliverTo.getAddressID()) { success in
                                                     if success.0 {
                                                         print("Getting address successful")
                                                         for item in success.1 {
-                                                            self.addressToBeDeliveredTo = Address(addressID: addressID, addressLine1: item["ADDRESS_LINE_1"] as! String, addressLine2: item["ADDRESS_LINE_2"] as! String, town: item["TOWN"] as! String, postcode: item["POSTCODE"] as! String)
+                                                            self.addressToBeDeliveredTo = Address(addressID: item["ADDRESS_ID"] as! Int, addressLine1: item["ADDRESS_LINE_1"] as! String, addressLine2: item["ADDRESS_LINE_2"] as! String, town: item["TOWN"] as! String, postcode: item["POSTCODE"] as! String)
+                                                            self.jobAccepted()
                                                         }
                                                     } else {
                                                         print(" error getting address.")
@@ -134,7 +144,8 @@ class LiveViewController: UIViewController, CLLocationManagerDelegate  {
                                                 print("Error getting customer")
                                             }
                                         }
-                                        self.orderBeingDelivered = Order(orderID: item["ORDER_ID"] as! Int, customerID: item["CUSTOMER_ID"] as! Int, datePlaced: item["DATE_PLACED"] as! Date, totalCost: item["TOTAL_COST"] as! Double, orderType: item["ORDER_TYPE"] as! String, notes: item["NOTES"] as! String, orderStatus: item["ORDER_STATUS"] as! String, addressLine1: self.addressToBeDeliveredTo.getAddressLine1(), addressLine2: self.addressToBeDeliveredTo.getAddressLine2(), postcode: self.addressToBeDeliveredTo.getPostcode())
+                                        print(item)
+                                        self.orderBeingDelivered = Order(orderID: item["ORDER_ID"] as! Int, customerID: item["CUSTOMER_ID"] as! Int, datePlaced: UtilityFunctions.formatDateForStorage(dateStr: item["DATE_PLACED"] as! String), totalCost: item["TOTAL_COST"] as! Double, orderType: item["ORDER_TYPE"] as! String, notes: item["NOTES"] as! String, orderStatus: item["ORDER_STATUS"] as! String, addressLine1: self.addressToBeDeliveredTo.getAddressLine1(), addressLine2: self.addressToBeDeliveredTo.getAddressLine2(), postcode: self.addressToBeDeliveredTo.getPostcode())
                                         alert.dismiss(animated: true)
                                     } else {
                                         print("Error creating delivery. Code: \(success.1)")
@@ -154,8 +165,13 @@ class LiveViewController: UIViewController, CLLocationManagerDelegate  {
                 }
             }
             }
-            
         }
+    }
+    func jobAccepted() {
+        self.jobTimer.invalidate()
+        lblNoJobs.isHidden = true
+        self.currentShift.setUnavailable()
+        self.orderBeingDelivered.setStatusAsOutForDelivery()
         
     }
 
