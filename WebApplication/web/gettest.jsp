@@ -13,31 +13,31 @@
         <title>JSP Page</title>
     </head>
     <body>
-        
 
 
-<div ng-app="myApp" ng-controller="customersCtrl">
 
-<ul>
-  <li ng-repeat="x in myData">
-    {{ x.CUSTOMER_FORENAME + ', ' + x.CUSTOMER_SURNAME }}
-  </li>
-</ul>
+        <div ng-app="myApp" ng-controller="customersCtrl">
 
-</div>
+            <ul>
+                <li ng-repeat="x in myData">
+                    {{ x.CUSTOMER_FORENAME + ', ' + x.CUSTOMER_SURNAME}}
+                </li>
+            </ul>
 
-<script>
-var app = angular.module('myApp', []);
-app.controller('customersCtrl', function($scope, $http) {
-    $http({
-        method: 'GET', 
-        url:"http://xserve.uopnet.plymouth.ac.uk/Modules/INTPROJ/PRCS251Q/api/items"
-    }).then(function(response)
-    {
-        $scope.myData = response.data;
-    });
-});
-</script>
+        </div>
+
+        <script>
+            var app = angular.module('myApp', []);
+            app.controller('customersCtrl', function ($scope, $http) {
+                $http({
+                    method: 'GET',
+                    url: "http://xserve.uopnet.plymouth.ac.uk/Modules/INTPROJ/PRCS251Q/api/customers"
+                }).then(function (response)
+                {
+                    $scope.myData = response.data;
+                });
+            });
+        </script>
 
 
 
